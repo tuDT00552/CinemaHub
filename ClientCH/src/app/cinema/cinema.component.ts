@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {CinemaService} from './cinema.service';
+import {Cinema} from './Cinema';
 
 @Component({
   selector: 'app-cinema',
@@ -6,10 +8,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cinema.component.css']
 })
 export class CinemaComponent implements OnInit {
-
-  constructor() { }
+  cinemas: Cinema[];
+  constructor(private cinemaService: CinemaService) { }
 
   ngOnInit(): void {
+    this.getCinemas();
+  }
+
+  getCinemas(): void {
+    this.cinemaService.getCinemas()
+      .subscribe(cinemas => this.cinemas = cinemas);
   }
 
 }
