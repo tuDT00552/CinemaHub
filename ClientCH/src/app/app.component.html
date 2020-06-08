@@ -1,37 +1,35 @@
-<div class="container-fluid">
-  <div class="header p-0">
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-      <!-- Brand/logo -->
-      <a class="navbar-brand" href="#">
-        <img src="https://f1.pngfuel.com/png/365/513/290/movie-logo-photographic-film-movie-camera-cinema-movie-projector-video-cameras-cinema-camera-circle-png-clip-art-thumbnail.png" alt="logo" style="width:40px;">
-      </a>
-      <!-- Links -->
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="#">Rạp Chiếu</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Phim Đang Chiếu</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Dịch Vụ</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Hỗ Trợ</a>
-        </li>
-      </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <button class="btn btn-success mr-sm-2" type="button">Đăng Nhập</button>
-        <button class="btn btn-danger my-2 my-sm-0" type="button">Đăng Kí</button>
-      </form>
-    </nav>
-  </div>
-
-
-    <div class="container-fluid">
-      <h3>Trung Tâm Chiếu Phim CinemaHub</h3>
-      <p>Trên đỉnh Trường Sơn ta hát bài ca, tiếng hát cùng ta, vượt qua gian khổ.</p>
-      <p>Trên đỉnh Trường Sơn ta hát bài ca, tiếng hát cùng ta, vượt qua gian khổ.</p>
-    </div>
-  </div>
-
+<div class="header p-0">
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <!-- Brand/logo -->
+    <a class="navbar-brand" href="#">
+      <!--        <img src="https://f1.pngfuel.com/png/365/513/290/movie-logo-photographic-film-movie-camera-cinema-movie-projector-video-cameras-cinema-camera-circle-png-clip-art-thumbnail.png" alt="logo" style="width:40px;">-->
+      <span class="logo-t1"><i class="fa fa-camera-retro" aria-hidden="true"></i>&nbsp;Cinema<span class="logo-t2">Hub</span></span>
+    </a>
+    <!-- Links -->
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <div class="dropdown">
+          <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{cinemas[0].tenrap}}
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a *ngFor="let cinema of cinemas" class="dropdown-item" href="showtimes">{{cinema.tenrap}}</a>
+          </div>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="cinema">Phim Đang Chiếu</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Dịch Vụ</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Hỗ Trợ</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <a href="login"><i class="fa fa-user-circle-o" aria-hidden="true"></i> THÀNH VIÊN</a>
+    </form>
+  </nav>
+</div>
+<router-outlet></router-outlet>
