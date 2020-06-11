@@ -15,7 +15,8 @@ const routes: Routes = [
   { path: 'movies', component: MoviesComponent },
   { path: 'showtimes', component: ShowtimesComponent },
   { path: 'default', component: DefaultComponent },
-  { path: '', redirectTo: '/default', pathMatch: 'full' }
+  { path: '', redirectTo: '/default', pathMatch: 'full' },
+
 ];
 
 @NgModule({
