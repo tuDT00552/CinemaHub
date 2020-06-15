@@ -31,9 +31,6 @@ public class MovieResource {
         movie.setCreatedAt(date);
         movie.setUpdateAt(date);
         movie.setStatus(1);
-//        Cinema c = new Cinema();
-//        movie.setCinema(cinemaService.findByID((long) 252).get());
-        System.out.println("ID = " + movie.getCinema().getId());
         movie.setCinema(cinemaService.findByID(movie.getCinema().getId()).get());
         return movieService.save(movie);
     }
