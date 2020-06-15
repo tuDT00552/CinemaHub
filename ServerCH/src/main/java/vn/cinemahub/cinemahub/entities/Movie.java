@@ -1,5 +1,6 @@
 package vn.cinemahub.cinemahub.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -9,7 +10,6 @@ import java.util.Set;
 
 @Entity
 @Table(name = "movie")
-@Data
 @EntityListeners(AuditingEntityListener.class)
 public class Movie extends BaseEntity{
     @Column(name = "maphim")
@@ -45,6 +45,7 @@ public class Movie extends BaseEntity{
 //            inverseJoinColumns = {@JoinColumn(name = "cinema_id") })
 //    private Set<Cinema> cinemas = new HashSet<>();
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "cinema_id", nullable = false)
     private Cinema cinema;
