@@ -1,15 +1,19 @@
 package vn.cinemahub.cinemahub.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
 @Table(name = "CINEMA")
-@Data
 @EntityListeners(AuditingEntityListener.class)
 public class Cinema extends BaseEntity{
     @Column(name = "marap")
@@ -33,8 +37,18 @@ public class Cinema extends BaseEntity{
 //            inverseJoinColumns = {@JoinColumn(name = "movie_id") })
 //    private Set<Movie> movies = new HashSet<>();
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "cinema")
-    private Set<Movie> movies = new HashSet<>();
+    @JsonManagedReference
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "cinema",cascade = CascadeType.ALL)
+    @Fetch(value = FetchMode.SELECT)
+    private List<Movie> movies = new ArrayList<>();
+
+    public List<Movie> getMovies() {
+        return movies;
+    }
+
+    public void setMovies(List<Movie> movies) {
+        this.movies = movies;
+    }
 
     public Cinema() {
     }
@@ -85,13 +99,5 @@ public class Cinema extends BaseEntity{
 
     public void setStatus(int status) {
         this.status = status;
-    }
-
-    public Set<Movie> getMovies() {
-        return movies;
-    }
-
-    public void setMovies(Set<Movie> movies) {
-        this.movies = movies;
     }
 }

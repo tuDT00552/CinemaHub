@@ -9,7 +9,6 @@ import javax.persistence.*;
 import java.util.Date;
 
 @MappedSuperclass
-@Data
 @EntityListeners(AuditingEntityListener.class)
 public abstract class BaseEntity {
     @Id
