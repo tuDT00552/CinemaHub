@@ -4,20 +4,21 @@
     "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
   <session-factory>
-    <property name="connection.url">jdbc:oracle:thin:@localhost:1521:orcl</property>
+    <property name="connection.url">jdbc:oracle:thin:@localhost:1521:data</property>
     <property name="connection.driver_class">oracle.jdbc.OracleDriver</property>
-      <mapping class="vn.cinemahub.cinemahub.config.CinemaEntity"/>
-      <mapping class="vn.cinemahub.cinemahub.entities.AdminEntity"/>
-    <mapping class="vn.cinemahub.cinemahub.entities.DatveEntity"/>
-    <mapping class="vn.cinemahub.cinemahub.entities.GheEntity"/>
-    <mapping class="vn.cinemahub.cinemahub.entities.GiaveEntity"/>
-    <mapping class="vn.cinemahub.cinemahub.entities.HoadonEntity"/>
-    <mapping class="vn.cinemahub.cinemahub.entities.LichchieuEntity"/>
-    <mapping class="vn.cinemahub.cinemahub.entities.NhanvienEntity"/>
-    <mapping class="vn.cinemahub.cinemahub.entities.PhimEntity"/>
-    <mapping class="vn.cinemahub.cinemahub.entities.PhongEntity"/>
-    <mapping class="vn.cinemahub.cinemahub.entities.RapEntity"/>
-    <mapping class="vn.cinemahub.cinemahub.entities.TraveEntity"/>
+<!--    <mapping class="vn.cinemahub.cinemahub.config.CinemaEntity"/>-->
+<!--      <mapping class="vn.cinemahub.cinemahub.entities.AdminEntity"/>-->
+<!--    <mapping class="vn.cinemahub.cinemahub.entities.DatveEntity"/>-->
+<!--    <mapping class="vn.cinemahub.cinemahub.entities.GheEntity"/>-->
+<!--    <mapping class="vn.cinemahub.cinemahub.entities.GiaveEntity"/>-->
+<!--    <mapping class="vn.cinemahub.cinemahub.entities.HoadonEntity"/>-->
+<!--    <mapping class="vn.cinemahub.cinemahub.entities.LichchieuEntity"/>-->
+<!--    <mapping class="vn.cinemahub.cinemahub.entities.NhanvienEntity"/>-->
+<!--    <mapping class="vn.cinemahub.cinemahub.entities.PhimEntity"/>-->
+<!--    <mapping class="vn.cinemahub.cinemahub.entities.PhongEntity"/>-->
+<!--    <mapping class="vn.cinemahub.cinemahub.entities.RapEntity"/>-->
+<!--    <mapping class="vn.cinemahub.cinemahub.entities.TraveEntity"/>-->
+    <mapping class="vn.cinemahub.cinemahub.entities.Admin"/>
     <!-- <property name="connection.username"/> -->
     <!-- <property name="connection.password"/> -->
 
