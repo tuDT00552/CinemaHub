@@ -7,11 +7,13 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
-
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
+import { CinemaModule } from './pages/cinema/cinema.module';
+import { SeatCreatComponent } from './pages/seat/seat-creat/seat-creat.component';
+import { SeatDeleteComponent } from './pages/seat/seat-delete/seat-delete.component';
+import { SeatListComponent } from './pages/seat/seat-list/seat-list.component';
 
 
 @NgModule({
@@ -22,12 +24,16 @@ import { ComponentsModule } from './components/components.module';
     ComponentsModule,
     NgbModule,
     RouterModule,
-    AppRoutingModule
+    AppRoutingModule,
+    CinemaModule
   ],
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    AuthLayoutComponent
+    AuthLayoutComponent,
+    SeatCreatComponent,
+    SeatDeleteComponent,
+    SeatListComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
