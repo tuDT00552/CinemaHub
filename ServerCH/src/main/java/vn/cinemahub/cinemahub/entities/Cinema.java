@@ -40,7 +40,7 @@ public class Cinema extends BaseEntity{
     @JsonManagedReference
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "cinema",cascade = CascadeType.ALL)
     @Fetch(value = FetchMode.SELECT)
-    private List<Movie> movies = new ArrayList<>();
+        private List<Movie> movies = new ArrayList<>();
 
     public List<Movie> getMovies() {
         return movies;
