@@ -34,7 +34,7 @@ public class MovieResource {
         movie.setCreatedAt(date);
         movie.setUpdateAt(date);
         movie.setStatus(1);
-        movie.setCinema(cinemaService.findByID(movie.getCinema().getId()).get());
+        movie.setCinema(cinemaService.findbyMarap(movie.getCinema().getMarap()).get());
         return movieService.save(movie);
     }
 }
