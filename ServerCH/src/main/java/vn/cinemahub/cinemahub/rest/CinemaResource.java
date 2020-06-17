@@ -34,7 +34,30 @@ public class CinemaResource {
         cinema.setCreatedAt(date);
         cinema.setUpdateAt(date);
         cinema.setStatus(1);
-        return cinemaService.save(cinema);
+        if (cinemaService.checkExitsTenRap(cinema.getTenrap()) == null
+        && cinemaService.checkExitsMaRap(cinema.getMarap()) == null) {
+            return cinemaService.save(cinema);
+        }
+        else
+            return null;
+    }
+
+    @PutMapping
+    public ResponseEntity<Void> update(@RequestBody Cinema cinema) {
+        cinemaService.update(cinema);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Cinema> findOne(@PathVariable Long id) {
+        return cinemaService.findOne(id).map(cinema -> new ResponseEntity<>(cinema, HttpStatus.OK))
+                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        cinemaService.delete(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }

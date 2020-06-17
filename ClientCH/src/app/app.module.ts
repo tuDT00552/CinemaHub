@@ -11,6 +11,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 import { CinemaModule } from './pages/cinema/cinema.module';
+import {EventManagement} from './shared/service/event.management';
 
 
 @NgModule({
@@ -22,12 +23,12 @@ import { CinemaModule } from './pages/cinema/cinema.module';
     NgbModule,
     RouterModule,
     AppRoutingModule,
-    CinemaModule
+    CinemaModule,
   ],
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    AuthLayoutComponent
+    AuthLayoutComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]

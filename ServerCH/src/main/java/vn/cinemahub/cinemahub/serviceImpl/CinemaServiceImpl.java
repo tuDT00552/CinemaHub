@@ -33,5 +33,32 @@ public class CinemaServiceImpl implements CinemaService {
 
     public Optional<Cinema> findbyMarap(int marap) {
         return cinemaRepository.findbyMarap(marap);
-    };
+    }
+
+    @Override
+    public Long checkExitsTenRap(String tenrap) {
+        return cinemaRepository.checkExitsTenRap(tenrap);
+    }
+
+    @Override
+    public Long checkExitsMaRap(int marap) {
+        return cinemaRepository.checkExitsMaRap(marap);
+    }
+
+    @Override
+    public void update(Cinema cinema) {
+        cinemaRepository.save(cinema);
+    }
+
+    @Override
+    public void delete(Long id) {
+        cinemaRepository.deleteById(id);
+    }
+
+    @Override
+    public Optional<Cinema> findOne(Long id) {
+        return cinemaRepository.findById(id);
+    }
+
+    ;
 }
