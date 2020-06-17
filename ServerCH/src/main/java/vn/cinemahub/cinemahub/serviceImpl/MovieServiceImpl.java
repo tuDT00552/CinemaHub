@@ -1,4 +1,4 @@
-package vn.cinemahub.cinemahub.service;
+package vn.cinemahub.cinemahub.serviceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -7,12 +7,13 @@ import vn.cinemahub.cinemahub.entities.Cinema;
 import vn.cinemahub.cinemahub.entities.Movie;
 import vn.cinemahub.cinemahub.repository.CinemaRepository;
 import vn.cinemahub.cinemahub.repository.MovieRepository;
+import vn.cinemahub.cinemahub.service.MovieService;
 
 import java.util.List;
 
 @Transactional
 @Service
-public class MovieServiceImpl implements MovieService{
+public class MovieServiceImpl implements MovieService {
 
     @Autowired
     private MovieRepository movieRepository;
