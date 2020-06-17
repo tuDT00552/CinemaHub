@@ -7,8 +7,10 @@ import org.springframework.web.bind.annotation.*;
 import vn.cinemahub.cinemahub.entities.GheEntity;
 import vn.cinemahub.cinemahub.service.SeatService;
 
+import java.util.Date;
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping({"/api/seat"})
 public class SeatResource {
@@ -25,8 +27,11 @@ public class SeatResource {
     }
 
     @PostMapping
-    public GheEntity save(@RequestBody GheEntity gheEntity) {
-        return this.seatService.save(gheEntity);
+    public GheEntity save(@RequestBody GheEntity seat) {
+        Date date = new Date();
+        seat.setCreatedAt(date);
+        seat.setUpdateAt(date);
+        return this.seatService.save(seat);
     }
 
     @PutMapping

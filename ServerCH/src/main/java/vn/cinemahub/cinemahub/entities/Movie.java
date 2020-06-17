@@ -47,7 +47,7 @@ public class Movie extends BaseEntity{
 
     @JsonBackReference
     @ManyToOne
-    @JoinColumn(name = "cinema_id", nullable = false)
+    @JoinColumn(name = "cinema_id", referencedColumnName = "id", nullable = false)
     private Cinema cinema;
 
 

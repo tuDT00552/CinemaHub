@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {ENDPOINT_URL} from '../constants/app.constains';
-import {Observable} from 'rxjs';
 import {SeatModel} from '../../model/seat.model';
+import {Observable} from 'rxjs';
+import {ENDPOINT_URL} from '../constants/app.constains';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProductService {
+export class SeatService {
 
   constructor(private http: HttpClient) { }
   fetch(): Observable<SeatModel[]> {
@@ -18,16 +18,15 @@ export class ProductService {
     return this.http.get<SeatModel>(`${ENDPOINT_URL}/seat/${id}`);
   }
 
-  create(product: SeatModel): Observable<SeatModel> {
-    return this.http.post<SeatModel>(`${ENDPOINT_URL}/seat`, product);
+  create(seat: SeatModel): Observable<SeatModel> {
+    return this.http.post<SeatModel>(`${ENDPOINT_URL}/seat`, seat);
   }
 
-  update(product: SeatModel) {
-    return this.http.put(`${ENDPOINT_URL}/seat`, product);
+  update(seat: SeatModel) {
+    return this.http.put(`${ENDPOINT_URL}/seat`, seat);
   }
 
   delete(id: number) {
     return this.http.delete(`${ENDPOINT_URL}/seat/${id}`);
   }
 }
-

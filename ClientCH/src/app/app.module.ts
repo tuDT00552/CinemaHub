@@ -1,6 +1,6 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
@@ -11,9 +11,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 import { CinemaModule } from './pages/cinema/cinema.module';
-import { SeatCreatComponent } from './pages/seat/seat-creat/seat-creat.component';
 import { SeatDeleteComponent } from './pages/seat/seat-delete/seat-delete.component';
 import { SeatListComponent } from './pages/seat/seat-list/seat-list.component';
+import {SeatCreatComponent} from './pages/seat/seat-creat/seat-creat.component';
+import { SeatRoutingModule } from './pages/seat/seat-routing.module';
+
 
 
 @NgModule({
@@ -25,15 +27,17 @@ import { SeatListComponent } from './pages/seat/seat-list/seat-list.component';
     NgbModule,
     RouterModule,
     AppRoutingModule,
-    CinemaModule
+    CinemaModule,
+    SeatRoutingModule,
+    ReactiveFormsModule
   ],
   declarations: [
     AppComponent,
     AdminLayoutComponent,
     AuthLayoutComponent,
-    SeatCreatComponent,
     SeatDeleteComponent,
-    SeatListComponent
+    SeatListComponent,
+    SeatCreatComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

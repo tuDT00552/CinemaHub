@@ -3,33 +3,33 @@
   <h3>Form create(update) Seat</h3>
   <form class="col-md-12" [noValidate]="true" [formGroup]="form" (ngSubmit)="doSubmit()">
     <div class="form-group" >
-      <label  for="ID_Seat">ID_Seat:</label>
-      <input class="form-control" id="ID_Seat" formControlName="ID_Seat"/>
+      <label  for="id">ID_Seat:</label>
+      <input class="form-control" id="id" formControlName="id"/>
     </div>
     <!--    <div class="form-group" >-->
     <!--      <label  for="name">Created_AT:</label>-->
     <!--      <input class="form-control" id="name" formControlName="name"/>-->
     <!--    </div>-->
     <div class="form-group" >
-      <label  for="Created_AT">Created_AT:</label>
-      <input class="form-control" id="Created_AT" formControlName="Created_AT"/>
+      <label  for="createdAt">Created_AT:</label>
+      <input class="form-control" id="createdAt" formControlName="createdAt"/>
     </div>
     <div class="form-group">
-      <label   for="Update_AT">Update_AT:</label>
-      <input class="form-control" id="Update_AT" formControlName="Update_AT"/>
+      <label   for="updateAt">Update_AT:</label>
+      <input class="form-control" id="updateAt" formControlName="updateAt"/>
     </div>
     <div class="form-group">
-      <label   for="Loai_Seat">Loai_Seat:</label>
-      <input class="form-control" id="Loai_Seat" formControlName="Loai_Seat"/>
+      <label   for="loaighe">Loai_Seat:</label>
+      <input class="form-control" id="loaighe" formControlName="loaighe"/>
     </div>
     <div class="form-group">
-      <label   for="Ma_Phong">Ma_Phong:</label>
-      <input class="form-control" id="Ma_Phong" formControlName="Ma_Phong"/>
+      <label   for="maphong">Ma_Phong:</label>
+      <input class="form-control" id="maphong" formControlName="maphong"/>
     </div>
 
     <div class="form-group">
-      <label   for="Trang_thai">Trang_thai:</label>
-      <input class="form-control" id="Trang_thai" formControlName="Trang_thai"/>
+      <label   for="trangthai">Trang_thai:</label>
+      <input class="form-control" id="trangthai" formControlName="trangthai"/>
     </div>
 
     <!--    <div class="form-group">-->
@@ -44,10 +44,10 @@
     <!--      <label  for="desc">Trang thai:</label>-->
     <!--      <textarea class="form-control" id="desc" formControlName="desc" rows="3"></textarea>-->
     <!--    </div>-->
-    <!--    <div>-->
-    <!--      <button class="btn btn-outline-primary btn-sm" type="submit" *ngIf="!isUpdate">Save</button>-->
-    <!--      <button class="btn btn-outline-primary btn-sm" type="submit" *ngIf="isUpdate">Update</button>-->
-    <!--      <button class="btn btn-sm" [routerLink]="['/product']">Cancel</button>-->
-    <!--    </div>-->
+        <div>
+          <button class="btn btn-outline-primary btn-sm" type="submit" *ngIf="!isUpdate">Save</button>
+          <button class="btn btn-outline-primary btn-sm" type="submit" *ngIf="isUpdate">Update</button>
+          <button class="btn btn-sm" [routerLink]="['/seat']">Cancel</button>
+        </div>
   </form>
 </div>

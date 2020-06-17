@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
-
 import {SeatService} from '../../../shared/service/seat.service';
 
 
+
 @Component({
-  selector: 'app-seat-create',
-  templateUrl: './seat-create.component.html',
-  styleUrls: ['./seat-create.component.css']
+  selector: 'app-seat-creat',
+  templateUrl: './seat-creat.component.html',
+  styleUrls: ['./seat-creat.component.css']
 })
-export class SeatCreateComponent implements OnInit {
+export class SeatCreatComponent implements OnInit {
   form: FormGroup;
   isUpdate: any = false;
 
@@ -21,23 +21,24 @@ export class SeatCreateComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      id: [''],
-      code: ['', Validators.required],
-      name: ['', Validators.required],
-      price: ['', Validators.required],
-      desc: [''],
+       id: ['', Validators.required],
+      createdAt: ['', Validators.required],
+      updateAt: ['', Validators.required],
+      loaighe: ['', Validators.required],
+      maphong: ['', Validators.required],
+      trangthai: ['', Validators.required],
     });
 
     this.route.data.subscribe(({seat}) => {
-      this.isUpdate = seat && seat.id !== undefined;
+      this.isUpdate = seat && seat.ID_Seat !== undefined;
       if (this.isUpdate) {
         this.form.patchValue({
           id: seat.ID_Seat,
-          created_at: seat.Created_at,
-          update_at: seat.Update_at,
-          loai_seat: seat.Loai_Seat,
-          ma_phong: seat.Ma_Phong,
-          trang_thai: seat.Trang_thai
+          createdAt: seat.Created_at,
+          updateAt: seat.Update_at,
+          loaighe: seat.Loai_Seat,
+          maphong: seat.Ma_Phong,
+          trangthai: seat.Trang_thai
         });
       }
     });
