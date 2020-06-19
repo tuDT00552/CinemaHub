@@ -27,6 +27,7 @@ const routes: Routes = [
   },
   {
     path: 'seat',
+
     component: AdminLayoutComponent,
     loadChildren: () => {
       return import('../app/pages/seat/seat.module').then(m => m.SeatModule);
