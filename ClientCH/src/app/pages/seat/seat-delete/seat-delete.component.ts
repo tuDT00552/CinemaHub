@@ -23,7 +23,7 @@ export class SeatDeleteComponent implements OnInit {
   delete() {
     this.seatService.delete(this.seat.id).subscribe(
       () => {
-        this.eventManagement.broadcast('UPDATE_PRODUCT');
+        this.eventManagement.broadcast('UPDATE_SEAT');
         this.modal.close();
       }, error => console.log(error)
     );

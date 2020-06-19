@@ -1,0 +1,40 @@
+<div class="col-md-12">
+  <p>seat-list works!</p>
+  <a [routerLink]="['']"> Back</a><br/>
+  <button class="btn btn-outline-success btn-sm" [routerLink]="['create']">Add ticket</button>
+  <div>
+    <h3>Seat list</h3>
+  </div>
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+      <th>ID-ticket</th>
+      <th>Created_AT</th>
+      <th>Update_AT</th>
+      <th>tenphim</th>
+      <th>marap</th>
+      <th>giave</th>
+      <th>timeStart</th>
+      <th>timeEnd</th>
+      </thead>
+      <tbody>
+      <tr *ngFor="let ticket of tickets">
+        <td>{{ticket.id}}</td>
+        <td>{{ticket.createdAt}}</td>
+        <td>{{ticket.updateAt}}</td>
+        <td>{{ticket.tenphim}}</td>
+        <td>{{ticket.marap}}</td>
+        <td>{{ticket.giave}}</td>
+        <td>{{ticket.timeStart}}</td>
+        <td>{{ticket.timeEnd}}</td>
+        <td>
+          <div>
+            <a role="button" class="btn btn-outline-primary btn-sm" [routerLink]="['/ticket/update', ticket.id]">Update</a>
+            <button class="btn btn-outline-danger btn-sm" (click)="goToDelete(ticket)">Delete</button>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

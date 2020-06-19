@@ -1,4 +1,4 @@
-import {MovieModel} from "./movie.model";
+import {MovieModel} from './movie.model';
 
 export class CinemaModel {
   id?: number;
@@ -11,4 +11,3 @@ export class CinemaModel {
   updateAt?: number;
   movies?: MovieModel[];
 }
-

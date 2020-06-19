@@ -30,15 +30,15 @@ export class SeatCreatComponent implements OnInit {
     });
 
     this.route.data.subscribe(({seat}) => {
-      this.isUpdate = seat && seat.ID_Seat !== undefined;
+      this.isUpdate = seat && seat.id !== undefined;
       if (this.isUpdate) {
         this.form.patchValue({
-          id: seat.ID_Seat,
-          createdAt: seat.Created_at,
-          updateAt: seat.Update_at,
-          loaighe: seat.Loai_Seat,
-          maphong: seat.Ma_Phong,
-          trangthai: seat.Trang_thai
+          id: seat.id,
+          createdAt: seat.createdAt,
+          updateAt: seat.updateAt,
+          loaighe: seat.loaighe,
+          maphong: seat.maphong,
+          trangthai: seat.trangthai
         });
       }
     });
