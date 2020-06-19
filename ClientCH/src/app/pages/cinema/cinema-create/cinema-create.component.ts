@@ -10,6 +10,11 @@ import {MovieModel} from '../../../model/movie.model';
   styleUrls: ['./cinema-create.component.css']
 })
 export class CinemaCreateComponent implements OnInit {
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
   form: FormGroup;
   isUpdate: any = false;
   error: string;

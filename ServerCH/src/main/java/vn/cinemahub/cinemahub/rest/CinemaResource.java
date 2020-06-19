@@ -59,5 +59,4 @@ public class CinemaResource {
         cinemaService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
 }

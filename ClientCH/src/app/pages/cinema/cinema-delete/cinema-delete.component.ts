@@ -27,5 +27,4 @@ export class CinemaDeleteComponent implements OnInit {
       }, error => console.log(error)
     );
   }
-
 }

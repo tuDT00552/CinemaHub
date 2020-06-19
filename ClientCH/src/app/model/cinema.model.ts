@@ -1,5 +1,4 @@
 import {MovieModel} from './movie.model';
-
 export class CinemaModel {
   id?: number;
   marap?: string;

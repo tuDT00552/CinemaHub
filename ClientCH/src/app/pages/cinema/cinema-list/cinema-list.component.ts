@@ -32,5 +32,4 @@ export class CinemaListComponent implements OnInit {
     const modalRef = this.modal.open(CinemaDeleteComponent);
     modalRef.componentInstance.cinema = cinema;
   }
-
 }

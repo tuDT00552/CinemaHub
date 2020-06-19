@@ -1,0 +1,53 @@
+<p>seat-creat works!</p>
+<div class="col-md-12">
+  <h3>Form create(update) Seat</h3>
+  <form class="col-md-12" [noValidate]="true" [formGroup]="form" (ngSubmit)="doSubmit()">
+    <div class="form-group" >
+      <label  for="id">ID_Seat:</label>
+      <input class="form-control" id="id" formControlName="id"/>
+    </div>
+    <!--    <div class="form-group" >-->
+    <!--      <label  for="name">Created_AT:</label>-->
+    <!--      <input class="form-control" id="name" formControlName="name"/>-->
+    <!--    </div>-->
+    <div class="form-group" >
+      <label  for="createdAt">Created_AT:</label>
+      <input class="form-control" id="createdAt" formControlName="createdAt"/>
+    </div>
+    <div class="form-group">
+      <label   for="updateAt">Update_AT:</label>
+      <input class="form-control" id="updateAt" formControlName="updateAt"/>
+    </div>
+    <div class="form-group">
+      <label   for="loaighe">Loai_Seat:</label>
+      <input class="form-control" id="loaighe" formControlName="loaighe"/>
+    </div>
+    <div class="form-group">
+      <label   for="maphong">Ma_Phong:</label>
+      <input class="form-control" id="maphong" formControlName="maphong"/>
+    </div>
+
+    <div class="form-group">
+      <label   for="trangthai">Trang_thai:</label>
+      <input class="form-control" id="trangthai" formControlName="trangthai"/>
+    </div>
+
+    <!--    <div class="form-group">-->
+    <!--      <label  for="desc">Loai_Seat:</label>-->
+    <!--      <textarea class="form-control" id="desc" formControlName="desc" rows="3"></textarea>-->
+    <!--    </div>-->
+    <!--    <div class="form-group">-->
+    <!--      <label  for="desc">Ma Phong:</label>-->
+    <!--      <textarea class="form-control" id="desc" formControlName="desc" rows="3"></textarea>-->
+    <!--    </div>-->
+    <!--    <div class="form-group">-->
+    <!--      <label  for="desc">Trang thai:</label>-->
+    <!--      <textarea class="form-control" id="desc" formControlName="desc" rows="3"></textarea>-->
+    <!--    </div>-->
+        <div>
+          <button class="btn btn-outline-primary btn-sm" type="submit" *ngIf="!isUpdate">Save</button>
+          <button class="btn btn-outline-primary btn-sm" type="submit" *ngIf="isUpdate">Update</button>
+          <button class="btn btn-sm" [routerLink]="['/seat']">Cancel</button>
+        </div>
+  </form>
+</div>
