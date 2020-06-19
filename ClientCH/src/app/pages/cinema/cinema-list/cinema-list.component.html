@@ -8,8 +8,8 @@
             <div class="card-body">
               <div class="row">
                 <div class="col">
-                  <h5 class="card-title text-uppercase text-muted mb-0">Traffic</h5>
-                  <span class="h2 font-weight-bold mb-0">350,897</span>
+                  <h5 class="card-title text-uppercase text-muted mb-0">Total Cinema</h5>
+                  <span class="h2 font-weight-bold mb-0">{{cinemas.length}}</span>
                 </div>
                 <div class="col-auto">
                   <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
@@ -29,8 +29,8 @@
             <div class="card-body">
               <div class="row">
                 <div class="col">
-                  <h5 class="card-title text-uppercase text-muted mb-0">New users</h5>
-                  <span class="h2 font-weight-bold mb-0">2,356</span>
+                  <h5 class="card-title text-uppercase text-muted mb-0">Total Movie</h5>
+                  <span class="h2 font-weight-bold mb-0">cinemas</span>
                 </div>
                 <div class="col-auto">
                   <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
@@ -99,6 +99,7 @@
       <div class="card shadow">
         <div class="card-header border-0">
           <h3 class="mb-0">Cinema List</h3>
+          <h3 class="mb-0 right"><a class="btn btn-sm btn-primary" href="cinema/create"><i class="ni ni-fat-add"></i>Cinema</a></h3>
         </div>
         <div class="table-responsive">
           <table class="table align-items-center table-flush">
@@ -108,7 +109,7 @@
               <th scope="col">Tên Rạp</th>
               <th scope="col">Địa Chỉ</th>
               <th scope="col">Giới Thiệu</th>
-              <th scope="col">Phim</th>
+              <th scope="col">Action</th>
             </tr>
             </thead>
             <tbody>
@@ -127,20 +128,18 @@
                   </div>
                 </div>
               </th>
-              <td>
-                {{cinema.diachi}}
+              <td class="ell">
+                <span>{{cinema.diachi}}</span>
               </td>
-              <td>
-                  <span class="badge badge-dot mr-4">
+              <td class="ell">
+                  <span sty class="badge badge-dot mr-4">
                     <i class="bg-warning"></i> {{cinema.gioithieurap}}
                   </span>
               </td>
-              <td>
-                <div class="avatar-group">
-                  <a *ngFor="let movie of cinema.movies" href="javascript:void(0)" class="avatar avatar-sm" data-toggle="tooltip" data-original-title="Ryan Tompson">
-                    <img alt="Image placeholder" src="{{movie.image}}" class="rounded-circle">
-                  </a>
-                </div>
+              <td class="ell">
+                <a class="" href=""><i class="ni ni-collection"></i></a>
+                <a class="" [routerLink]="['/cinema/update', cinema.id]"><i class="ni ni-settings-gear-65"></i></a>
+                <a class="" (click)="goToDelete(cinema)"><i class="ni ni-scissors"></i></a>
               </td>
             </tr>
             </tbody>

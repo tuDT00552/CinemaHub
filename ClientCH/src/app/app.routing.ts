@@ -14,6 +14,7 @@ const routes: Routes = [
   },
   {
     path: 'cinema',
+    component: AdminLayoutComponent,
     loadChildren: () => {
       return import('../app/pages/cinema/cinema.module').then(m => m.CinemaModule);
     }

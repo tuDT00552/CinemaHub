@@ -15,7 +15,7 @@ import { SeatDeleteComponent } from './pages/seat/seat-delete/seat-delete.compon
 import { SeatListComponent } from './pages/seat/seat-list/seat-list.component';
 import {SeatCreatComponent} from './pages/seat/seat-creat/seat-creat.component';
 import { SeatRoutingModule } from './pages/seat/seat-routing.module';
-
+import {EventManagement} from './shared/service/event.management';
 
 
 @NgModule({
