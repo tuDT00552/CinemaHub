@@ -15,6 +15,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     CinemaRoutingModule,
     FormsModule,
     ReactiveFormsModule
+
   ]
 })
 export class CinemaModule { }

@@ -5,7 +5,6 @@ import {CinemaService} from '../../../shared/service/cinema.service';
 import {ActivatedRoute, Router} from '@angular/router';
 
 
-
 @Component({
   selector: 'app-cinema-create',
   templateUrl: './cinema-create.component.html',
@@ -16,6 +15,7 @@ export class CinemaCreateComponent implements OnInit {
   form: FormGroup;
   isUpdate: any = false;
   error: string;
+
   constructor(private fb: FormBuilder,
               private router: Router,
               private route: ActivatedRoute,

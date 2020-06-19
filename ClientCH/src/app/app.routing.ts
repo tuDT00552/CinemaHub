@@ -25,9 +25,9 @@ const routes: Routes = [
       return import('../app/pages/cinema/cinema.module').then(m => m.CinemaModule);
     }
   },
+
   {
     path: 'seat',
-
     component: AdminLayoutComponent,
     loadChildren: () => {
       return import('../app/pages/seat/seat.module').then(m => m.SeatModule);

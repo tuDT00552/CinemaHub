@@ -20,6 +20,7 @@ export const ROUTES: RouteInfo[] = [
     { path: '/ticket' , title: 'Ticket',  icon:'ni-box-2 text-pink', class: '' },
     { path: '/cinema', title: 'Cinema',  icon:'ni-tv-2 text-pink', class: '' }
 
+
 ];
 @Component({
   selector: 'app-sidebar',

@@ -10,8 +10,11 @@ import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
-
-
+import { CinemaModule } from './pages/cinema/cinema.module';
+import { SeatDeleteComponent } from './pages/seat/seat-delete/seat-delete.component';
+import { SeatListComponent } from './pages/seat/seat-list/seat-list.component';
+import {SeatCreatComponent} from './pages/seat/seat-creat/seat-creat.component';
+import { SeatRoutingModule } from './pages/seat/seat-routing.module';
 
 
 @NgModule({
@@ -24,11 +27,13 @@ import { ComponentsModule } from './components/components.module';
     RouterModule,
     AppRoutingModule,
     ReactiveFormsModule,
+
   ],
   declarations: [
     AppComponent,
     AdminLayoutComponent,
     AuthLayoutComponent,
+
   ],
   providers: [],
   bootstrap: [AppComponent]
