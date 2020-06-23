@@ -45,8 +45,21 @@ public class Cinema extends BaseEntity implements Serializable {
     @Fetch(value = FetchMode.SELECT)
         private List<Movie> movies = new ArrayList<>();
 
+    @JsonManagedReference
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "rap",cascade = CascadeType.ALL)
+    @Fetch(value = FetchMode.SELECT)
+    private List<RoomEntity> roomEntities = new ArrayList<>();
+
     public List<Movie> getMovies() {
         return movies;
+    }
+
+    public List<RoomEntity> getRoomEntities() {
+        return roomEntities;
+    }
+
+    public void setRoomEntities(List<RoomEntity> roomEntities) {
+        this.roomEntities = roomEntities;
     }
 
     public void setMovies(List<Movie> movies) {

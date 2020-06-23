@@ -11,66 +11,61 @@ import java.util.Objects;
 @EntityListeners(AuditingEntityListener.class)
 public class GheEntity extends BaseEntity {
     //private String idGhe;
-    private String loaighe;
-    private String trangthai;
-    private long maphong;
+    // 1: ghe vip, 2: ghe thuong
+    private String tenghe;
+    private int loaighe;
+    private int status;
 
 
-//    @Basic
-//    @Column(name = "ID_GHE")
-//    public String getIdGhe() {
-//        return idGhe;
-//    }
-//
-//    public void setIdGhe(String idGhe) {
-//        this.idGhe = idGhe;
-//    }
+    public GheEntity(String tenghe, int loaighe, RoomEntity roomEntity) {
+        this.tenghe = tenghe;
+        this.loaighe = loaighe;
+        this.roomEntity = roomEntity;
+    }
+
+    @Basic
+    @Column(name = "tenghe")
+    public String getTenghe() {
+        return tenghe;
+    }
+
+    public void setTenghe(String tenghe) {
+        this.tenghe = tenghe;
+    }
 
     @Basic
     @Column(name = "LOAIGHE")
-    public String getLoaighe() {
+    public int getLoaighe() {
         return loaighe;
     }
 
-    public void setLoaighe(String loaighe) {
+    public void setLoaighe(int loaighe) {
         this.loaighe = loaighe;
     }
 
     @Basic
-    @Column(name = "TRANGTHAI")
-    public String getTrangthai() {
-        return trangthai;
+    @Column(name = "status")
+    public int getStatus() {
+        return status;
     }
 
-    public void setTrangthai(String trangthai) {
-        this.trangthai = trangthai;
+    public void setStatus(int status) {
+        this.status = status;
     }
-
-    @Basic
-    @Column(name = "MAPHONG")
-    public long getMaphong() {
-        return maphong;
-    }
-
-    public void setMaphong(long maphong) {
-        this.maphong = maphong;
-    }
-
-
-//    @Basic
-//    @Column(name = "status")
-//    private int status;
-//
-//
-//
-//    public int getStatus() {
-//        return status;
-//    }
-//
-//    public void setStatus(int status) {
-//        this.status = status;
-//    }
 
     public GheEntity() {
+    }
+
+    @JsonBackReference
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "maphong", referencedColumnName = "maphong")
+    private RoomEntity roomEntity;
+
+    public RoomEntity getRoomEntity() {
+        return roomEntity;
+    }
+
+    public void setRoomEntity(RoomEntity roomEntity) {
+        this.roomEntity = roomEntity;
     }
 }

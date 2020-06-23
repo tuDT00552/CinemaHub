@@ -1,4 +1,4 @@
-package vn.cinemahub.cinemahub.service;
+package vn.cinemahub.cinemahub.serviceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import vn.cinemahub.cinemahub.entities.GheEntity;
 import vn.cinemahub.cinemahub.repository.SeatRepository;
+import vn.cinemahub.cinemahub.service.SeatService;
 
 
 import java.util.List;
@@ -13,7 +14,7 @@ import java.util.Optional;
 
 @Transactional
 @Service
-public class SeatServiceImpl implements SeatService{
+public class SeatServiceImpl implements SeatService {
     @Autowired
     private SeatRepository seatRepository;
 

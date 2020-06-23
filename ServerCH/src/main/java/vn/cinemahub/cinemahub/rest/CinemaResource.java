@@ -20,6 +20,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/cinema")
 public class CinemaResource {
+    Date date = new Date();
     @Autowired
     private CinemaService cinemaService;
 
@@ -30,7 +31,6 @@ public class CinemaResource {
 
     @PostMapping
     public Cinema save(@RequestBody Cinema cinema) {
-        Date date = new Date();
         cinema.setCreatedAt(date);
         cinema.setUpdateAt(date);
         cinema.setStatus(1);
@@ -44,6 +44,7 @@ public class CinemaResource {
 
     @PutMapping
     public ResponseEntity<Void> update(@RequestBody Cinema cinema) {
+        cinema.setUpdateAt(date);
         cinemaService.update(cinema);
         return new ResponseEntity<>(HttpStatus.OK);
     }

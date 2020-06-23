@@ -6,8 +6,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import vn.cinemahub.cinemahub.entities.Cinema;
+import vn.cinemahub.cinemahub.entities.GheEntity;
 import vn.cinemahub.cinemahub.entities.Movie;
+import vn.cinemahub.cinemahub.entities.RoomEntity;
 import vn.cinemahub.cinemahub.service.CinemaService;
+import vn.cinemahub.cinemahub.service.MovieService;
+import vn.cinemahub.cinemahub.service.RoomService;
+import vn.cinemahub.cinemahub.service.SeatService;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,10 +25,16 @@ import java.util.List;
 public class DataResource {
 
     @Autowired
-    private CinemaService cinemaService;
+    private CinemaResource cinemaResource;
 
     @Autowired
-    private MovieResource movieResource;
+    private MovieService movieService;
+
+    @Autowired
+    private RoomService roomService;
+
+    @Autowired
+    private SeatService seatService;
 
     @GetMapping
     public List<Cinema> Insert() {
@@ -54,17 +65,44 @@ public class DataResource {
                 "https://www.cgv.vn/media/catalog/product/cache/1/image/c5f0a1eff4c394a251036189ccddaacd/g/i/gia_tai_toi_loi___poster_1_.jpg","https://youtu.be/lY_1ptUWQFw","Gia Tài Tội Lỗi kể về một tộc trưởng của một gia đình giàu có và quyền lực đột nhiên qua đời, để lại cho vợ và các con của ông khối tài sản kế thừa không lồ. Tuy nhiên, thật kỳ lạ là người con gái yêu quý duy nhất của ông lại chỉ được thừa hưởng một chiếc chìa khóa đầy bí ẩn?",1,c1);
         movies.addAll(Arrays.asList(m1,m2,m3,m4,m5));
 
+        List<RoomEntity> rooms = new ArrayList<>();
+        RoomEntity r = new RoomEntity(1, c1);
+        RoomEntity r1 = new RoomEntity(2, c1);
+        RoomEntity r2 = new RoomEntity(3, c1);
+        RoomEntity r3 = new RoomEntity(4, c1);
+        RoomEntity r4 = new RoomEntity(5, c1);
+        rooms.addAll(Arrays.asList(r,r1,r2,r3,r4));
+
         Date date = new Date();
-        for (int i = 0; i < cinemas.size(); i++) {
-            cinemas.get(i).setCreatedAt(date);
-            cinemas.get(i).setUpdateAt(date);
-            cinemaService.save(cinemas.get(i));
+
+        for (Cinema cinema : cinemas) {
+            cinema.setCreatedAt(date);
+            cinema.setUpdateAt(date);
+            cinema.setStatus(1);
+            cinemaResource.save(cinema);
         }
-        for (int i = 0; i < movies.size(); i++) {
-            movies.get(i).setCreatedAt(date);
-            movies.get(i).setUpdateAt(date);
-            movieResource.save(movies.get(i));
+        for (Movie movie : movies) {
+            movie.setCreatedAt(date);
+            movie.setUpdateAt(date);
+            movie.setStatus(1);
+            movieService.save(movie);
         }
-        return cinemaService.findAll();
+        for (RoomEntity roomEntity : rooms) {
+            roomEntity.setCreatedAt(date);
+            roomEntity.setUpdateAt(date);
+            roomEntity.setStatus(1);
+            roomService.save(roomEntity);
+        }
+        String[] abc = {"A","B","C","E","G","H"};
+        for (int i = 0; i < abc.length; i++) {
+            for (int j = 1; j < 13; j++) {
+                GheEntity g = new GheEntity(abc[i]+j,1,r);
+                g.setCreatedAt(date);
+                g.setUpdateAt(date);
+                g.setStatus(1);
+                seatService.save(g);
+            }
+        }
+        return cinemaResource.findAll();
     }
 }

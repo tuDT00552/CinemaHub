@@ -17,6 +17,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/movie")
 public class MovieResource {
+    Date date = new Date();
     @Autowired
     private MovieService movieService;
 
@@ -30,7 +31,6 @@ public class MovieResource {
 
     @PostMapping
     public Movie save(@RequestBody Movie movie) {
-        Date date = new Date();
         movie.setCreatedAt(date);
         movie.setUpdateAt(date);
         movie.setStatus(1);

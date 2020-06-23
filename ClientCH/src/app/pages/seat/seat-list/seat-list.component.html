@@ -12,6 +12,7 @@
       <th>Created_AT</th>
       <th>Update_AT</th>
       <th>Loai_Seat</th>
+      <th>TEN_Seat</th>
       <th>Ma_Phong</th>
       <th>Trang_thai</th>
       </thead>
@@ -21,8 +22,9 @@
         <td>{{seat.createdAt}}</td>
         <td>{{seat.updateAt}}</td>
         <td>{{seat.loaighe}}</td>
+        <td>{{seat.tenghe}}</td>
         <td>{{seat.maphong}}</td>
-        <td>{{seat.trangthai}}</td>
+        <td>{{seat.status}}</td>
         <td>
           <div>
             <a role="button" class="btn btn-outline-primary btn-sm" [routerLink]="['/seat/update', seat.id]">Update</a>
