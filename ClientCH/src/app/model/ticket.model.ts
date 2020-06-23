@@ -1,11 +1,13 @@
 export class TicketModel {
-    id?:number;
+    id?: number;
     createdAt?: Date;
-    updateAt?: Date;
+    updteAt?: Date;
+    maVea?: number;
     tenphim?: string;
     idGhe?: number;
     marap?: number;
     giave?: number;
+    status?: number;
     timeStart?: string;
     timeEnd?: string;
 

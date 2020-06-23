@@ -15,6 +15,9 @@ import { SeatDeleteComponent } from './pages/seat/seat-delete/seat-delete.compon
 import { SeatListComponent } from './pages/seat/seat-list/seat-list.component';
 import {SeatCreatComponent} from './pages/seat/seat-creat/seat-creat.component';
 import { SeatRoutingModule } from './pages/seat/seat-routing.module';
+import { RefundTicketListComponent } from './pages/RefundTicket/refund-ticket-list/refund-ticket-list.component';
+import { RefundTicketCreateComponent } from './pages/RefundTicket/refund-ticket-create/refund-ticket-create.component';
+import { RefundticketDeleteComponent } from './pages/RefundTicket/refundticket-delete/refundticket-delete.component';
 
 
 @NgModule({
@@ -33,6 +36,9 @@ import { SeatRoutingModule } from './pages/seat/seat-routing.module';
     AppComponent,
     AdminLayoutComponent,
     AuthLayoutComponent,
+    RefundTicketListComponent,
+    RefundTicketCreateComponent,
+    RefundticketDeleteComponent,
 
   ],
   providers: [],

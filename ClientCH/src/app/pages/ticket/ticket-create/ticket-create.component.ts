@@ -11,6 +11,7 @@ import {TicketService} from '../../../shared/service/ticket.service';
 export class TicketCreateComponent implements OnInit {
   form: FormGroup;
   isUpdate: any = false;
+  error: string;
 
   constructor(private fb: FormBuilder,
               private router: Router,
@@ -22,6 +23,7 @@ export class TicketCreateComponent implements OnInit {
       id: ['', Validators.required],
       createdAt: ['', Validators.required],
       updateAt: ['', Validators.required],
+      maVe: ['', Validators.required],
       tenphim: ['', Validators.required],
       idGhe: ['', Validators.required],
       marap: ['', Validators.required],
@@ -37,6 +39,7 @@ export class TicketCreateComponent implements OnInit {
           id: ticket.id,
           createdAt: ticket.createdAt,
           updateAt: ticket.updateAt,
+          maVe: ticket.maVe,
           tenphim: ticket.tenphim,
           idGhe: ticket.idGhe,
           marap: ticket.marap,

@@ -13,6 +13,7 @@ import {SeatService} from '../../../shared/service/seat.service';
 export class SeatCreatComponent implements OnInit {
   form: FormGroup;
   isUpdate: any = false;
+  error: string;
 
   constructor(private fb: FormBuilder,
               private router: Router,
@@ -21,7 +22,8 @@ export class SeatCreatComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.fb.group({
-       id: ['', Validators.required],
+      id: ['', Validators.required],
+       idGhe: ['', Validators.required],
       createdAt: ['', Validators.required],
       updateAt: ['', Validators.required],
       loaighe: ['', Validators.required],
@@ -34,6 +36,7 @@ export class SeatCreatComponent implements OnInit {
       if (this.isUpdate) {
         this.form.patchValue({
           id: seat.id,
+          idGhe: seat.idGhe,
           createdAt: seat.createdAt,
           updateAt: seat.updateAt,
           loaighe: seat.loaighe,
