@@ -1,6 +1,6 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
@@ -13,6 +13,9 @@ import { ComponentsModule } from './components/components.module';
 import { CinemaModule } from './pages/cinema/cinema.module';
 import { ManageRoutingModule } from './pages/manage/manage-routing.module';
 import { ManageModule } from './pages/manage/manage.module';
+import { RefundTicketListComponent } from './pages/RefundTicket/refund-ticket-list/refund-ticket-list.component';
+import { RefundTicketCreateComponent } from './pages/RefundTicket/refund-ticket-create/refund-ticket-create.component';
+import { RefundticketDeleteComponent } from './pages/RefundTicket/refundticket-delete/refundticket-delete.component';
 
 
 @NgModule({
@@ -27,11 +30,15 @@ import { ManageModule } from './pages/manage/manage.module';
     CinemaModule,
     ManageRoutingModule,
     ManageModule,
+    ReactiveFormsModule,
   ],
   declarations: [
     AppComponent,
     AdminLayoutComponent,
     AuthLayoutComponent,
+    RefundTicketListComponent,
+    RefundTicketCreateComponent,
+    RefundticketDeleteComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]

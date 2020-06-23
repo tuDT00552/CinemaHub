@@ -5,13 +5,15 @@ import lombok.Data;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "movie")
 @EntityListeners(AuditingEntityListener.class)
-public class Movie extends BaseEntity{
+public class Movie extends BaseEntity {
+
     @Column(name = "maphim")
     private int maphim;
 
@@ -33,7 +35,7 @@ public class Movie extends BaseEntity{
     @Column(name = "trailer")
     private String trailer;
 
-    @Column(name = "mota")
+    @Column(name = "mota", length = 500)
     private String mota;
 
     @Column(name = "status")
@@ -46,15 +48,15 @@ public class Movie extends BaseEntity{
 //    private Set<Cinema> cinemas = new HashSet<>();
 
     @JsonBackReference
-    @ManyToOne
-    @JoinColumn(name = "cinema_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "marap", referencedColumnName = "MARAP")
     private Cinema cinema;
 
 
     public Movie() {
     }
 
-    public Movie(int maphim, String tenphim, String loaiphim, String theloai, int namsx, String image, String trailer, String mota, int status) {
+    public Movie(int maphim, String tenphim, String loaiphim, String theloai, int namsx, String image, String trailer, String mota, int status, Cinema cinema) {
         this.maphim = maphim;
         this.tenphim = tenphim;
         this.loaiphim = loaiphim;
@@ -64,6 +66,7 @@ public class Movie extends BaseEntity{
         this.trailer = trailer;
         this.mota = mota;
         this.status = status;
+        this.cinema = cinema;
     }
 
     public int getMaphim() {

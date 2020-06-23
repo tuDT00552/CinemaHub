@@ -1,5 +1,4 @@
 import {Injectable, NgModule} from '@angular/core';
-import { CommonModule } from '@angular/common';
 import {ActivatedRouteSnapshot, Resolve, RouterModule, RouterStateSnapshot, Routes} from '@angular/router';
 import {CinemaModel} from '../../model/cinema.model';
 import {Observable} from 'rxjs';

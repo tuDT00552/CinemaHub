@@ -1,10 +1,10 @@
-import { NgModule } from '@angular/core';
-import { CommonModule, } from '@angular/common';
-import { BrowserModule  } from '@angular/platform-browser';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {CommonModule,} from '@angular/common';
+import {BrowserModule} from '@angular/platform-browser';
+import {Routes, RouterModule} from '@angular/router';
+import {AdminLayoutComponent} from './layouts/admin-layout/admin-layout.component';
+import {AuthLayoutComponent} from './layouts/auth-layout/auth-layout.component';
 
-import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
-import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 
 const routes: Routes = [
   {
@@ -13,12 +13,29 @@ const routes: Routes = [
     pathMatch: 'full',
   },
   {
+    path: 'ticket',
+    component: AdminLayoutComponent,
+    loadChildren: () => {
+      return import('../app/pages/ticket/ticket.module').then(m => m.TicketModule);
+    }
+  },
+  {
+
     path: 'cinema',
     component: AdminLayoutComponent,
     loadChildren: () => {
       return import('../app/pages/cinema/cinema.module').then(m => m.CinemaModule);
     }
   },
+
+  {
+    path: 'seat',
+    component: AdminLayoutComponent,
+    loadChildren: () => {
+      return import('../app/pages/seat/seat.module').then(m => m.SeatModule);
+    }
+  },
+
   {
     path: '',
     component: AdminLayoutComponent,
@@ -49,7 +66,7 @@ const routes: Routes = [
     BrowserModule,
     RouterModule.forRoot(routes)
   ],
-  exports: [
-  ],
+  exports: [],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

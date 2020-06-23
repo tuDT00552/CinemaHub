@@ -1,6 +1,8 @@
 package vn.cinemahub.cinemahub.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import vn.cinemahub.cinemahub.entities.Cinema;
 import vn.cinemahub.cinemahub.entities.Movie;
@@ -11,6 +13,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/api/movie")
 public class MovieResource {
@@ -31,7 +34,7 @@ public class MovieResource {
         movie.setCreatedAt(date);
         movie.setUpdateAt(date);
         movie.setStatus(1);
-        movie.setCinema(cinemaService.findByID(movie.getCinema().getId()).get());
+        movie.setCinema(cinemaService.findbyMarap(movie.getCinema().getMarap()).get());
         return movieService.save(movie);
     }
 }

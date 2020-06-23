@@ -6,16 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 //import vn.cinemahub.cinemahub.entities.Cinema;
 //import vn.cinemahub.cinemahub.entities.Movie;
-import vn.cinemahub.cinemahub.repository.CinemaRepository;
-import vn.cinemahub.cinemahub.rest.CinemaResource;
 import vn.cinemahub.cinemahub.service.CinemaService;
-import vn.cinemahub.cinemahub.service.CinemaServiceImpl;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
 
 @SpringBootApplication(exclude = {SecurityAutoConfiguration.class })
 public class CinemahubApplication {

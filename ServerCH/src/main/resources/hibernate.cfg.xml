@@ -4,7 +4,9 @@
     "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
   <session-factory>
+
     <property name="connection.url">jdbc:oracle:thin:@localhost:1521:orcl</property>
+
     <!-- <property name="connection.username"/> -->
     <!-- <property name="connection.password"/> -->
 
