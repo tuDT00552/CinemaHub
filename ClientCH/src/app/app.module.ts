@@ -11,7 +11,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 import { CinemaModule } from './pages/cinema/cinema.module';
-import {EventManagement} from './shared/service/event.management';
+import { ManageRoutingModule } from './pages/manage/manage-routing.module';
+import { ManageModule } from './pages/manage/manage.module';
 
 
 @NgModule({
@@ -24,6 +25,8 @@ import {EventManagement} from './shared/service/event.management';
     RouterModule,
     AppRoutingModule,
     CinemaModule,
+    ManageRoutingModule,
+    ManageModule,
   ],
   declarations: [
     AppComponent,
