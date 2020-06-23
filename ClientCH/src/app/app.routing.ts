@@ -5,6 +5,7 @@ import {Routes, RouterModule} from '@angular/router';
 import {AdminLayoutComponent} from './layouts/admin-layout/admin-layout.component';
 import {AuthLayoutComponent} from './layouts/auth-layout/auth-layout.component';
 
+
 const routes: Routes = [
   {
     path: '',
@@ -19,6 +20,7 @@ const routes: Routes = [
     }
   },
   {
+
     path: 'cinema',
     component: AdminLayoutComponent,
     loadChildren: () => {
@@ -33,6 +35,7 @@ const routes: Routes = [
       return import('../app/pages/seat/seat.module').then(m => m.SeatModule);
     }
   },
+
   {
     path: '',
     component: AdminLayoutComponent,
