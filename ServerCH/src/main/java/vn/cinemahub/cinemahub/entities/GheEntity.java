@@ -10,21 +10,21 @@ import java.util.Objects;
 @Table(name = "SEAT")
 @EntityListeners(AuditingEntityListener.class)
 public class GheEntity extends BaseEntity {
-    //private String idGhe;
+    private String idGhe;
     private String loaighe;
     private String trangthai;
     private long maphong;
 
 
-//    @Basic
-//    @Column(name = "ID_GHE")
-//    public String getIdGhe() {
-//        return idGhe;
-//    }
-//
-//    public void setIdGhe(String idGhe) {
-//        this.idGhe = idGhe;
-//    }
+    @Basic
+    @Column(name = "ID_GHE")
+    public String getIdGhe() {
+        return idGhe;
+    }
+
+    public void setIdGhe(String idGhe) {
+        this.idGhe = idGhe;
+    }
 
     @Basic
     @Column(name = "LOAIGHE")

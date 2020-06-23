@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {CinemaService} from '../../../shared/service/cinema.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {MovieModel} from '../../../model/movie.model';
+
 
 @Component({
   selector: 'app-cinema-create',

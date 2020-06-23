@@ -14,7 +14,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     CommonModule,
     CinemaRoutingModule,
     FormsModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule
+
   ]
 })
 export class CinemaModule { }
