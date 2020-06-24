@@ -28,7 +28,7 @@ export class SeatCreatComponent implements OnInit {
       updateAt: ['', Validators.required],
       loaighe: ['', Validators.required],
       maphong: ['', Validators.required],
-      trangthai: ['', Validators.required],
+      status: ['', Validators.required],
     });
 
     this.route.data.subscribe(({seat}) => {
@@ -41,7 +41,7 @@ export class SeatCreatComponent implements OnInit {
           updateAt: seat.updateAt,
           loaighe: seat.loaighe,
           maphong: seat.maphong,
-          trangthai: seat.trangthai
+          status: seat.status
         });
       }
     });

@@ -20,7 +20,13 @@ const routes: Routes = [
     }
   },
   {
-
+    path: 'manage',
+    component: AdminLayoutComponent,
+    loadChildren: () => {
+      return import('../app/pages/manage/manage.module').then(m => m.ManageModule);
+    }
+  },
+  {
     path: 'cinema',
     component: AdminLayoutComponent,
     loadChildren: () => {
