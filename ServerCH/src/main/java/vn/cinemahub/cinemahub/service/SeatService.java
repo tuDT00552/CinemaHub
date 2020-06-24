@@ -17,5 +17,5 @@ public interface SeatService {
 
     Optional<GheEntity> findByID(Long id);
 
-    Optional<GheEntity> findOne(Long id);
+    Optional<Object> findOne(Long id);
 }

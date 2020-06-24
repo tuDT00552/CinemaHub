@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import vn.cinemahub.cinemahub.entities.GheEntity;
+import vn.cinemahub.cinemahub.service.RoomService;
 import vn.cinemahub.cinemahub.service.SeatService;
 
 import java.util.Date;
@@ -14,12 +15,12 @@ import java.util.List;
 @RestController
 @RequestMapping({"/api/seat"})
 public class SeatResource {
-    private final SeatService seatService;
+    Date date = new Date();
+    @Autowired
+    private SeatService seatService;
 
-    public SeatResource(SeatService seatService) {
-
-        this.seatService = seatService;
-    }
+    @Autowired
+    private RoomService roomService;
 
     @GetMapping
     public List<GheEntity> findAll() {
@@ -28,14 +29,16 @@ public class SeatResource {
 
     @PostMapping
     public GheEntity save(@RequestBody GheEntity seat) {
-        Date date = new Date();
         seat.setCreatedAt(date);
         seat.setUpdateAt(date);
+        seat.setStatus(1);
+        seat.setRoomEntity(roomService.findbyMaphong(seat.getRoomEntity().getMaphong()).get());
         return this.seatService.save(seat);
     }
 
     @PutMapping
     public ResponseEntity<Void> update(@RequestBody GheEntity gheEntity) {
+        gheEntity.setCreatedAt(date);
         this.seatService.update(gheEntity);
         return new ResponseEntity(HttpStatus.OK);
     }
