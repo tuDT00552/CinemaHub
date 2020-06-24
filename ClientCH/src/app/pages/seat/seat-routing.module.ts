@@ -1,17 +1,16 @@
 import {Injectable, NgModule} from '@angular/core';
-import { CommonModule } from '@angular/common';
 import {ActivatedRouteSnapshot, Resolve, RouterModule, RouterStateSnapshot, Routes} from "@angular/router";
 import {SeatService} from "../../shared/service/seat.service";
 import {SeatModel} from "../../model/seat.model";
 import {Observable} from "rxjs";
-import {SeatListComponent} from "./seat-list/seat-list.component";
 import {SeatCreatComponent} from "./seat-creat/seat-creat.component";
+import {SeatListComponent} from "./seat-list/seat-list.component";
 
 
 @Injectable({providedIn: 'root'})
 export class SeatResolver implements Resolve<SeatModel> {
-  constructor(private seatService: SeatService) {}
-
+  constructor(private seatService: SeatService) {
+  }
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<SeatModel>
     | Promise<SeatModel> | SeatModel {
     const id = route.params.id ? route.params.id : null;

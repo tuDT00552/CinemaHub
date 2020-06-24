@@ -13,6 +13,7 @@ import {SeatService} from '../../../shared/service/seat.service';
 export class SeatCreatComponent implements OnInit {
   form: FormGroup;
   isUpdate: any = false;
+  error: string;
 
   constructor(private fb: FormBuilder,
               private router: Router,
@@ -21,7 +22,8 @@ export class SeatCreatComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.fb.group({
-       id: ['', Validators.required],
+      id: ['', Validators.required],
+       idGhe: ['', Validators.required],
       createdAt: ['', Validators.required],
       updateAt: ['', Validators.required],
       loaighe: ['', Validators.required],
@@ -30,15 +32,16 @@ export class SeatCreatComponent implements OnInit {
     });
 
     this.route.data.subscribe(({seat}) => {
-      this.isUpdate = seat && seat.ID_Seat !== undefined;
+      this.isUpdate = seat && seat.id !== undefined;
       if (this.isUpdate) {
         this.form.patchValue({
-          id: seat.ID_Seat,
-          createdAt: seat.Created_at,
-          updateAt: seat.Update_at,
-          loaighe: seat.Loai_Seat,
-          maphong: seat.Ma_Phong,
-          trangthai: seat.Trang_thai
+          id: seat.id,
+          idGhe: seat.idGhe,
+          createdAt: seat.createdAt,
+          updateAt: seat.updateAt,
+          loaighe: seat.loaighe,
+          maphong: seat.maphong,
+          trangthai: seat.trangthai
         });
       }
     });

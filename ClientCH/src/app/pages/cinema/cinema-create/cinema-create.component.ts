@@ -2,7 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {CinemaService} from '../../../shared/service/cinema.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {MovieModel} from '../../../model/movie.model';
+
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {CinemaService} from '../../../shared/service/cinema.service';
+import {ActivatedRoute, Router} from '@angular/router';
+
 
 @Component({
   selector: 'app-cinema-create',
@@ -10,7 +14,6 @@ import {MovieModel} from '../../../model/movie.model';
   styleUrls: ['./cinema-create.component.css']
 })
 export class CinemaCreateComponent implements OnInit {
-
   form: FormGroup;
   isUpdate: any = false;
   error: string;
