@@ -1,40 +1,8 @@
-<!--<div *ngFor="let cinema of cinemas">-->
-<!--  <h1>{{cinema.tenrap}}</h1>-->
-<!--  <div *ngFor="let room of cinema.roomEntities">-->
-<!--    <h1>{{room.maphong}}</h1>-->
-<!--    <div *ngFor="let seat of room.gheEntities">-->
-<!--      <h1>{{seat.tenghe}}</h1>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
 <div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
   <div class="container-fluid">
     <div class="header-body">
-      <div class="row">
-        <div class="col-xl-3 col-lg-6" *ngFor="let cinema of cinemas">
-          <div class="card card-stats mb-4 mb-xl-0">
-            <div class="card-body">
-              <div class="row">
-                <div class="col">
-                  <h5 class="card-title text-uppercase text-muted mb-0">{{cinema.tenrap}}</h5>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <app-cinema-list [cinemas]="cinemas"></app-cinema-list>
     </div>
   </div>
 </div>
-<div class="container-fluid mt--7">
-  <div class="row">
-    <div class="col">
-      <div class="card shadow">
-        <div class="card-header border-0">
-          <h3 class="mb-0">Cinema List</h3>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</div>
+<app-room-list [rooms]="rooms"></app-room-list>

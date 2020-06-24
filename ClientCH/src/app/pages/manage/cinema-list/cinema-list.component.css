@@ -1,0 +1,8 @@
+.card {
+  height: 70px !important;
+  margin-top: 10px;
+}
+
+.card:hover {
+  cursor: pointer;
+}

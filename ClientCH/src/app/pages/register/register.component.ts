@@ -6,14 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  select: number;
+
   constructor() { }
 
   ngOnInit() {
-    this.select = 1;
-  }
-
-  onSelect(number) {
-    this.select = number;
   }
 }
