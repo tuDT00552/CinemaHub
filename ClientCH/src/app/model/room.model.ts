@@ -1,10 +1,8 @@
-import {SeatModel} from './seat.model';
-
 export class RoomModel {
   id?: number;
   createdAt?: Date;
-  updateAt?: Date;
+  updteAt?: Date;
+  soghe?: number;
+  marap?: number;
   maphong?: number;
-  status?: number;
-  gheEntities?: SeatModel[];
 }
