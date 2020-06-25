@@ -1,1 +1,35 @@
-<p>movie-list works!</p>
+<div class="container-fluid mt--7">
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <div class="row">
+              <div class="col-3" *ngFor="let movie of movies" (click)="OnSelect(movie)">
+                <div class="movie">
+                  <img src="{{movie.image}}" alt="{{movie.tenphim}}">
+                  <div class="moviename">{{movie.tenphim}}</div>
+                </div>
+              </div>
+            <div class="col-9" *ngIf="select != null">
+              <div class="row">
+                <div class="col-1" *ngFor="let seat of seats">
+                  <span class="btn btn-primary" *ngIf="seat.loaighe == 1">
+                    {{seat.tenghe}}
+                  </span>
+                  <span class="btn btn-danger" *ngIf="seat.loaighe == 2">
+                    {{seat.tenghe}}
+                  </span>
+                  <span class="btn btn-success" *ngIf="seat.loaighe == 3">
+                    {{seat.tenghe}}
+                  </span>
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

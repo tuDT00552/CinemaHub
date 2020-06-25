@@ -5,6 +5,8 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {CinemaModel} from '../../../model/cinema.model';
 import {CinemaDeleteComponent} from '../../cinema/cinema-delete/cinema-delete.component';
 import {RoomModel} from '../../../model/room.model';
+import {MovieModel} from '../../../model/movie.model';
+import {SeatModel} from '../../../model/seat.model';
 
 @Component({
   selector: 'app-manage',
@@ -14,7 +16,9 @@ import {RoomModel} from '../../../model/room.model';
 export class ManageComponent implements OnInit {
   cinemas: CinemaModel[] = [];
   rooms: RoomModel[];
-
+  movies: MovieModel[];
+  seats: SeatModel[];
+  options: string;
 
   constructor(private cinemaService: CinemaService, private eventManagement: EventManagement,
               public modal: NgbModal) {
@@ -22,13 +26,21 @@ export class ManageComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadCinemas();
-    // this.rooms = this.cinemas[0].roomEntities;
   }
 
   loadCinemas() {
     this.cinemaService.fetch().subscribe(cinemas => {
       this.cinemas = cinemas;
       this.rooms = cinemas[0].roomEntities;
+      this.options = cinemas[0].tenrap;
+      this.movies = cinemas[0].movies;
+      this.seats = cinemas[0].roomEntities[0].gheEntities;
     }, error => console.log(error));
+  }
+
+  onSelect(cinema: any) {
+    this.seats = cinema.roomEntities[0].gheEntities;
+    this.options = cinema.tenrap;
+    this.movies = cinema.movies;
   }
 }

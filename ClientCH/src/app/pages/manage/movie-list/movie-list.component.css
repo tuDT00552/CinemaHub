@@ -1,0 +1,15 @@
+img {
+  max-width: 200px;
+  height: 280px;
+}
+
+.movie:hover {
+  cursor: pointer;
+}
+
+.moviename {
+  text-align: center;
+  line-height: 30px;
+  color: black;
+  font-weight: bold;
+}
