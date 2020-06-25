@@ -14,18 +14,5 @@ public class CinemahubApplication {
     CinemaService cinemaService;
     public static void main(String[] args){
         SpringApplication.run(CinemahubApplication.class, args);
-//        CinemahubApplication cinemahubApplication = new CinemahubApplication();
-//        cinemahubApplication.insert();
-
-
     }
-//    public void insert() {
-//        DateFormat df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
-//        Date dateobj = new Date();
-//        Cinema c = new Cinema(1, "OK nHé", "Ha Noi", "rat hay", 1);
-//        c.setId((long) 9);
-//        c.setCreatedAt(dateobj);
-//        c.setUpdateAt(dateobj);
-//        cinemaService.save(c);
-//    }
 }

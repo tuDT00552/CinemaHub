@@ -1,9 +1,9 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-
+// import { IgxDropDownModule } from 'igniteui-angular';
 import { AppComponent } from './app.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
@@ -16,7 +16,6 @@ import { ManageModule } from './pages/manage/manage.module';
 import { RefundTicketListComponent } from './pages/RefundTicket/refund-ticket-list/refund-ticket-list.component';
 import { RefundTicketCreateComponent } from './pages/RefundTicket/refund-ticket-create/refund-ticket-create.component';
 import { RefundticketDeleteComponent } from './pages/RefundTicket/refundticket-delete/refundticket-delete.component';
-
 
 @NgModule({
   imports: [
@@ -31,6 +30,7 @@ import { RefundticketDeleteComponent } from './pages/RefundTicket/refundticket-d
     ManageRoutingModule,
     ManageModule,
     ReactiveFormsModule,
+    // IgxDropDownModule
   ],
   declarations: [
     AppComponent,
@@ -43,4 +43,5 @@ import { RefundticketDeleteComponent } from './pages/RefundTicket/refundticket-d
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
