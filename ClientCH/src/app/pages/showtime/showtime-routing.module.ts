@@ -34,7 +34,7 @@ const routes: Routes = [
     path: 'update/:id',
     component: ShowtimeCreateComponent,
     resolve: {
-      ticket: ShowtimeResolver
+      showtime: ShowtimeResolver
     }
   }
 ];

@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.*;
 import vn.cinemahub.cinemahub.entities.Showtime;
 import vn.cinemahub.cinemahub.service.ShowtimeService;
 
-
 import java.util.Date;
 import java.util.List;
 
@@ -24,7 +23,6 @@ public class ShowtimeRecsource {
     public List<Showtime> findAll() {
         return showtimeService.findAll();
     }
-
 
     @PostMapping
     public Showtime save(@RequestBody Showtime showtime) {
@@ -52,5 +50,4 @@ public class ShowtimeRecsource {
         this.showtimeService.delete(id);
         return new ResponseEntity(HttpStatus.OK);
     }
-
 }
