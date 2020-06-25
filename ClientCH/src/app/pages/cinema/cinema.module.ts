@@ -7,6 +7,7 @@ import {CinemaRoutingModule} from './cinema-routing.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 
+
 @NgModule({
   declarations: [CinemaCreateComponent, CinemaDeleteComponent, CinemaListComponent],
   exports: [CinemaCreateComponent],
