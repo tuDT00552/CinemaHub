@@ -20,13 +20,6 @@ const routes: Routes = [
     }
   },
   {
-    path: 'room',
-    component: AdminLayoutComponent,
-    loadChildren: () => {
-      return import('../app/pages/room/room.module').then(m => m.RoomModule);
-    }
-  },
-  {
     path: 'showtime',
     component: AdminLayoutComponent,
     loadChildren: () => {

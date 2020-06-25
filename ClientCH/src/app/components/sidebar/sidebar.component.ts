@@ -19,8 +19,7 @@ export const ROUTES: RouteInfo[] = [
     { path: '/seat' , title: 'Seat',  icon:'ni-box-2 text-pink', class: '' },
     { path: '/ticket' , title: 'Ticket',  icon:'ni-box-2 text-pink', class: '' },
     { path: '/cinema', title: 'Cinema',  icon:'ni-tv-2 text-pink', class: '' },
-    { path: '/showtime' , title: 'Showtime',  icon:'ni-calendar-grid-58 text-green', class: '' },
-    { path: '/room' , title: 'Room',  icon:'ni-lock-circle-open text-orange ', class: '' }
+    { path: '/showtime' , title: 'Showtime',  icon:'ni-calendar-grid-58 text-green', class: '' }
 ];
 @Component({
   selector: 'app-sidebar',
