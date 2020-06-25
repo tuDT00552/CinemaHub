@@ -10,8 +10,6 @@ import java.util.Objects;
 @Table(name = "SEAT")
 @EntityListeners(AuditingEntityListener.class)
 public class GheEntity extends BaseEntity {
-    //private String idGhe;
-    // 1: ghe vip, 2: ghe thuong
     private String tenghe;
     private int loaighe;
     private int status;

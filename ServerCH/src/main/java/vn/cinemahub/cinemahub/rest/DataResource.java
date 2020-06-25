@@ -97,6 +97,12 @@ public class DataResource {
         for (int i = 0; i < abc.length; i++) {
             for (int j = 1; j < 13; j++) {
                 GheEntity g = new GheEntity(abc[i]+j,1,r);
+                if(g.getTenghe().equals("A"+j) ||g.getTenghe().equals("B"+j)) {
+                    g.setLoaighe(2);
+                }
+                else if(g.getTenghe().equals("G"+j) || g.getTenghe().equals("H"+j)) {
+                    g.setLoaighe(3);
+                }
                 g.setCreatedAt(date);
                 g.setUpdateAt(date);
                 g.setStatus(1);

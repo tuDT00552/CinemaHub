@@ -16,6 +16,8 @@ import { ManageModule } from './pages/manage/manage.module';
 import { RefundTicketListComponent } from './pages/RefundTicket/refund-ticket-list/refund-ticket-list.component';
 import { RefundTicketCreateComponent } from './pages/RefundTicket/refund-ticket-create/refund-ticket-create.component';
 import { RefundticketDeleteComponent } from './pages/RefundTicket/refundticket-delete/refundticket-delete.component';
+import { ShowtimeListComponent } from './pages/showtime/showtime-list/showtime-list.component';
+import { RoomDeleteComponent } from './pages/room/room-delete/room-delete.component';
 
 
 @NgModule({
@@ -39,6 +41,7 @@ import { RefundticketDeleteComponent } from './pages/RefundTicket/refundticket-d
     RefundTicketListComponent,
     RefundTicketCreateComponent,
     RefundticketDeleteComponent,
+    RoomDeleteComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]

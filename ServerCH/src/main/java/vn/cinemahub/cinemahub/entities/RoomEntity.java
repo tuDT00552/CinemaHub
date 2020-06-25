@@ -19,7 +19,6 @@ public class RoomEntity extends BaseEntity implements Serializable {
     @NaturalId
     @Column(name = "maphong")
     private int maphong;
-
     @Column(name = "status")
     private int status;
 

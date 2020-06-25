@@ -1,4 +1,5 @@
 import {MovieModel} from './movie.model';
+import {RoomModel} from './room.model';
 export class CinemaModel {
   id?: number;
   marap?: string;
@@ -6,7 +7,8 @@ export class CinemaModel {
   diachi?: string;
   gioithieurap?: string;
   status?: number;
-  createdAt?: number;
-  updateAt?: number;
+  createdAt?: Date;
+  updateAt?: Date;
   movies?: MovieModel[];
+  roomEntities?: RoomModel[];
 }
