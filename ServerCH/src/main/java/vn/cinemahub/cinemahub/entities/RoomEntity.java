@@ -20,6 +20,9 @@ public class RoomEntity extends BaseEntity implements Serializable {
     @Column(name = "maphong")
     private int maphong;
 
+    @Column(name= "soghe")
+    private int soghe;
+
     @Column(name = "status")
     private int status;
 
@@ -37,6 +40,14 @@ public class RoomEntity extends BaseEntity implements Serializable {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public int getSoghe() {
+        return soghe;
+    }
+
+    public void setSoghe(int soghe) {
+        this.soghe = soghe;
     }
 
     @JsonBackReference

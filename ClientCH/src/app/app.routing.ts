@@ -20,6 +20,20 @@ const routes: Routes = [
     }
   },
   {
+    path: 'room',
+    component: AdminLayoutComponent,
+    loadChildren: () => {
+      return import('../app/pages/room/room.module').then(m => m.RoomModule);
+    }
+  },
+  {
+    path: 'showtime',
+    component: AdminLayoutComponent,
+    loadChildren: () => {
+      return import('../app/pages/showtime/showtime.module').then(m => m.ShowtimeModule);
+    }
+  },
+  {
     path: 'manage',
     component: AdminLayoutComponent,
     loadChildren: () => {
