@@ -1,16 +1,8 @@
 <div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
   <div class="container-fluid">
     <div class="header-body">
-      <div class="sample-wrapper">
-        <button class="btn" igxButton="raised" [igxToggleAction]="dropdown" [igxDropDownItemNavigation]="dropdown" >
-          {{options}}</button>
-        <igx-drop-down #dropdown>
-          <igx-drop-down-item *ngFor="let cinema of cinemas" (click)="onSelect(cinema)">
-            {{ cinema.tenrap }}
-          </igx-drop-down-item>
-        </igx-drop-down>
-      </div>
+      <app-cinema-list [cinemas]="cinemas"></app-cinema-list>
     </div>
   </div>
 </div>
-<app-movie-list [movies]="movies" [seats]="seats"></app-movie-list>
+<app-room-list [rooms]="rooms"></app-room-list>
