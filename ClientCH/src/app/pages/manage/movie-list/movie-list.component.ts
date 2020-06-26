@@ -16,14 +16,19 @@ export class MovieListComponent implements OnInit {
   @Input() movies: MovieModel[];
   @Input() seats: SeatModel[];
   mv: MovieModel[];
+
   constructor() {
 
   }
+
   select: number;
+
   ngOnInit(): void {
 
   }
-  status : boolean = false;
+
+  status: boolean = false;
+
   OnSelect(movie: MovieModel) {
     console.log(movie);
     this.status = !this.status;
@@ -31,8 +36,7 @@ export class MovieListComponent implements OnInit {
       this.select = movie.id;
       this.mv = this.movies;
       this.movies = [movie];
-    }
-    else {
+    } else {
       this.select = null;
       this.movies = this.mv;
     }

@@ -1,6 +1,6 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
@@ -19,7 +19,6 @@ import { RefundticketDeleteComponent } from './pages/RefundTicket/refundticket-d
 import { ShowtimeListComponent } from './pages/showtime/showtime-list/showtime-list.component';
 import { RoomDeleteComponent } from './pages/room/room-delete/room-delete.component';
 
-
 @NgModule({
   imports: [
     BrowserAnimationsModule,
@@ -32,7 +31,7 @@ import { RoomDeleteComponent } from './pages/room/room-delete/room-delete.compon
     CinemaModule,
     ManageRoutingModule,
     ManageModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule
   ],
   declarations: [
     AppComponent,
@@ -46,4 +45,5 @@ import { RoomDeleteComponent } from './pages/room/room-delete/room-delete.compon
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
