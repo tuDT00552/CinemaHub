@@ -14,15 +14,27 @@ import {SeatModel} from '../../../model/seat.model';
 })
 export class MovieListComponent implements OnInit {
   @Input() movies: MovieModel[];
-
+  @Input() seats: SeatModel[];
+  mv: MovieModel[];
   constructor() {
 
   }
-
+  select: number;
   ngOnInit(): void {
 
   }
+  status : boolean = false;
   OnSelect(movie: MovieModel) {
     console.log(movie);
+    this.status = !this.status;
+    if (this.status) {
+      this.select = movie.id;
+      this.mv = this.movies;
+      this.movies = [movie];
+    }
+    else {
+      this.select = null;
+      this.movies = this.mv;
+    }
   }
 }

@@ -1,9 +1,9 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-// import { IgxDropDownModule } from 'igniteui-angular';
+
 import { AppComponent } from './app.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
@@ -17,6 +17,8 @@ import { RefundTicketListComponent } from './pages/RefundTicket/refund-ticket-li
 import { RefundTicketCreateComponent } from './pages/RefundTicket/refund-ticket-create/refund-ticket-create.component';
 import { RefundticketDeleteComponent } from './pages/RefundTicket/refundticket-delete/refundticket-delete.component';
 import { ShowtimeListComponent } from './pages/showtime/showtime-list/showtime-list.component';
+import { RoomDeleteComponent } from './pages/room/room-delete/room-delete.component';
+
 
 @NgModule({
   imports: [
@@ -31,7 +33,6 @@ import { ShowtimeListComponent } from './pages/showtime/showtime-list/showtime-l
     ManageRoutingModule,
     ManageModule,
     ReactiveFormsModule,
-    // IgxDropDownModule
   ],
   declarations: [
     AppComponent,
@@ -40,9 +41,9 @@ import { ShowtimeListComponent } from './pages/showtime/showtime-list/showtime-l
     RefundTicketListComponent,
     RefundTicketCreateComponent,
     RefundticketDeleteComponent,
+    RoomDeleteComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule { }
