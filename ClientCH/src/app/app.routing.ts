@@ -4,13 +4,16 @@ import {BrowserModule} from '@angular/platform-browser';
 import {Routes, RouterModule} from '@angular/router';
 import {AdminLayoutComponent} from './layouts/admin-layout/admin-layout.component';
 import {AuthLayoutComponent} from './layouts/auth-layout/auth-layout.component';
+import {LoginComponent} from "./pages/login/login.component";
+
 
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard',
-    pathMatch: 'full',
+    component: LoginComponent,
+    pathMatch: 'full' ,
+
   },
   {
     path: 'ticket',
@@ -36,6 +39,8 @@ const routes: Routes = [
     }
   },
 
+
+
   {
     path: '',
     component: AdminLayoutComponent,
@@ -54,10 +59,7 @@ const routes: Routes = [
         loadChildren: './layouts/auth-layout/auth-layout.module#AuthLayoutModule'
       }
     ]
-  }, {
-    path: '**',
-    redirectTo: 'dashboard'
-  }
+  },
 ];
 
 @NgModule({
@@ -66,7 +68,7 @@ const routes: Routes = [
     BrowserModule,
     RouterModule.forRoot(routes)
   ],
-  exports: [],
+  exports: [RouterModule],
 })
 export class AppRoutingModule {
 }

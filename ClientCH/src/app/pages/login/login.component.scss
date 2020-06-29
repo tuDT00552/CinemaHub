@@ -1,4 +1,4 @@
-.logo-t1 {
+logo-t1 {
   font-weight: bold;
   font-size: 25px;
   color: #673ab7;
@@ -21,3 +21,28 @@
   padding: 3px;
 
 }
+.form-control{
+  width: 300px;
+  margin-left: 510px;
+  margin-top: 30px;
+}
+.pass{
+  text-align: center;
+}
+.btn:not(:disabled):not(.disabled) {
+  cursor: pointer;
+  width: 300px;
+  margin-left: 510px;
+}
+img {
+  border-radius:50%;
+  -moz-border-radius:50%;
+  -webkit-border-radius:50%;
+  width: 150px;
+  img.profile-img-card{display: block; margin-left: auto; margin-right: auto;}
+  margin: auto;
+
+}
+
+
+

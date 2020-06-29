@@ -90,12 +90,36 @@
         </div>
       </form>
       <!-- Navigation -->
-      <ul class="navbar-nav">
-          <li *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item">
-              <a routerLinkActive="active" [routerLink]="[menuItem.path]" class="nav-link">
-                  <i class="ni {{menuItem.icon}}"></i>
-                  {{menuItem.title}}
+      <ul class="navbar-nav"  >
+          <li >
+              <a  routerLinkActive="active" routerLink="/dashboard" class="nav-link"  *ngIf="showAdmin">
+                  <i class="ni ni-box-2 text-pink"></i>
+                  DashBoard
               </a>
+            <a  routerLinkActive="active" routerLink="/cinema" class="nav-link"  *ngIf="showAdmin">
+              <i class="ni ni-tv-2 text-pink"></i>
+              Cinema
+            </a>
+            <a  routerLinkActive="active" routerLink="/seat" class="nav-link"    *ngIf="showAdmin">
+              <i class="ni ni-box-2 text-pink"></i>
+              Seat
+            </a>
+            <a  routerLinkActive="active" routerLink="/ticket" class="nav-link"    *ngIf="showAdmin">
+              <i class="ni ni-box-2 text-pink"></i>
+                Ticket
+            </a>
+            <a  routerLinkActive="active" routerLink="/icons" class="nav-link"    *ngIf="showUser">
+              <i class="ni ni-box-2 text-pink"></i>
+              Icons
+            </a>
+            <a  routerLinkActive="active" routerLink="/maps" class="nav-link"    *ngIf="showUser">
+              <i class="ni ni-box-2 text-pink"></i>
+              Maps
+            </a>
+            <a  routerLinkActive="active" routerLink="/register" class="nav-link"    *ngIf="showAdmin">
+              <i class="ni ni-box-2 text-pink"></i>
+              Register
+            </a>
           </li>
       </ul>
       <!-- Divider -->

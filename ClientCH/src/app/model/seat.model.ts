@@ -6,4 +6,5 @@ export class SeatModel {
   tenghe?: string;
   maphong?: number; // number, string, boolean, any
   status?: number;
+  trangthai: any;
 }
