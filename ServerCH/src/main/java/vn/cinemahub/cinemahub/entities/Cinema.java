@@ -1,5 +1,6 @@
 package vn.cinemahub.cinemahub.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import org.hibernate.annotations.Fetch;
@@ -9,10 +10,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "CINEMA")
@@ -43,7 +41,8 @@ public class Cinema extends BaseEntity implements Serializable {
     @JsonManagedReference
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "cinema",cascade = CascadeType.ALL)
     @Fetch(value = FetchMode.SELECT)
-        private List<Movie> movies = new ArrayList<>();
+    private List<Movie> movies = new ArrayList<>();
+
 
     @JsonManagedReference
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "rap",cascade = CascadeType.ALL)

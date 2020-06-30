@@ -14,6 +14,10 @@ export class ShowtimeService {
     return this.http.get<ShowtimeModel[]>(`${ENDPOINT_URL}/showtime`);
   }
 
+  findbyMovieID(id: any): Observable<ShowtimeModel[]> {
+    return this.http.get<ShowtimeModel[]>(`${ENDPOINT_URL}/showtime/fbymovie/${id}`);
+  }
+
   findOne(id: any): Observable<ShowtimeModel> {
     return this.http.get<ShowtimeModel>(`${ENDPOINT_URL}/showtime/${id}`);
   }

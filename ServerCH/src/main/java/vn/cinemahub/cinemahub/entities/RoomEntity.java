@@ -1,6 +1,7 @@
 package vn.cinemahub.cinemahub.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -23,6 +24,20 @@ public class RoomEntity extends BaseEntity implements Serializable {
     private int status;
 
     public RoomEntity() {
+    }
+
+//    @JsonManagedReference(value="phong")
+    @JsonIgnore
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "roomEntity",cascade = CascadeType.ALL)
+    @Fetch(value = FetchMode.SELECT)
+    private List<Showtime> showtimes = new ArrayList<>();
+
+    public List<Showtime> getShowtimes() {
+        return showtimes;
+    }
+
+    public void setShowtimes(List<Showtime> showtimes) {
+        this.showtimes = showtimes;
     }
 
     public RoomEntity(int maphong, Cinema rap) {

@@ -1,6 +1,7 @@
 package vn.cinemahub.cinemahub.service;
 
 import vn.cinemahub.cinemahub.entities.Cinema;
+import vn.cinemahub.cinemahub.entities.Movie;
 import vn.cinemahub.cinemahub.entities.RoomEntity;
 
 import java.util.List;
@@ -10,4 +11,5 @@ public interface RoomService {
     List<RoomEntity> findAll();
     RoomEntity save(RoomEntity roomEntity);
     Optional<RoomEntity> findbyMaphong(int maphong);
+    public Optional<RoomEntity> findByID(Long id);
 }

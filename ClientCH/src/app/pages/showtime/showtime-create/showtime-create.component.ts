@@ -1,8 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {TicketService} from '../../../shared/service/ticket.service';
 import {ShowtimeService} from '../../../shared/service/showtime.service';
+import {CinemaService} from '../../../shared/service/cinema.service';
+import {CinemaModel} from '../../../model/cinema.model';
+import {MovieModel} from '../../../model/movie.model';
+import {SeatModel} from '../../../model/seat.model';
+import {RoomModel} from '../../../model/room.model';
+import {RoomService} from '../../../shared/service/room.service';
+import {MovieService} from '../../../shared/service/movie.service';
 
 @Component({
   selector: 'app-showtime-create',
@@ -13,23 +20,28 @@ export class ShowtimeCreateComponent implements OnInit {
   form: FormGroup;
   isUpdate: any = false;
   error: string;
-
+  cinemas: CinemaModel[];
+  movies: MovieModel[];
+  rooms: RoomModel[];
+  cID: number;
+  name: string;
   constructor(private fb: FormBuilder,
               private router: Router,
               private route: ActivatedRoute,
-              private showtimeService: ShowtimeService) { }
+              private showtimeService: ShowtimeService,
+              private cinemaService: CinemaService,
+              private roomService: RoomService,
+              private moviesService: MovieService) {
+  }
 
   ngOnInit(): void {
+    this.loadCinemas();
     this.form = this.fb.group({
       id: ['', Validators.required],
-      createdAt: ['', Validators.required],
-      updateAt: ['', Validators.required],
-      ngaychieu: ['', Validators.required],
-      maphim: ['', Validators.required],
-      maphong: ['', Validators.required],
+      dateStart: ['', Validators.required],
+      moviez: ['', Validators.required],
       marap: ['', Validators.required],
       timeStart: ['', Validators.required],
-      timeEnd: ['', Validators.required],
     });
 
     this.route.data.subscribe(({showtime}) => {
@@ -37,21 +49,24 @@ export class ShowtimeCreateComponent implements OnInit {
       if (this.isUpdate) {
         this.form.patchValue({
           id: showtime.id,
-          createdAt: showtime.createdAt,
-          updateAt: showtime.updateAt,
-          ngaychieu: showtime.ngaychieu,
-          maphim: showtime.maphim,
-          maphong: showtime.maphong,
-          marap: showtime.marap,
+          dateStart: showtime.dateStart,
+          roomEntity: showtime.roomEntity,
+          movie: showtime.movie,
           timeStart: showtime.timeStart,
-          timeEnd: showtime.timeEnd
         });
       }
     });
   }
 
+  loadCinemas() {
+    this.cinemaService.fetch().subscribe(cinemas => {
+      this.cinemas = cinemas;
+    }, error => console.log(error));
+  }
+
   doSubmit() {
     const showtime = this.form.value;
+    showtime.movie = {id: showtime.moviez};
     if (this.isUpdate) {
       this.showtimeService.update(showtime).subscribe(
         () => this.router.navigateByUrl('/showtime'),
@@ -63,4 +78,10 @@ export class ShowtimeCreateComponent implements OnInit {
     }
   }
 
+  getCinema() {
+    this.cinemaService.findOne(this.cID).subscribe((cinema) => {
+      this.movies = cinema.movies;
+      this.rooms = cinema.roomEntities;
+    });
+  }
 }

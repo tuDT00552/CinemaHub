@@ -1,3 +1,6 @@
+import {CinemaModel} from './cinema.model';
+import {ShowtimeModel} from './showtime.model';
+
 export class MovieModel {
   id?: number;
   maphim?: string;
@@ -11,4 +14,7 @@ export class MovieModel {
   createdAt?: number;
   updateAt?: number;
   status?: number;
+  marap?: number;
+  cinema?: CinemaModel;
+  showtime?: ShowtimeModel[];
 }

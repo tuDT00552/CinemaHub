@@ -21,35 +21,28 @@
             <div class="row">
               <div class="col-md-12">
                 <span style="color: red">{{error}}</span>
-
+                <div class="form-group">
+                  <label class="form-control-label" for="marap">Chọn Rạp</label>
+                  <select class="form-control" id="marap" formControlName="marap" [(ngModel)]="cID" (change)="getCinema()">
+                    <option value="" [disabled]="true">Chọn Rạp</option>
+                    <option *ngFor="let cinema of cinemas"  [ngValue]="cinema.id"  value="{{cinema.id}}">{{cinema.tenrap}}</option>
+                  </select>
+                </div>
+                <div class="form-group" *ngIf="movies != null">
+                  <label class="form-control-label" for="moviez">Chọn Phim</label>
+                  <select class="form-control" id="moviez" formControlName="moviez">
+                    <option value="" [disabled]="true">Chọn Phim</option>
+                    <option *ngFor="let movie of movies" value="{{movie.id}}">{{movie.tenphim}}</option>
+                  </select>
+                </div>
                 <div class="form-group" *ngIf="!isUpdate">
-                  <label class="form-control-label" for="ngaychieu">Ngày chiếu</label>
-                  <input id="ngaychieu" formControlName="ngaychieu" class="form-control form-control-alternative" placeholder="Ngày chiếu" type="date">
+                  <label class="form-control-label" for="dateStart">Ngày chiếu</label>
+                  <input id="dateStart" formControlName="dateStart" class="form-control form-control-alternative" placeholder="Ngày chiếu" type="date">
                 </div>
                 <div class="form-group">
                   <label class="form-control-label" for="timeStart">Giờ bắt đầu</label>
                   <input id="timeStart" formControlName="timeStart" class="form-control form-control-alternative" placeholder="Giờ bắt đầu" type="time">
                 </div>
-                <div class="form-group">
-                  <label class="form-control-label" for="timeEnd">Giờ kết thúc</label>
-                  <input id="timeEnd" formControlName="timeEnd" class="form-control form-control-alternative" placeholder="Giờ kết thúc" type="time">
-                </div>
-                <div class="form-group">
-                  <label class="form-control-label" for="marap">Mã Rạp</label>
-                  <input id="marap" formControlName="marap" class="form-control form-control-alternative" placeholder="Mã Rạp" type="text">
-                </div>
-                <div class="form-group">
-                  <label class="form-control-label" for="maphim">Mã Phim</label>
-                  <input id="maphim" formControlName="maphim" class="form-control form-control-alternative" placeholder="Mã Phim" type="text">
-                </div>
-                <div class="form-group">
-                  <label class="form-control-label" for="maphong">Mã phòng</label>
-                  <input id="maphong" formControlName="maphong" class="form-control form-control-alternative" placeholder="Mã Phòng" type="text">
-                </div>
-                <!--                <div class="form-group">-->
-                <!--                  <label class="form-control-label" for="gioithieurap">Giới Thiệu</label>-->
-                <!--                  <textarea id="gioithieurap" formControlName="gioithieurap" rows="4" class="form-control form-control-alternative" placeholder="Giới Thiệu Về Rạp"></textarea>-->
-                <!--                </div>-->
                 <button type="submit" class="btn btn-success" *ngIf="!isUpdate">Submit</button>
                 <button type="submit" class="btn btn-success" *ngIf="isUpdate">Update</button>
                 <button type="reset" class="btn btn-danger">Reset</button>

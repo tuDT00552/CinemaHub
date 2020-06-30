@@ -19,4 +19,5 @@ public interface CinemaRepository extends JpaRepository<Cinema, Long> {
 
     @Query("SELECT c.id FROM Cinema c where c.marap = :marap")
     Long checkExitsMaRap(int marap);
+
 }
