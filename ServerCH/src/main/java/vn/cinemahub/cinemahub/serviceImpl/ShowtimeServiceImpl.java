@@ -7,6 +7,7 @@ import vn.cinemahub.cinemahub.entities.Showtime;
 import vn.cinemahub.cinemahub.repository.ShowtimeRepository;
 import vn.cinemahub.cinemahub.service.ShowtimeService;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,6 +16,11 @@ import java.util.Optional;
 public class ShowtimeServiceImpl implements ShowtimeService {
     @Autowired
     private ShowtimeRepository showtimeRepository;
+
+    @Override
+    public List<Showtime> findAllByRoom(Long maphong) {
+        return showtimeRepository.findAllByRoom(maphong);
+    }
 
     @Override
     public List<Showtime> findAll() {
@@ -42,8 +48,18 @@ public class ShowtimeServiceImpl implements ShowtimeService {
     }
 
     @Override
+    public List<Showtime> findAllByMovieID(Long phimid) {
+        return showtimeRepository.findAllByMovieID(phimid);
+    }
+
+    @Override
     public Optional<Showtime> findOne(Long id) {
         return showtimeRepository.findById(id);
+    }
+
+    @Override
+    public List<Date> findDatebyMovie(Long phimid) {
+        return showtimeRepository.findDatebyMovie(phimid);
     }
 
 

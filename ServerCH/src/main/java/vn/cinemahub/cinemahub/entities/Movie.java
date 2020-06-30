@@ -1,12 +1,19 @@
 package vn.cinemahub.cinemahub.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -26,6 +33,9 @@ public class Movie extends BaseEntity {
     @Column(name = "theloai")
     private String theloai;
 
+    @Column(name = "minutes")
+    private int minutes;
+
     @Column(name = "namsx")
     private int namsx;
 
@@ -41,32 +51,46 @@ public class Movie extends BaseEntity {
     @Column(name = "status")
     private int status;
 
-//    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    //    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 //    @JoinTable(name = "cinema_movie",
 //            joinColumns = { @JoinColumn(name = "movie_id") },
 //            inverseJoinColumns = {@JoinColumn(name = "cinema_id") })
 //    private Set<Cinema> cinemas = new HashSet<>();
 
     @JsonBackReference
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "marap", referencedColumnName = "MARAP")
     private Cinema cinema;
 
+//    @JsonManagedReference(value="phim")
+    @JsonIgnore
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "movie",cascade = CascadeType.ALL)
+    @Fetch(value = FetchMode.SELECT)
+    private List<Showtime> showtimes = new ArrayList<>();
 
     public Movie() {
     }
 
-    public Movie(int maphim, String tenphim, String loaiphim, String theloai, int namsx, String image, String trailer, String mota, int status, Cinema cinema) {
+    public Movie(int maphim, String tenphim, String loaiphim, String theloai, int minutes, int namsx, String image, String trailer, String mota, int status, Cinema cinema) {
         this.maphim = maphim;
         this.tenphim = tenphim;
         this.loaiphim = loaiphim;
         this.theloai = theloai;
+        this.minutes = minutes;
         this.namsx = namsx;
         this.image = image;
         this.trailer = trailer;
         this.mota = mota;
         this.status = status;
         this.cinema = cinema;
+    }
+
+    public int getMinutes() {
+        return minutes;
+    }
+
+    public void setMinutes(int minutes) {
+        this.minutes = minutes;
     }
 
     public int getMaphim() {

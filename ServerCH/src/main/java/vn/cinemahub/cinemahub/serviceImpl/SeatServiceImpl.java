@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import vn.cinemahub.cinemahub.entities.Cinema;
 import vn.cinemahub.cinemahub.entities.GheEntity;
 import vn.cinemahub.cinemahub.repository.SeatRepository;
 import vn.cinemahub.cinemahub.service.SeatService;
@@ -44,9 +45,7 @@ public class SeatServiceImpl implements SeatService {
     }
 
     @Override
-    public Optional<Object> findOne(Long id) {
-        return Optional.empty();
+    public Optional<GheEntity> findOne(Long id) {
+        return seatRepository.findById(id);
     }
-
-
 }

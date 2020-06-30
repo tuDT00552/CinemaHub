@@ -30,7 +30,7 @@
               <div class="row">
                 <div class="col">
                   <h5 class="card-title text-uppercase text-muted mb-0">Total Movie</h5>
-                  <span class="h2 font-weight-bold mb-0">cinemas</span>
+                  <span class="h2 font-weight-bold mb-0">showtime</span>
                 </div>
                 <div class="col-auto">
                   <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
@@ -108,9 +108,8 @@
               <th scope="col">Ngày chiếu</th>
               <th scope="col">Giờ bắt đầu</th>
               <th scope="col">Giờ kết thúc</th>
-              <th scope="col">Mã phim</th>
+              <th scope="col">Tên phim</th>
               <th scope="col">Mã phòng</th>
-              <th scope="col">Mã rạp</th>
               <th></th>
             </tr>
             </thead>
@@ -119,45 +118,45 @@
               <th scope="row">
                 <div class="media align-items-center">
                   <div class="media-body">
-                    <span class="mb-0 text-sm">{{showtime.ngaychieu}}</span>
+                    <span class="mb-0 text-sm">{{ showtime.dateStart | date }}   </span>
                   </div>
                 </div>
               </th>
               <th scope="row">
                 <div class="media align-items-center">
                   <div class="media-body">
-                    <span class="mb-0 text-sm">{{showtime.timeStart}}</span>
+                    <span class="mb-0 text-sm">{{ showtime.dateStart | date:'shortTime' }}</span>
                   </div>
                 </div>
               </th>
               <th scope="row">
                 <div class="media align-items-center">
                   <div class="media-body">
-                    <span class="mb-0 text-sm">{{showtime.timeEnd}}</span>
+                    <span class="mb-0 text-sm">{{ showtime.dateEnd | date:'shortTime' }}</span>
                   </div>
                 </div>
               </th>
               <th scope="row">
                 <div class="media align-items-center">
                   <div class="media-body">
-                    <span class="mb-0 text-sm">{{showtime.maphim}}</span>
+                    <span class="mb-0 text-sm">{{showtime.movie.tenphim}}</span>
                   </div>
                 </div>
               </th>
               <th scope="row">
                 <div class="media align-items-center">
                   <div class="media-body">
-                    <span class="mb-0 text-sm">{{showtime.maphong}}</span>
+                    <span class="mb-0 text-sm">Phòng {{showtime.roomEntity.maphong}}</span>
                   </div>
                 </div>
               </th>
-              <th scope="row">
-                <div class="media align-items-center">
-                  <div class="media-body">
-                    <span class="mb-0 text-sm">{{showtime.marap}}</span>
-                  </div>
-                </div>
-              </th>
+<!--              <th scope="row">-->
+<!--                <div class="media align-items-center">-->
+<!--                  <div class="media-body">-->
+<!--                    <span class="mb-0 text-sm">{{showtime.marap}}</span>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </th>-->
 
               <!--              <td class="ell">-->
               <!--                <span>{{cinema.diachi}}</span>-->

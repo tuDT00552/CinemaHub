@@ -19,6 +19,7 @@ export class ManageComponent implements OnInit {
   movies: MovieModel[];
   seats: SeatModel[];
   options: string;
+  ciid: number;
 
   constructor(private cinemaService: CinemaService, private eventManagement: EventManagement,
               public modal: NgbModal) {
@@ -34,13 +35,17 @@ export class ManageComponent implements OnInit {
       this.rooms = cinemas[0].roomEntities;
       this.options = cinemas[0].tenrap;
       this.movies = cinemas[0].movies;
-      this.seats = cinemas[0].roomEntities[0].gheEntities;
+      this.ciid = cinemas[0].id;
     }, error => console.log(error));
   }
 
   onSelect(cinema: any) {
-    this.seats = cinema.roomEntities[0].gheEntities;
     this.options = cinema.tenrap;
-    this.movies = cinema.movies;
+    this.ciid = cinema.id;
+    // this.movies = cinema.movies;
+    // tslint:disable-next-line:no-shadowed-variable
+    cinema = this.cinemaService.findOne(cinema.id).subscribe((cinema) => {
+      this.movies = cinema.movies;
+    });
   }
 }
