@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {TokenStorageService} from "./shared/service/token-storage.service";
+import {LocalStorageService} from "./shared/service/local-storage.service";
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,8 @@ export class AppComponent {
   showAdminBoard = false;
   showModeratorBoard = false;
   username: string;
-  constructor(private tokenStorageService: TokenStorageService) { }
+  constructor(private tokenStorageService: TokenStorageService,
+              private localStorageService: LocalStorageService) { }
 
   ngOnInit() {
     this.isLoggedIn = !!this.tokenStorageService.getToken();
@@ -27,10 +29,13 @@ export class AppComponent {
 
       this.username = user.username;
     }
+    const newTodo = 'new todo';
+    this.localStorageService.storeOnLocalStorage(newTodo);
   }
 
   logout() {
     this.tokenStorageService.signOut();
     window.location.reload();
   }
+
 }

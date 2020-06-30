@@ -27,6 +27,10 @@ import { HomeComponent } from './pages/home/home.component';
 import {authInterceptorProviders} from "./shared/helpers/auth.interceptor";
 import {LoginComponent} from "./pages/login/login.component";
 import {RegisterComponent} from "./pages/register/register.component";
+import { RefundticketModule } from './pages/RefundTicket/refundticket.module';
+import { RefundticketRoutingModule } from './pages/RefundTicket/refundticket-routing.module';
+import {LocalStorageService} from "./shared/service/local-storage.service";
+
 
 
 @NgModule({
@@ -38,6 +42,10 @@ import {RegisterComponent} from "./pages/register/register.component";
     NgbModule,
     RouterModule,
     AppRoutingModule,
+    RefundticketModule,
+    RefundticketRoutingModule,
+    ReactiveFormsModule,
+
     // CinemaModule,
     // ManageRoutingModule,
     // ManageModule,
@@ -61,7 +69,8 @@ import {RegisterComponent} from "./pages/register/register.component";
     RegisterComponent
 
   ],
-  providers: [authInterceptorProviders],
+  providers: [authInterceptorProviders,LocalStorageService],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }
