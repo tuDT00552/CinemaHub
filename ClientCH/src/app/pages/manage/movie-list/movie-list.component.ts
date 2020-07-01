@@ -6,6 +6,8 @@ import {EventManagement} from '../../../shared/service/event.management';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {CinemaModel} from '../../../model/cinema.model';
 import {SeatModel} from '../../../model/seat.model';
+import {ShowtimeModel} from '../../../model/showtime.model';
+import {ShowtimeService} from '../../../shared/service/showtime.service';
 
 @Component({
   selector: 'app-movie-list',
@@ -13,32 +15,49 @@ import {SeatModel} from '../../../model/seat.model';
   styleUrls: ['./movie-list.component.css']
 })
 export class MovieListComponent implements OnInit {
-  @Input() movies: MovieModel[];
-  @Input() seats: SeatModel[];
-  mv: MovieModel[];
 
-  constructor() {
+  constructor(private cinemaService: CinemaService,
+              private showtimeService: ShowtimeService) {
 
   }
-
+  @Input() movies: MovieModel[];
+  @Input() ciid: number;
+  showtimes: ShowtimeModel[];
+  seats: SeatModel[];
   select: number;
 
-  ngOnInit(): void {
+  status = false;
 
+  ngOnInit(): void {
+      this.seats = [];
   }
 
   status: boolean = false;
-
   OnSelect(movie: MovieModel) {
-    console.log(movie);
     this.status = !this.status;
     if (this.status) {
       this.select = movie.id;
-      this.mv = this.movies;
       this.movies = [movie];
+      this.seats = [];
+      this.showtimeService.findbyMovieID(movie.id).subscribe((showtime) => {
+        this.showtimes = showtime;
+      });
     } else {
       this.select = null;
-      this.movies = this.mv;
+      this.sSelect = null;
+      this.cinemaService.findOne(this.ciid).subscribe((cinema) => {
+        this.movies = cinema.movies;
+      });
     }
+  }
+
+  showtimeClick(s: ShowtimeModel) {
+    this.seats = s.roomEntity.gheEntities;
+  }
+
+  sSelect: Array<SeatModel> = [];
+
+  seatSelect(s: SeatModel) {
+    this.sSelect.push(s);
   }
 }

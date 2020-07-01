@@ -11,21 +11,20 @@
                 </div>
               </div>
             <div class="col-9" *ngIf="select != null">
-              <div class="row">
-                <div class="col-1" *ngFor="let seat of seats">
-                  <span class="btn btn-primary" *ngIf="seat.loaighe == 1">
-                    {{seat.tenghe}}
-                  </span>
-                  <span class="btn btn-danger" *ngIf="seat.loaighe == 2">
-                    {{seat.tenghe}}
-                  </span>
-                  <span class="btn btn-success" *ngIf="seat.loaighe == 3">
-                    {{seat.tenghe}}
-                  </span>
-
+              <div class="titleshowtime">CHỌN XUẤT CHIẾU</div>
+              <div class="col-3 btn-showtime" *ngFor="let s of showtimes" (click)="showtimeClick(s)">
+                <a class="btn btn-outline-secondary">{{s.timeStart}} - P{{s.roomEntity.maphong}}</a>
+              </div>
+              <div class="row seat">
+                <div class="col-1" *ngFor="let s of seats">
+                  <span [ngClass]="status ? '' : 'active'" class="" *ngIf="s.loaighe === 1" style="color: red;" (click)="seatSelect(s)">{{s.tenghe}}</span>
+                  <span [ngClass]="status ? '' : 'active'" class="" *ngIf="s.loaighe === 2" style="color: blue;" (click)="seatSelect(s)">{{s.tenghe}}</span>
+                  <span [ngClass]="status ? '' : 'active'" class="" *ngIf="s.loaighe === 3" style="color: green;" (click)="seatSelect(s)">{{s.tenghe}}</span>
                 </div>
               </div>
-
+              <div *ngIf="sSelect != null">Select:
+                <span *ngFor="let ss of sSelect">{{ss.tenghe}}, </span>
+              </div>
             </div>
           </div>
         </div>

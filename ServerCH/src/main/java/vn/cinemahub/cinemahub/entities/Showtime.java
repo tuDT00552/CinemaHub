@@ -1,50 +1,68 @@
 package vn.cinemahub.cinemahub.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "SHOWTIME")
 @EntityListeners(AuditingEntityListener.class)
 public class Showtime extends BaseEntity {
-    private long maphong;
-    private long marap;
-    private long maphim;
-    private String ngaychieu;
+    private Date dateStart;
+    private Date dateEnd;
     private String timeStart;
-    private String timeEnd;
-
-    public long getMaphong() {
-        return maphong;
+    private int status;
+    public int getStatus() {
+        return status;
     }
 
-    public void setMaphong(long maphong) {
-        this.maphong = maphong;
+    public void setStatus(int status) {
+        this.status = status;
     }
 
-    public long getMarap() {
-        return marap;
+    public Date getDateStart() {
+        return dateStart;
     }
 
-    public void setMarap(long marap) {
-        this.marap = marap;
+    public void setDateStart(Date dateStart) {
+        this.dateStart = dateStart;
     }
 
-    public long getMaphim() {
-        return maphim;
+    public Date getDateEnd() {
+        return dateEnd;
     }
 
-    public void setMaphim(long maphim) {
-        this.maphim = maphim;
+    public void setDateEnd(Date dateEnd) {
+        this.dateEnd = dateEnd;
     }
 
-    public String getNgaychieu() {
-        return ngaychieu;
+    public Movie getMovie() {
+        return movie;
     }
 
-    public void setNgaychieu(String ngaychieu) {
-        this.ngaychieu = ngaychieu;
+    public void setMovie(Movie movie) {
+        this.movie = movie;
+    }
+
+//    @JsonBackReference(value="phim")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "phimid")
+    private Movie movie;
+
+//    @JsonBackReference(value="phong")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "roomid")
+    private RoomEntity roomEntity;
+
+    public RoomEntity getRoomEntity() {
+        return roomEntity;
+    }
+
+    public void setRoomEntity(RoomEntity roomEntity) {
+        this.roomEntity = roomEntity;
     }
 
     public String getTimeStart() {
@@ -53,13 +71,5 @@ public class Showtime extends BaseEntity {
 
     public void setTimeStart(String timeStart) {
         this.timeStart = timeStart;
-    }
-
-    public String getTimeEnd() {
-        return timeEnd;
-    }
-
-    public void setTimeEnd(String timeEnd) {
-        this.timeEnd = timeEnd;
     }
 }

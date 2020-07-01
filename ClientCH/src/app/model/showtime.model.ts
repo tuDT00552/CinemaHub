@@ -1,11 +1,14 @@
+import {MovieModel} from './movie.model';
+import {RoomModel} from './room.model';
+
 export class ShowtimeModel {
   id?: number;
   createdAt?: Date;
-  updteAt?: Date;
-  maphim?: number;
-  maphong?: number;
-  marap?: number;
-  ngaychieu?: string;
+  updateAt?: Date;
+  dateStart?: Date;
+  dateEnd?: Date;
   timeStart?: string;
-  timeEnd?: string;
+  status?: number;
+  movie?: MovieModel;
+  roomEntity?: RoomModel;
 }
