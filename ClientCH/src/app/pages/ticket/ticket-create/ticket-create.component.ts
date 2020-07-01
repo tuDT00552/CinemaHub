@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {TicketService} from '../../../shared/service/ticket.service';
+import {SeatModel} from "../../../model/seat.model";
+import {SeatService} from "../../../shared/service/seat.service";
+import {CinemaModel} from "../../../model/cinema.model";
+import {CinemaService} from "../../../shared/service/cinema.service";
 
 @Component({
   selector: 'app-ticket-create',
@@ -12,8 +16,13 @@ export class TicketCreateComponent implements OnInit {
   form: FormGroup;
   isUpdate: any = false;
   error: string;
+  seats: SeatModel[] = [];
+  cinemas: CinemaModel[] = [];
 
-  constructor(private fb: FormBuilder,
+
+  constructor(private cinemaService: CinemaService,
+              private seatService: SeatService,
+              private fb: FormBuilder,
               private router: Router,
               private route: ActivatedRoute,
               private ticketService: TicketService) { }
@@ -49,6 +58,8 @@ export class TicketCreateComponent implements OnInit {
         });
       }
     });
+    this.loadSeats();
+    this.loadCinemas();
   }
 
   doSubmit() {
@@ -63,5 +74,14 @@ export class TicketCreateComponent implements OnInit {
         error => console.log(error));
     }
   }
-
+  loadSeats() {
+    this.seatService.fetch().subscribe(seat => {
+      this.seats = seat;
+    }, error => console.log(error));
+  }
+  loadCinemas() {
+    this.cinemaService.fetch().subscribe(cinemas => {
+      this.cinemas = cinemas;
+    }, error => console.log(error));
+  }
 }

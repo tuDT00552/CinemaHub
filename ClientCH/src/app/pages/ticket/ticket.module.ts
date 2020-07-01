@@ -5,6 +5,7 @@ import {TicketCreateComponent} from './ticket-create/ticket-create.component';
 import {TicketDeleteComponent} from './ticket-delete/ticket-delete.component';
 import {TicketListComponent} from './ticket-list/ticket-list.component';
 import {TicketRoutingModule} from './ticket-routing.module';
+import {Ng2SearchPipeModule} from "ng2-search-filter";
 
 
 
@@ -15,7 +16,8 @@ import {TicketRoutingModule} from './ticket-routing.module';
     CommonModule,
     TicketRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    Ng2SearchPipeModule
   ]
 })
 export class TicketModule { }
