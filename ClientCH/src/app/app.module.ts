@@ -16,6 +16,20 @@ import { ManageModule } from './pages/manage/manage.module';
 import { RefundTicketListComponent } from './pages/RefundTicket/refund-ticket-list/refund-ticket-list.component';
 import { RefundTicketCreateComponent } from './pages/RefundTicket/refund-ticket-create/refund-ticket-create.component';
 import { RefundticketDeleteComponent } from './pages/RefundTicket/refundticket-delete/refundticket-delete.component';
+import {BrowserModule} from "@angular/platform-browser";
+import {Ng2SearchPipeModule} from "ng2-search-filter";
+import { BoardAdminComponent } from './pages/board-admin/board-admin.component';
+import { BoardUserComponent } from './pages/board-user/board-user.component';
+import { BoardModeratorComponent } from './pages/board-moderator/board-moderator.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { HomeComponent } from './pages/home/home.component';
+
+import {authInterceptorProviders} from "./shared/helpers/auth.interceptor";
+import {LoginComponent} from "./pages/login/login.component";
+import {RegisterComponent} from "./pages/register/register.component";
+import { RefundticketModule } from './pages/RefundTicket/refundticket.module';
+import { RefundticketRoutingModule } from './pages/RefundTicket/refundticket-routing.module';
+import {LocalStorageService} from "./shared/service/local-storage.service";
 import { ShowtimeListComponent } from './pages/showtime/showtime-list/showtime-list.component';
 import { RoomDeleteComponent } from './pages/room/room-delete/room-delete.component';
 
@@ -28,6 +42,16 @@ import { RoomDeleteComponent } from './pages/room/room-delete/room-delete.compon
     NgbModule,
     RouterModule,
     AppRoutingModule,
+    RefundticketModule,
+    RefundticketRoutingModule,
+    ReactiveFormsModule,
+
+    // CinemaModule,
+    // ManageRoutingModule,
+    // ManageModule,
+    // ReactiveFormsModule,
+    // BrowserModule,
+    // Ng2SearchPipeModule,
     CinemaModule,
     ManageRoutingModule,
     ManageModule,
@@ -40,9 +64,16 @@ import { RoomDeleteComponent } from './pages/room/room-delete/room-delete.compon
     RefundTicketListComponent,
     RefundTicketCreateComponent,
     RefundticketDeleteComponent,
+    BoardAdminComponent,
+    BoardUserComponent,
+    BoardModeratorComponent,
+    ProfileComponent,
+    LoginComponent,
+    RegisterComponent
     RoomDeleteComponent,
   ],
-  providers: [],
+  providers: [authInterceptorProviders,LocalStorageService],
+
   bootstrap: [AppComponent]
 })
 export class AppModule {
