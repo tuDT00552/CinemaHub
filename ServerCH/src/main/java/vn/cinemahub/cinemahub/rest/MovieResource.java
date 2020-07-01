@@ -37,4 +37,10 @@ public class MovieResource {
         movie.setCinema(cinemaService.findbyMarap(movie.getCinema().getMarap()).get());
         return movieService.save(movie);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Movie> findOne(@PathVariable Long id) {
+        return movieService.findOne(id).map(movie -> new ResponseEntity<>(movie, HttpStatus.OK))
+                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
 }

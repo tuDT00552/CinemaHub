@@ -1,6 +1,8 @@
 package vn.cinemahub.cinemahub.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import vn.cinemahub.cinemahub.entities.Movie;
 import vn.cinemahub.cinemahub.entities.RoomEntity;
@@ -33,5 +35,11 @@ public class RoomResource {
         roomEntity.setStatus(1);
         roomEntity.setRap(cinemaService.findbyMarap(roomEntity.getRap().getMarap()).get());
         return roomService.save(roomEntity);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<RoomEntity> findOne(@PathVariable Long id) {
+        return roomService.findByID(id).map(room -> new ResponseEntity<>(room, HttpStatus.OK))
+                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 }

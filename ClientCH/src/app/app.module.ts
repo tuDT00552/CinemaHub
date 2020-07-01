@@ -1,6 +1,6 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
@@ -30,8 +30,8 @@ import {RegisterComponent} from "./pages/register/register.component";
 import { RefundticketModule } from './pages/RefundTicket/refundticket.module';
 import { RefundticketRoutingModule } from './pages/RefundTicket/refundticket-routing.module';
 import {LocalStorageService} from "./shared/service/local-storage.service";
-
-
+import { ShowtimeListComponent } from './pages/showtime/showtime-list/showtime-list.component';
+import { RoomDeleteComponent } from './pages/room/room-delete/room-delete.component';
 
 @NgModule({
   imports: [
@@ -52,7 +52,10 @@ import {LocalStorageService} from "./shared/service/local-storage.service";
     // ReactiveFormsModule,
     // BrowserModule,
     // Ng2SearchPipeModule,
-
+    CinemaModule,
+    ManageRoutingModule,
+    ManageModule,
+    ReactiveFormsModule
   ],
   declarations: [
     AppComponent,
@@ -67,10 +70,11 @@ import {LocalStorageService} from "./shared/service/local-storage.service";
     ProfileComponent,
     LoginComponent,
     RegisterComponent
-
+    RoomDeleteComponent,
   ],
   providers: [authInterceptorProviders,LocalStorageService],
 
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

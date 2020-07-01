@@ -10,6 +10,7 @@ import vn.cinemahub.cinemahub.repository.MovieRepository;
 import vn.cinemahub.cinemahub.service.MovieService;
 
 import java.util.List;
+import java.util.Optional;
 
 @Transactional
 @Service
@@ -26,6 +27,21 @@ public class MovieServiceImpl implements MovieService {
     @Override
     public Movie save(Movie movie) {
         return movieRepository.save(movie);
+    }
+
+    @Override
+    public Optional<Movie> findByID(Long id) {
+        return movieRepository.findById(id);
+    }
+
+    @Override
+    public Optional<Movie> findOne(Long id) {
+        return movieRepository.findById(id);
+    }
+
+    @Override
+    public Long checkExitsMid(Long id) {
+        return movieRepository.checkExitsMid(id);
     }
 
 }

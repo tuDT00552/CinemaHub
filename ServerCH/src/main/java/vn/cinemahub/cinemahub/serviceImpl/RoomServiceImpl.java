@@ -32,5 +32,10 @@ public class RoomServiceImpl implements RoomService {
         return roomRepository.findbyMaphong(maphong);
     }
 
+    @Override
+    public Optional<RoomEntity> findByID(Long id) {
+        return roomRepository.findById(id);
+    }
+
 
 }
