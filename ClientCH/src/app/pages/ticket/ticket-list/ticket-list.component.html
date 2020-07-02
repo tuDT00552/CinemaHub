@@ -160,14 +160,14 @@
               <th scope="row">
                 <div class="media align-items-center">
                   <div class="media-body">
-                    <span class="mb-0 text-sm">{{ticket.timeStart}}</span>
+                    <span class="mb-0 text-sm">{{ ticket.timeStart | date:'shortTime' }}</span>
                   </div>
                 </div>
               </th>
               <th scope="row">
                 <div class="media align-items-center">
                   <div class="media-body">
-                    <span class="mb-0 text-sm">{{ticket.timeEnd}}</span>
+                    <span class="mb-0 text-sm">{{ ticket.timeEnd | date:'shortTime' }}</span>
                   </div>
                 </div>
               </th>

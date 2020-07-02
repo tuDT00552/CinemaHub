@@ -28,7 +28,10 @@
 <!--                </div>-->
                 <div class="form-group">
                   <label class="form-control-label" for="tenphim">Tên Phim</label>
-                  <input id="tenphim" formControlName="tenphim" class="form-control form-control-alternative" placeholder="Tên Phim" type="text">
+                  <select class="form-control" id="tenphim" formControlName="tenphim">
+                    <option *ngFor="let m of movies" value="{{m.tenphim}}"> {{m.tenphim}}</option>
+                  </select>
+<!--                  <input id="tenphim" formControlName="tenphim" class="form-control form-control-alternative" placeholder="Tên Phim" type="text">-->
                 </div>
 <!--                <div class="form-group">-->
 <!--                  <label class="form-control-label" for="idGhe">Mã Ghế</label>-->
@@ -36,7 +39,7 @@
 <!--                </div>-->
                 <div class="form-group">
                   <label class="form-control-label" for="idGhe">Mã Ghế</label>
-                <select id="idGhe" formControlName="idGhe"  >
+                <select class="form-control" id="idGhe" formControlName="idGhe"  >
                   <option *ngFor="let seat of seats" [value]="seat.id" > {{seat.id}}</option>
                 </select>
                 </div>
@@ -46,7 +49,7 @@
 <!--                </div>-->
                 <div class="form-group">
                   <label class="form-control-label" for="marap">Mã Rạp</label>
-                  <select id="marap" formControlName="marap"  >
+                  <select class="form-control" id="marap" formControlName="marap"  >
                     <option *ngFor="let cinema of cinemas" [value]="cinema.id" > {{cinema.id}}</option>
                   </select>
                 </div>
@@ -56,11 +59,13 @@
                 </div>
                 <div class="form-group">
                   <label class="form-control-label" for="timeStart">Thời Gian Bắt Đầu</label>
-                  <input id="timeStart" formControlName="timeStart" class="form-control form-control-alternative" placeholder="Thời Gian Bắt Đầu" type="text">
+                  <input id="timeStart" formControlName="timeStart" class="form-control form-control-alternative" placeholder="Giờ bắt đầu" type="date">
+<!--                  <input id="timeStart" formControlName="timeStart" class="form-control form-control-alternative" placeholder="Thời Gian Bắt Đầu" type="text">-->
                 </div>
                 <div class="form-group">
                   <label class="form-control-label" for="timeEnd">Thời Gian Kết Thúc</label>
-                  <input id="timeEnd" formControlName="timeEnd" class="form-control form-control-alternative" placeholder="Thời Gian Kết Thúc" type="text">
+                  <input id="timeEnd" formControlName="timeEnd" class="form-control form-control-alternative" placeholder="Giờ bắt đầu" type="date">
+<!--                  <input id="timeEnd" formControlName="timeEnd" class="form-control form-control-alternative" placeholder="Thời Gian Kết Thúc" type="text">-->
                 </div>
 <!--                <div class="form-group">-->
 <!--                  <label class="form-control-label" for="gioithieurap">Giới Thiệu</label>-->

@@ -16,15 +16,16 @@
                 <a class="btn btn-outline-secondary">{{s.timeStart}} - P{{s.roomEntity.maphong}}</a>
               </div>
               <div class="row seat">
-                <div class="col-1" *ngFor="let s of seats">
-                  <span [ngClass]="status ? '' : 'active'" class="" *ngIf="s.loaighe === 1" style="color: red;" (click)="seatSelect(s)">{{s.tenghe}}</span>
-                  <span [ngClass]="status ? '' : 'active'" class="" *ngIf="s.loaighe === 2" style="color: blue;" (click)="seatSelect(s)">{{s.tenghe}}</span>
-                  <span [ngClass]="status ? '' : 'active'" class="" *ngIf="s.loaighe === 3" style="color: green;" (click)="seatSelect(s)">{{s.tenghe}}</span>
+                <div class="col-1 spseat" *ngFor="let s of seats">
+                  <span class="" *ngIf="s.loaighe === 1" style="color: blue;" (click)="seatSelect(s)">{{s.tenghe}}</span>
+                  <span class="" *ngIf="s.loaighe === 2" style="color: red;" (click)="seatSelect(s)">{{s.tenghe}}</span>
+                  <span class="" *ngIf="s.loaighe === 3" style="color: green;" (click)="seatSelect(s)">{{s.tenghe}}</span>
                 </div>
               </div>
-              <div *ngIf="sSelect != null">Select:
-                <span *ngFor="let ss of sSelect">{{ss.tenghe}}, </span>
+              <div>Select:
+                <span>{{teng}}</span> - {{giave}}
               </div>
+              <a class="btn" (click)="clickSelect()">Thanh Toán</a>
             </div>
           </div>
         </div>
