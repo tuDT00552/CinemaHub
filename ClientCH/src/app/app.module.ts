@@ -69,8 +69,8 @@ import { RoomDeleteComponent } from './pages/room/room-delete/room-delete.compon
     BoardModeratorComponent,
     ProfileComponent,
     LoginComponent,
-    RegisterComponent
-    RoomDeleteComponent,
+    RegisterComponent,
+    RoomDeleteComponent
   ],
   providers: [authInterceptorProviders,LocalStorageService],
 
