@@ -1,6 +1,5 @@
 package vn.cinemahub.cinemahub.rest;
 
-import org.hibernate.mapping.Array;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,10 +8,8 @@ import org.springframework.web.bind.annotation.*;
 //import vn.cinemahub.cinemahub.entities.Cinema;
 //import vn.cinemahub.cinemahub.entities.Movie;
 import vn.cinemahub.cinemahub.entities.Cinema;
-import vn.cinemahub.cinemahub.service.CinemaService;
+import vn.cinemahub.cinemahub.serviceImpl.CinemaService;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -51,7 +48,7 @@ public class CinemaResource {
 
     @GetMapping("/{id}")
     public ResponseEntity<Cinema> findOne(@PathVariable Long id) {
-        return cinemaService.findOne(id).map(cinema -> new ResponseEntity<>(cinema, HttpStatus.OK))
+        return cinemaService.get(id).map(cinema -> new ResponseEntity<>(cinema, HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 

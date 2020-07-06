@@ -9,10 +9,9 @@ import vn.cinemahub.cinemahub.entities.Cinema;
 import vn.cinemahub.cinemahub.entities.GheEntity;
 import vn.cinemahub.cinemahub.entities.Movie;
 import vn.cinemahub.cinemahub.entities.RoomEntity;
-import vn.cinemahub.cinemahub.service.CinemaService;
-import vn.cinemahub.cinemahub.service.MovieService;
-import vn.cinemahub.cinemahub.service.RoomService;
-import vn.cinemahub.cinemahub.service.SeatService;
+import vn.cinemahub.cinemahub.serviceImpl.MovieService;
+import vn.cinemahub.cinemahub.serviceImpl.RoomServiceImpl;
+import vn.cinemahub.cinemahub.serviceImpl.SeatServiceImpl;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -31,10 +30,10 @@ public class DataResource {
     private MovieService movieService;
 
     @Autowired
-    private RoomService roomService;
+    private RoomServiceImpl roomService;
 
     @Autowired
-    private SeatService seatService;
+    private SeatServiceImpl seatService;
 
     @GetMapping
     public List<Cinema> Insert() {

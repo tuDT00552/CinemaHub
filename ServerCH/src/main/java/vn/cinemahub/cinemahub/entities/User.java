@@ -1,48 +1,80 @@
 package vn.cinemahub.cinemahub.entities;
 
-import org.hibernate.annotations.NaturalId;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import java.io.Serializable;
-import java.util.Objects;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-@Table(name = "users")
-@EntityListeners(AuditingEntityListener.class)
-public class User extends BaseEntity implements Serializable {
+@Table(	name = "users",
+        uniqueConstraints = {
+                @UniqueConstraint(columnNames = "username"),
+                @UniqueConstraint(columnNames = "email")
+        })
+public class User {
 
-    private String userName;
-    private String tenUser;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USERS_SEQ")
+    @SequenceGenerator(sequenceName = "USERS_SEQ", allocationSize = 1, name = "USERS_SEQ")
+    private Long id;
+
+    @NotBlank
+    @Size(max = 20)
+    private String username;
+
+    @NotBlank
+    @Size(max = 50)
+    @Email
+    private String email;
+
+    @NotBlank
+    @Size(max = 120)
     private String password;
-    private String gioitinh;
-    private String diachi;
-    private String sdt;
-    private String gmail;
-    private long roles;
 
-    @Basic
-    @Column(name = "USER_NAME")
-    public String getUserName() {
-        return userName;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(	name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles = new HashSet<>();
+
+    public User() {
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public User(String username, String email, String password) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
     }
 
-    @Basic
-    @Column(name = "TEN_USER")
-    public String getTenUser() {
-        return tenUser;
+    public Long getId() {
+        return id;
     }
 
-    public void setTenUser(String tenUser) {
-        this.tenUser = tenUser;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    @Basic
-    @Column(name = "PASSWORD")
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getPassword() {
         return password;
     }
@@ -51,74 +83,11 @@ public class User extends BaseEntity implements Serializable {
         this.password = password;
     }
 
-    @Basic
-    @Column(name = "GIOITINH")
-    public String getGioitinh() {
-        return gioitinh;
-    }
-
-    public void setGioitinh(String gioitinh) {
-        this.gioitinh = gioitinh;
-    }
-
-    @Basic
-    @Column(name = "DIACHI")
-    public String getDiachi() {
-        return diachi;
-    }
-
-    public void setDiachi(String diachi) {
-        this.diachi = diachi;
-    }
-
-    @Basic
-    @Column(name = "SDT")
-    public String getSdt() {
-        return sdt;
-    }
-
-    public void setSdt(String sdt) {
-        this.sdt = sdt;
-    }
-
-    @Basic
-    @Column(name = "GMAIL")
-    public String getGmail() {
-        return gmail;
-    }
-
-    public void setGmail(String gmail) {
-        this.gmail = gmail;
-    }
-
-    @Basic
-    @Column(name = "ROLES")
-    public long getRoles() {
+    public Set<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(long roles) {
+    public void setRoles(Set<Role> roles) {
         this.roles = roles;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return
-                roles == user.roles &&
-                Objects.equals(userName, user.userName) &&
-                Objects.equals(tenUser, user.tenUser) &&
-                Objects.equals(password, user.password) &&
-                Objects.equals(gioitinh, user.gioitinh) &&
-                Objects.equals(diachi, user.diachi) &&
-                Objects.equals(sdt, user.sdt) &&
-                Objects.equals(gmail, user.gmail);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash( userName, tenUser, password, gioitinh, diachi, sdt, gmail, roles);
     }
 }

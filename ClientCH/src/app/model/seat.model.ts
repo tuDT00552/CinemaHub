@@ -5,4 +5,5 @@ export class SeatModel {
   loaighe?: number;
   tenghe?: string;
   status?: number;
+  trangthai: any;
 }

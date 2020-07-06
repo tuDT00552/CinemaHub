@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import vn.cinemahub.cinemahub.entities.Showtime;
 import vn.cinemahub.cinemahub.repository.ShowtimeRepository;
-import vn.cinemahub.cinemahub.service.ShowtimeService;
+import vn.cinemahub.cinemahub.service.DAO;
 
 import java.util.Date;
 import java.util.List;
@@ -13,11 +13,10 @@ import java.util.Optional;
 
 @Transactional
 @Service
-public class ShowtimeServiceImpl implements ShowtimeService {
+public class ShowtimeServiceImpl implements DAO<Showtime> {
     @Autowired
     private ShowtimeRepository showtimeRepository;
 
-    @Override
     public List<Showtime> findAllByRoom(Long maphong) {
         return showtimeRepository.findAllByRoom(maphong);
     }
@@ -25,6 +24,11 @@ public class ShowtimeServiceImpl implements ShowtimeService {
     @Override
     public List<Showtime> findAll() {
         return this.showtimeRepository.findAll();
+    }
+
+    @Override
+    public Optional<Showtime> get(Long id) {
+        return showtimeRepository.findById(id);
     }
 
     @Override
@@ -42,25 +46,11 @@ public class ShowtimeServiceImpl implements ShowtimeService {
         this.showtimeRepository.deleteById(id);
     }
 
-    @Override
-    public Optional<Showtime> findByID(Long id) {
-        return Optional.empty();
-    }
-
-    @Override
     public List<Showtime> findAllByMovieID(Long phimid) {
         return showtimeRepository.findAllByMovieID(phimid);
     }
 
-    @Override
-    public Optional<Showtime> findOne(Long id) {
-        return showtimeRepository.findById(id);
-    }
-
-    @Override
     public List<Date> findDatebyMovie(Long phimid) {
         return showtimeRepository.findDatebyMovie(phimid);
     }
-
-
 }

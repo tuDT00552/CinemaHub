@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import {TokenStorageService} from "../../shared/service/token-storage.service";
 
 declare interface RouteInfo {
     path: string;
@@ -15,7 +16,6 @@ export const ROUTES: RouteInfo[] = [
     { path: '/maps', title: 'Maps',  icon:'ni-pin-3 text-orange', class: '' },
     { path: '/user-profile', title: 'User profile',  icon:'ni-single-02 text-yellow', class: '' },
     { path: '/tables', title: 'Tables',  icon:'ni-bullet-list-67 text-red', class: '' },
-    { path: '/login', title: 'Login',  icon:'ni-key-25 text-info', class: '' },
     { path: '/register', title: 'Register',  icon:'ni-circle-08 text-pink', class: '' },
     { path: '/seat' , title: 'Seat',  icon:'ni-box-2 text-pink', class: '' },
     { path: '/ticket' , title: 'Ticket',  icon:'ni-box-2 text-pink', class: '' },
@@ -26,16 +26,28 @@ export const ROUTES: RouteInfo[] = [
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
-
+  isLoggedIn = false;
+  showAdmin = false;
+  showModeratorBoard = false;
+  showUser=false;
   public menuItems: any[];
   public isCollapsed = true;
+  private roles: string[];
 
-  constructor(private router: Router) { }
+
+  constructor(private router: Router,
+
+  private tokenStorageService : TokenStorageService) { }
 
   ngOnInit() {
-    this.menuItems = ROUTES.filter(menuItem => menuItem);
-    this.router.events.subscribe((event) => {
-      this.isCollapsed = true;
-   });
-  }
+    this.isLoggedIn = !!this.tokenStorageService.getToken();
+    this.isLoggedIn = true;
+    if (this.isLoggedIn) {
+      const user = this.tokenStorageService.getUser();
+      this.roles = user.roles;
+
+      this.showUser = this.roles.includes('ROLE_USER');
+      this.showAdmin = this.roles.includes('ROLE_ADMIN');
+   }
+}
 }

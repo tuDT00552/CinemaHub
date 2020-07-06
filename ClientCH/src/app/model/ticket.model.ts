@@ -8,7 +8,7 @@ export class TicketModel {
     marap?: number;
     giave?: number;
     status?: number;
-    timeStart?: string;
-    timeEnd?: string;
+    timeStart?: Date;
+    timeEnd?: Date;
 
 }

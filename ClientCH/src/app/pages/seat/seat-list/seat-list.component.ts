@@ -13,6 +13,7 @@ import {SeatDeleteComponent} from '../seat-delete/seat-delete.component';
 export class SeatListComponent implements OnInit {
 
   seats: SeatModel[] = [];
+  searchText;
   constructor(private seatService: SeatService,
               private eventManagement: EventManagement,
               public modal: NgbModal) { }
