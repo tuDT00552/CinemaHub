@@ -19,7 +19,8 @@ export const ROUTES: RouteInfo[] = [
     { path: '/register', title: 'Register',  icon:'ni-circle-08 text-pink', class: '' },
     { path: '/seat' , title: 'Seat',  icon:'ni-box-2 text-pink', class: '' },
     { path: '/ticket' , title: 'Ticket',  icon:'ni-box-2 text-pink', class: '' },
-    { path: '/cinema', title: 'Cinema',  icon:'ni-tv-2 text-pink', class: '' }];
+    { path: '/cinema', title: 'Cinema',  icon:'ni-tv-2 text-pink', class: '' },
+    { path: '/showtime' , title: 'Showtime',  icon:'ni-calendar-grid-58 text-green', class: '' }];
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',

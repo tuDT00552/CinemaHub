@@ -41,6 +41,8 @@ export class MovieListComponent implements OnInit {
   ngOnInit(): void {
       this.seats = [];
   }
+
+  status: boolean = false;
   OnSelect(movie: MovieModel) {
     this.status = !this.status;
     if (this.status) {
