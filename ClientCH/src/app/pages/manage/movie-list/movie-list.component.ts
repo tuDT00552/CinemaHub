@@ -28,10 +28,12 @@ export class MovieListComponent implements OnInit {
 
   status = false;
 
+
+  sSelect: Array<SeatModel> = [];
+
   ngOnInit(): void {
       this.seats = [];
   }
-  status: boolean = false;
   OnSelect(movie: MovieModel) {
     this.status = !this.status;
     if (this.status) {
@@ -53,8 +55,6 @@ export class MovieListComponent implements OnInit {
   showtimeClick(s: ShowtimeModel) {
     this.seats = s.roomEntity.gheEntities;
   }
-
-  sSelect: Array<SeatModel> = [];
 
   seatSelect(s: SeatModel) {
     this.sSelect.push(s);

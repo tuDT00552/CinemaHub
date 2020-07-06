@@ -32,6 +32,7 @@ import { RefundticketRoutingModule } from './pages/RefundTicket/refundticket-rou
 import {LocalStorageService} from "./shared/service/local-storage.service";
 import { ShowtimeListComponent } from './pages/showtime/showtime-list/showtime-list.component';
 import { RoomDeleteComponent } from './pages/room/room-delete/room-delete.component';
+import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 
 @NgModule({
   imports: [
@@ -45,13 +46,6 @@ import { RoomDeleteComponent } from './pages/room/room-delete/room-delete.compon
     RefundticketModule,
     RefundticketRoutingModule,
     ReactiveFormsModule,
-
-    // CinemaModule,
-    // ManageRoutingModule,
-    // ManageModule,
-    // ReactiveFormsModule,
-    // BrowserModule,
-    // Ng2SearchPipeModule,
     CinemaModule,
     ManageRoutingModule,
     ManageModule,
@@ -69,10 +63,11 @@ import { RoomDeleteComponent } from './pages/room/room-delete/room-delete.compon
     BoardModeratorComponent,
     ProfileComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
     RoomDeleteComponent,
+    PageNotFoundComponent,
   ],
-  providers: [authInterceptorProviders,LocalStorageService],
+  providers: [authInterceptorProviders, LocalStorageService],
 
   bootstrap: [AppComponent]
 })

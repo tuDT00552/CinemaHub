@@ -5,6 +5,8 @@ import {Routes, RouterModule} from '@angular/router';
 import {AdminLayoutComponent} from './layouts/admin-layout/admin-layout.component';
 import {AuthLayoutComponent} from './layouts/auth-layout/auth-layout.component';
 import {LoginComponent} from "./pages/login/login.component";
+import {PageNotFoundComponent} from './pages/page-not-found/page-not-found.component';
+
 
 
 
@@ -18,6 +20,7 @@ const routes: Routes = [
   {
     path: 'ticket',
     component: AdminLayoutComponent,
+    // canActivate: [DetailsGuardService],
     loadChildren: () => {
       return import('../app/pages/ticket/ticket.module').then(m => m.TicketModule);
     }
@@ -25,6 +28,7 @@ const routes: Routes = [
   {
     path: 'room',
     component: AdminLayoutComponent,
+    // canActivate: [DetailsGuardService],
     loadChildren: () => {
       return import('../app/pages/room/room.module').then(m => m.RoomModule);
     }
@@ -32,6 +36,7 @@ const routes: Routes = [
   {
     path: 'showtime',
     component: AdminLayoutComponent,
+    // canActivate: [DetailsGuardService],
     loadChildren: () => {
       return import('../app/pages/showtime/showtime.module').then(m => m.ShowtimeModule);
     }
@@ -39,6 +44,7 @@ const routes: Routes = [
   {
     path: 'manage',
     component: AdminLayoutComponent,
+    // canActivate: [DetailsGuardService],
     loadChildren: () => {
       return import('../app/pages/manage/manage.module').then(m => m.ManageModule);
     }
@@ -57,9 +63,13 @@ const routes: Routes = [
     loadChildren: () => {
       return import('../app/pages/seat/seat.module').then(m => m.SeatModule);
     }
-  },
-
-
+  }
+  // ,
+  // {
+  //       path: 'notfound',
+  //       component: PageNotFoundComponent
+  // }
+  ,
 
   {
     path: '',
@@ -79,6 +89,10 @@ const routes: Routes = [
         loadChildren: './layouts/auth-layout/auth-layout.module#AuthLayoutModule'
       }
     ]
+  },
+  {
+    path: '**',
+    component: PageNotFoundComponent
   },
 ];
 
