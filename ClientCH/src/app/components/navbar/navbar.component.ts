@@ -16,7 +16,7 @@ export class NavbarComponent implements OnInit {
   username: string;
   isLoggedIn = false;
   constructor(location: Location,  private element: ElementRef, private router: Router,
-              private tokenStorageService : TokenStorageService) {
+              private tokenStorageService: TokenStorageService) {
     this.location = location;
   }
   logout(){

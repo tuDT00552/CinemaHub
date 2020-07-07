@@ -1,11 +1,12 @@
 import {NgModule} from '@angular/core';
-import {CommonModule,} from '@angular/common';
+import {CommonModule, } from '@angular/common';
 import {BrowserModule} from '@angular/platform-browser';
 import {Routes, RouterModule} from '@angular/router';
 import {AdminLayoutComponent} from './layouts/admin-layout/admin-layout.component';
 import {AuthLayoutComponent} from './layouts/auth-layout/auth-layout.component';
-import {LoginComponent} from "./pages/login/login.component";
+import {LoginComponent} from './pages/login/login.component';
 import {PageNotFoundComponent} from './pages/page-not-found/page-not-found.component';
+import {DetailsGuardService} from './shared/service/details-guard.service';
 
 
 
@@ -20,7 +21,7 @@ const routes: Routes = [
   {
     path: 'ticket',
     component: AdminLayoutComponent,
-    // canActivate: [DetailsGuardService],
+    canActivate: [DetailsGuardService],
     loadChildren: () => {
       return import('../app/pages/ticket/ticket.module').then(m => m.TicketModule);
     }
@@ -28,7 +29,7 @@ const routes: Routes = [
   {
     path: 'room',
     component: AdminLayoutComponent,
-    // canActivate: [DetailsGuardService],
+    canActivate: [DetailsGuardService],
     loadChildren: () => {
       return import('../app/pages/room/room.module').then(m => m.RoomModule);
     }
@@ -36,7 +37,7 @@ const routes: Routes = [
   {
     path: 'showtime',
     component: AdminLayoutComponent,
-    // canActivate: [DetailsGuardService],
+    canActivate: [DetailsGuardService],
     loadChildren: () => {
       return import('../app/pages/showtime/showtime.module').then(m => m.ShowtimeModule);
     }
@@ -44,7 +45,7 @@ const routes: Routes = [
   {
     path: 'manage',
     component: AdminLayoutComponent,
-    // canActivate: [DetailsGuardService],
+    canActivate: [DetailsGuardService],
     loadChildren: () => {
       return import('../app/pages/manage/manage.module').then(m => m.ManageModule);
     }
@@ -52,6 +53,7 @@ const routes: Routes = [
   {
     path: 'cinema',
     component: AdminLayoutComponent,
+    canActivate: [DetailsGuardService],
     loadChildren: () => {
       return import('../app/pages/cinema/cinema.module').then(m => m.CinemaModule);
     }
@@ -60,6 +62,7 @@ const routes: Routes = [
   {
     path: 'seat',
     component: AdminLayoutComponent,
+    canActivate: [DetailsGuardService],
     loadChildren: () => {
       return import('../app/pages/seat/seat.module').then(m => m.SeatModule);
     }
