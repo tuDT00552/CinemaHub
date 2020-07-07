@@ -32,7 +32,7 @@ public class RoomResource {
         roomEntity.setCreatedAt(date);
         roomEntity.setUpdateAt(date);
         roomEntity.setStatus(1);
-        roomEntity.setRap(cinemaService.findbyMarap(roomEntity.getRap().getMarap()).get());
+        roomEntity.setCinema(cinemaService.findbyMarap(roomEntity.getCinema().getMarap()).get());
         return roomService.save(roomEntity);
     }
 

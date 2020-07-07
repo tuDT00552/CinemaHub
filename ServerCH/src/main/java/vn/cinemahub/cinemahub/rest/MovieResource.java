@@ -27,6 +27,11 @@ public class MovieResource {
         return movieService.findAll();
     }
 
+    @GetMapping("/c/{id}")
+    public List<Movie> findbyRap(@PathVariable Long id) {
+        return movieService.findbyRap(id);
+    }
+
     @PostMapping
     public Movie save(@RequestBody Movie movie) {
         movie.setCreatedAt(date);
