@@ -12,6 +12,7 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 import {TicketService} from '../../../shared/service/ticket.service';
 import {TicketModel} from '../../../model/ticket.model';
 import {Router} from '@angular/router';
+import {MovieService} from '../../../shared/service/movie.service';
 
 @Component({
   selector: 'app-movie-list',
@@ -23,6 +24,7 @@ export class MovieListComponent implements OnInit {
   constructor(private cinemaService: CinemaService,
               private showtimeService: ShowtimeService,
               private ticketService: TicketService,
+              private movieService: MovieService,
               private router: Router,
               private fb: FormBuilder) {
 
@@ -41,7 +43,7 @@ export class MovieListComponent implements OnInit {
   ngOnInit(): void {
       this.seats = [];
   }
-  status: boolean = false;
+
   OnSelect(movie: MovieModel) {
     this.status = !this.status;
     if (this.status) {
@@ -54,8 +56,8 @@ export class MovieListComponent implements OnInit {
     } else {
       this.select = null;
       this.sSelect = null;
-      this.cinemaService.findOne(this.ciid).subscribe((cinema) => {
-        this.movies = cinema.movies;
+      this.movieService.findbyRap(this.ciid).subscribe((mov) => {
+        this.movies = mov;
       });
     }
   }

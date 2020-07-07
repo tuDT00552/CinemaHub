@@ -6,7 +6,7 @@ export class CinemaModel {
   marap?: string;
   tenrap?: string;
   diachi?: string;
-  gioithieurap?: string;
+  gioithieu?: string;
   status?: number;
   createdAt?: Date;
   updateAt?: Date;

@@ -3,6 +3,7 @@ package vn.cinemahub.cinemahub.serviceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import vn.cinemahub.cinemahub.entities.Cinema;
 import vn.cinemahub.cinemahub.entities.Movie;
 import vn.cinemahub.cinemahub.repository.MovieRepository;
 import vn.cinemahub.cinemahub.service.DAO;
@@ -49,5 +50,9 @@ public class MovieService implements DAO<Movie> {
 
     public Long checkExitsMid(Long id) {
         return movieRepository.checkExitsMid(id);
+    }
+
+    public List<Movie> findbyRap(Long idrap) {
+        return movieRepository.findbyRap(idrap);
     }
 }

@@ -30,6 +30,7 @@ export class ShowtimeCreateComponent implements OnInit {
               private route: ActivatedRoute,
               private showtimeService: ShowtimeService,
               private cinemaService: CinemaService,
+              private movieService: MovieService,
               private roomService: RoomService,
               private moviesService: MovieService) {
   }
@@ -80,7 +81,9 @@ export class ShowtimeCreateComponent implements OnInit {
 
   getCinema() {
     this.cinemaService.findOne(this.cID).subscribe((cinema) => {
-      this.movies = cinema.movies;
+      this.movieService.findbyRap(this.cID).subscribe((movie) => {
+        this.movies = movie;
+      });
       this.rooms = cinema.roomEntities;
     });
   }

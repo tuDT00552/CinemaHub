@@ -1,7 +1,5 @@
 package vn.cinemahub.cinemahub.service;
 
-import vn.cinemahub.cinemahub.entities.Cinema;
-
 import java.util.List;
 import java.util.Optional;
 
