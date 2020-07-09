@@ -33,11 +33,6 @@ public class SeatServiceImpl implements DAO<GheEntity> {
     }
 
     @Override
-    public Optional<GheEntity> get(Long id) {
-        return seatRepository.findById(id);
-    }
-
-    @Override
     public GheEntity save(GheEntity gheEntity) {
         return seatRepository.save(gheEntity);
     }
