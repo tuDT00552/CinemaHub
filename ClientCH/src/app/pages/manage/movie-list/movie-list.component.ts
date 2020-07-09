@@ -49,7 +49,7 @@ export class MovieListComponent implements OnInit {
 
 
   ngOnInit(): void {
-      this.seats = [];
+      this.seats = null;
       this.sSelect = null;
   }
 
@@ -76,9 +76,17 @@ export class MovieListComponent implements OnInit {
     this.ticketService.findbyShow(s.id).subscribe((ticket) => {
       this.ticketShow = ticket;
       this.seatService.findbyRoom(s.roomEntity.id).subscribe((seat) => {
+        // console.log(this.ticketShow);
+        // console.log(this.seats);
+        ticket.forEach((elem1, index) => {elem1;
+          seat.forEach((elem2, index) => {elem2;
+            if(elem1.idGhe === elem2.id)
+            {
+              elem2.status = 2;
+            }
+          });
+        });
         this.seats = seat;
-        console.log(this.ticketShow);
-        console.log(this.seats);
       });
     });
 
@@ -95,9 +103,6 @@ export class MovieListComponent implements OnInit {
     }
     else if(s.loaighe == 2) {
       this.giave = 100000;
-    }
-    else if(s.loaighe == 3) {
-      this.giave = 150000;
     }
   }
 

@@ -11,13 +11,28 @@ img {
   cursor: pointer;
   position: absolute;
   top: 40%;
-  left: 33%;
+  left: 53%;
+  transform: translate(-50%, -50%);
+  font-size: 14px;
+  color: #fff;
+}
+
+.seatnamebuy {
+  cursor: no-drop;
+  position: absolute;
+  top: 40%;
+  left: 53%;
   transform: translate(-50%, -50%);
   font-size: 14px;
   color: #fff;
 }
 
 .seat li img {
+  width: 40px;
+  height: auto;
+}
+
+.info {
   width: 40px;
   height: auto;
 }
