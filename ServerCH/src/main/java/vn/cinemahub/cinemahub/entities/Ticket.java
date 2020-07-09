@@ -52,6 +52,14 @@ public class Ticket {
     @Column(name = "update_at")
     private Date updateAt;
 
+    public long getLichchieu() {
+        return lichchieu;
+    }
+
+    public void setLichchieu(long lichchieu) {
+        this.lichchieu = lichchieu;
+    }
+
     public Long getId() {
         return id;
     }

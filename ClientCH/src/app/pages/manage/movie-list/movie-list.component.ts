@@ -43,7 +43,7 @@ export class MovieListComponent implements OnInit {
   sSelect: SeatModel;
   teng: string;
   giave: number;
-  ticketsuccess: TicketModel;
+  ticketShow: TicketModel[];
   showtime: ShowtimeModel;
 
 
@@ -72,19 +72,19 @@ export class MovieListComponent implements OnInit {
   }
 
   showtimeClick(s: ShowtimeModel) {
-    this.seats = s.roomEntity.gheEntities;
-  }
-
-  sSelect: SeatModel;
-  teng: string;
-  giave: number;
-    // this.ticket.lichchieu = s.id;
-    console.log(s.id);
     this.showtime = s;
+    this.ticketService.findbyShow(s.id).subscribe((ticket) => {
+      this.ticketShow = ticket;
+      this.seatService.findbyRoom(s.roomEntity.id).subscribe((seat) => {
+        this.seats = seat;
+        console.log(this.ticketShow);
+        console.log(this.seats);
+      });
+    });
+
     this.seatService.findbyRoom(s.roomEntity.id).subscribe((seat) => {
       this.seats = seat;
     });
-    // this.seats = s.roomEntity.gheEntities;
   }
 
   seatSelect(s: SeatModel) {
@@ -109,19 +109,8 @@ export class MovieListComponent implements OnInit {
       idGhe: this.sSelect.id,
       tenphim: this.movies[0].tenphim,
       timeStart: this.showtimes[0].dateStart,
-      timeEnd: this.showtimes[0].dateEnd
-    };
-    this.ticketService.create(this.ticket).subscribe(
-      (data) => {
-        if (data == null) {
-          this.error = "co loi xay ra";
-        }
-        else {
-          this.router.navigateByUrl('/ticket');
-        }
-      },
-      error => console.log(error));
-      // lichchieu: this.showtime.id
+      timeEnd: this.showtimes[0].dateEnd,
+      lichchieu: this.showtime.id
     };
   }
 }
