@@ -5,7 +5,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import vn.cinemahub.cinemahub.entities.GheEntity;
-import vn.cinemahub.cinemahub.service.SeatService;
+import vn.cinemahub.cinemahub.serviceImpl.RoomServiceImpl;
+import vn.cinemahub.cinemahub.serviceImpl.SeatServiceImpl;
 
 import java.util.Date;
 import java.util.List;
@@ -14,12 +15,12 @@ import java.util.List;
 @RestController
 @RequestMapping({"/api/seat"})
 public class SeatResource {
-    private final SeatService seatService;
+    Date date = new Date();
+    @Autowired
+    private SeatServiceImpl seatService;
 
-    public SeatResource(SeatService seatService) {
-
-        this.seatService = seatService;
-    }
+    @Autowired
+    private RoomServiceImpl roomService;
 
     @GetMapping
     public List<GheEntity> findAll() {
@@ -28,21 +29,23 @@ public class SeatResource {
 
     @PostMapping
     public GheEntity save(@RequestBody GheEntity seat) {
-        Date date = new Date();
         seat.setCreatedAt(date);
         seat.setUpdateAt(date);
+        seat.setStatus(1);
+        seat.setRoomEntity(roomService.findbyMaphong(seat.getRoomEntity().getMaphong()).get());
         return this.seatService.save(seat);
     }
 
     @PutMapping
     public ResponseEntity<Void> update(@RequestBody GheEntity gheEntity) {
+        gheEntity.setCreatedAt(date);
         this.seatService.update(gheEntity);
         return new ResponseEntity(HttpStatus.OK);
     }
 
     @GetMapping({"/{id}"})
     public ResponseEntity findOne(@PathVariable Long id) {
-        return (ResponseEntity)this.seatService.findOne(id).map((gheEntity) -> {
+        return (ResponseEntity)this.seatService.get(id).map((gheEntity) -> {
             return new ResponseEntity(gheEntity, HttpStatus.OK);
         }).orElse(new ResponseEntity(HttpStatus.NOT_FOUND));
     }

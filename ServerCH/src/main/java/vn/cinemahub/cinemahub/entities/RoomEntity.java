@@ -1,30 +1,34 @@
 package vn.cinemahub.cinemahub.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.NaturalId;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.Objects;
+import java.util.List;
 
 @Entity
-@Table(name = "SEAT")
+@Table(name = "ROOM")
 @EntityListeners(AuditingEntityListener.class)
-public class GheEntity {
+public class RoomEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "ST_SEQ")
-    @SequenceGenerator(sequenceName = "SEAT_SEQ", allocationSize = 1, name = "ST_SEQ")
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "RM_SEQ")
+    @SequenceGenerator(sequenceName = "ROOM_SEQ", allocationSize = 1, name = "RM_SEQ")
     @Column(name = "ID")
     private Long id;
 
-    @Column(name = "TENGHE")
-    private String tenghe;
-
-    @Column(name = "LOAIGHE")
-    private int loaighe;
+    @Column(name = "MAPHONG")
+    private int maphong;
 
     @Column(name = "STATUS")
     private int status;
@@ -37,25 +41,24 @@ public class GheEntity {
     @Column(name = "update_at")
     private Date updateAt;
 
-    public GheEntity(String tenghe, int loaighe, RoomEntity roomEntity) {
-        this.tenghe = tenghe;
-        this.loaighe = loaighe;
-        this.roomEntity = roomEntity;
-    }
-
-    public GheEntity() {
+    public RoomEntity() {
     }
 
     @ManyToOne
-    @JoinColumn(name = "room_id")
-    private RoomEntity roomEntity;
+    @JoinColumn(name = "cinema_id", referencedColumnName = "id")
+    private Cinema cinema;
 
-    public RoomEntity getRoomEntity() {
-        return roomEntity;
+    public Cinema getCinema() {
+        return cinema;
     }
 
-    public void setRoomEntity(RoomEntity roomEntity) {
-        this.roomEntity = roomEntity;
+    public void setCinema(Cinema cinema) {
+        this.cinema = cinema;
+    }
+
+    public RoomEntity(int maphong, Cinema cinema) {
+        this.maphong = maphong;
+        this.cinema = cinema;
     }
 
     public Long getId() {
@@ -66,20 +69,12 @@ public class GheEntity {
         this.id = id;
     }
 
-    public String getTenghe() {
-        return tenghe;
+    public int getMaphong() {
+        return maphong;
     }
 
-    public void setTenghe(String tenghe) {
-        this.tenghe = tenghe;
-    }
-
-    public int getLoaighe() {
-        return loaighe;
-    }
-
-    public void setLoaighe(int loaighe) {
-        this.loaighe = loaighe;
+    public void setMaphong(int maphong) {
+        this.maphong = maphong;
     }
 
     public int getStatus() {

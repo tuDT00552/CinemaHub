@@ -1,18 +1,12 @@
 package vn.cinemahub.cinemahub.rest;
 
-import org.hibernate.mapping.Array;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-//import vn.cinemahub.cinemahub.config.CinemaEntity;
-//import vn.cinemahub.cinemahub.entities.Cinema;
-//import vn.cinemahub.cinemahub.entities.Movie;
 import vn.cinemahub.cinemahub.entities.Cinema;
-import vn.cinemahub.cinemahub.service.CinemaService;
+import vn.cinemahub.cinemahub.serviceImpl.CinemaService;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -20,6 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/cinema")
 public class CinemaResource {
+    Date date = new Date();
     @Autowired
     private CinemaService cinemaService;
 
@@ -30,7 +25,6 @@ public class CinemaResource {
 
     @PostMapping
     public Cinema save(@RequestBody Cinema cinema) {
-        Date date = new Date();
         cinema.setCreatedAt(date);
         cinema.setUpdateAt(date);
         cinema.setStatus(1);
@@ -44,13 +38,14 @@ public class CinemaResource {
 
     @PutMapping
     public ResponseEntity<Void> update(@RequestBody Cinema cinema) {
+        cinema.setUpdateAt(date);
         cinemaService.update(cinema);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Cinema> findOne(@PathVariable Long id) {
-        return cinemaService.findOne(id).map(cinema -> new ResponseEntity<>(cinema, HttpStatus.OK))
+        return cinemaService.get(id).map(cinema -> new ResponseEntity<>(cinema, HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
