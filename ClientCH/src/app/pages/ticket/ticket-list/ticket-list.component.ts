@@ -12,6 +12,7 @@ import {TicketDeleteComponent} from '../ticket-delete/ticket-delete.component';
 })
 export class TicketListComponent implements OnInit {
   tickets: TicketModel[] = [];
+  searchText;
   constructor(private ticketService: TicketService,
               private eventManagement: EventManagement,
               public modal: NgbModal) { }

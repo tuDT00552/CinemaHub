@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {CinemaService} from '../../../shared/service/cinema.service';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -11,7 +10,6 @@ import {ActivatedRoute, Router} from '@angular/router';
   styleUrls: ['./cinema-create.component.css']
 })
 export class CinemaCreateComponent implements OnInit {
-
   form: FormGroup;
   isUpdate: any = false;
   error: string;
@@ -27,7 +25,7 @@ export class CinemaCreateComponent implements OnInit {
       marap: ['', Validators.required],
       tenrap: ['', Validators.required],
       diachi: ['', Validators.required],
-      gioithieurap: [''],
+      gioithieu: [''],
     });
 
     this.route.data.subscribe(({cinema}) => {
@@ -38,7 +36,7 @@ export class CinemaCreateComponent implements OnInit {
           marap: cinema.marap,
           tenrap: cinema.tenrap,
           diachi: cinema.diachi,
-          gioithieurap: cinema.gioithieurap,
+          gioithieu: cinema.gioithieu,
         });
       }
     });

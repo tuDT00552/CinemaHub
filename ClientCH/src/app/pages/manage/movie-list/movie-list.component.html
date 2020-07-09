@@ -1,0 +1,35 @@
+<div class="container-fluid mt--7">
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <div class="row">
+              <div class="col-3" *ngFor="let movie of movies" (click)="OnSelect(movie)">
+                <div class="movie">
+                  <img src="{{movie.image}}" alt="{{movie.tenphim}}">
+                  <div class="moviename">{{movie.tenphim}}</div>
+                </div>
+              </div>
+            <div class="col-9" *ngIf="select != null">
+              <div class="titleshowtime">CHỌN XUẤT CHIẾU</div>
+              <div class="col-3 btn-showtime" *ngFor="let s of showtimes" (click)="showtimeClick(s)">
+                <a class="btn btn-outline-secondary">{{s.timeStart}} - P{{s.roomEntity.maphong}}</a>
+              </div>
+              <div class="row seat">
+                <div class="col-1 spseat" *ngFor="let s of seats">
+                  <span class="" *ngIf="s.loaighe === 1" style="color: blue;" (click)="seatSelect(s)">{{s.tenghe}}</span>
+                  <span class="" *ngIf="s.loaighe === 2" style="color: red;" (click)="seatSelect(s)">{{s.tenghe}}</span>
+                  <span class="" *ngIf="s.loaighe === 3" style="color: green;" (click)="seatSelect(s)">{{s.tenghe}}</span>
+                </div>
+              </div>
+              <div>Select:
+                <span>{{teng}}</span> - {{giave}}
+              </div>
+              <a class="btn" (click)="clickSelect()">Thanh Toán</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

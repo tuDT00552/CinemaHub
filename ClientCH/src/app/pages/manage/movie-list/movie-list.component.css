@@ -1,0 +1,33 @@
+img {
+  max-width: 200px;
+  height: 280px;
+}
+
+.movie:hover {
+  cursor: pointer;
+}
+
+.moviename {
+  text-align: center;
+  line-height: 30px;
+  color: black;
+  font-weight: bold;
+}
+
+.btn-showtime {
+  display: inline;
+}
+
+.titleshowtime {
+  font-weight: bold;
+  font-size: 20px;
+  margin: 5px;
+}
+
+.spseat {
+  cursor: pointer;
+}
+
+.active {
+  background-color: #bfb0b0;
+}

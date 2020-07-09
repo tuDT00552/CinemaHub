@@ -4,12 +4,15 @@ import {BrowserModule} from '@angular/platform-browser';
 import {Routes, RouterModule} from '@angular/router';
 import {AdminLayoutComponent} from './layouts/admin-layout/admin-layout.component';
 import {AuthLayoutComponent} from './layouts/auth-layout/auth-layout.component';
+import {LoginComponent} from "./pages/login/login.component";
+
+
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard',
-    pathMatch: 'full',
+    component: LoginComponent,
+    pathMatch: 'full' ,
   },
   {
     path: 'ticket',
@@ -19,10 +22,38 @@ const routes: Routes = [
     }
   },
   {
+    path: 'room',
+    component: AdminLayoutComponent,
+    loadChildren: () => {
+      return import('../app/pages/room/room.module').then(m => m.RoomModule);
+    }
+  },
+  {
+    path: 'showtime',
+    component: AdminLayoutComponent,
+    loadChildren: () => {
+      return import('../app/pages/showtime/showtime.module').then(m => m.ShowtimeModule);
+    }
+  },
+  {
+    path: 'manage',
+    component: AdminLayoutComponent,
+    loadChildren: () => {
+      return import('../app/pages/manage/manage.module').then(m => m.ManageModule);
+    }
+  },
+  {
     path: 'cinema',
     component: AdminLayoutComponent,
     loadChildren: () => {
       return import('../app/pages/cinema/cinema.module').then(m => m.CinemaModule);
+    }
+  },
+  {
+    path: 'movie',
+    component: AdminLayoutComponent,
+    loadChildren: () => {
+      return import('../app/pages/movie/movie.module').then(m => m.MovieModule);
     }
   },
 
@@ -33,6 +64,9 @@ const routes: Routes = [
       return import('../app/pages/seat/seat.module').then(m => m.SeatModule);
     }
   },
+
+
+
   {
     path: '',
     component: AdminLayoutComponent,
@@ -51,10 +85,7 @@ const routes: Routes = [
         loadChildren: './layouts/auth-layout/auth-layout.module#AuthLayoutModule'
       }
     ]
-  }, {
-    path: '**',
-    redirectTo: 'dashboard'
-  }
+  },
 ];
 
 @NgModule({
@@ -63,7 +94,7 @@ const routes: Routes = [
     BrowserModule,
     RouterModule.forRoot(routes)
   ],
-  exports: [],
+  exports: [RouterModule],
 })
 export class AppRoutingModule {
 }
