@@ -10,5 +10,5 @@ export class TicketModel {
     status?: number;
     timeStart?: Date;
     timeEnd?: Date;
-
+    lichchieu?: number;
 }

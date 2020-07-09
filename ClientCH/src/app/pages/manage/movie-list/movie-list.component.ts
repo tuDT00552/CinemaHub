@@ -13,6 +13,7 @@ import {TicketService} from '../../../shared/service/ticket.service';
 import {TicketModel} from '../../../model/ticket.model';
 import {Router} from '@angular/router';
 import {MovieService} from '../../../shared/service/movie.service';
+import {SeatService} from '../../../shared/service/seat.service';
 
 @Component({
   selector: 'app-movie-list',
@@ -25,6 +26,7 @@ export class MovieListComponent implements OnInit {
               private showtimeService: ShowtimeService,
               private ticketService: TicketService,
               private movieService: MovieService,
+              private seatService: SeatService,
               private router: Router,
               private fb: FormBuilder) {
 
@@ -38,10 +40,16 @@ export class MovieListComponent implements OnInit {
   status = false;
   ticket: TicketModel;
   error: string;
+  sSelect: SeatModel;
+  teng: string;
+  giave: number;
+  ticketsuccess: TicketModel;
+  showtime: ShowtimeModel;
 
 
   ngOnInit(): void {
       this.seats = [];
+      this.sSelect = null;
   }
 
   OnSelect(movie: MovieModel) {
@@ -63,12 +71,15 @@ export class MovieListComponent implements OnInit {
   }
 
   showtimeClick(s: ShowtimeModel) {
-    this.seats = s.roomEntity.gheEntities;
+    // this.ticket.lichchieu = s.id;
+    console.log(s.id);
+    this.showtime = s;
+    this.seatService.findbyRoom(s.roomEntity.id).subscribe((seat) => {
+      this.seats = seat;
+    });
+    // this.seats = s.roomEntity.gheEntities;
   }
 
-  sSelect: SeatModel;
-  teng: string;
-  giave: number;
 
   seatSelect(s: SeatModel) {
     this.sSelect = s;
@@ -93,16 +104,7 @@ export class MovieListComponent implements OnInit {
       tenphim: this.movies[0].tenphim,
       timeStart: this.showtimes[0].dateStart,
       timeEnd: this.showtimes[0].dateEnd
+      // lichchieu: this.showtime.id
     };
-    this.ticketService.create(this.ticket).subscribe(
-      (data) => {
-        if (data == null) {
-          this.error = "co loi xay ra";
-        }
-        else {
-          this.router.navigateByUrl('/ticket');
-        }
-      },
-      error => console.log(error));
   }
 }

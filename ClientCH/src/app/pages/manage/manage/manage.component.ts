@@ -8,6 +8,7 @@ import {RoomModel} from '../../../model/room.model';
 import {MovieModel} from '../../../model/movie.model';
 import {SeatModel} from '../../../model/seat.model';
 import {MovieService} from '../../../shared/service/movie.service';
+import {TicketModel} from '../../../model/ticket.model';
 
 @Component({
   selector: 'app-manage',
