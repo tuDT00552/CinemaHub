@@ -13,7 +13,6 @@ const routes: Routes = [
     path: '',
     component: LoginComponent,
     pathMatch: 'full' ,
-
   },
   {
     path: 'ticket',
@@ -48,6 +47,13 @@ const routes: Routes = [
     component: AdminLayoutComponent,
     loadChildren: () => {
       return import('../app/pages/cinema/cinema.module').then(m => m.CinemaModule);
+    }
+  },
+  {
+    path: 'movie',
+    component: AdminLayoutComponent,
+    loadChildren: () => {
+      return import('../app/pages/movie/movie.module').then(m => m.MovieModule);
     }
   },
 

@@ -37,7 +37,7 @@ public class MovieResource {
         movie.setCreatedAt(date);
         movie.setUpdateAt(date);
         movie.setStatus(1);
-        movie.setCinema(cinemaService.findbyMarap(movie.getCinema().getMarap()).get());
+        movie.setCinema(cinemaService.get(movie.getCinema().getId()).get());
         return movieService.save(movie);
     }
 
@@ -45,5 +45,11 @@ public class MovieResource {
     public ResponseEntity<Movie> findOne(@PathVariable Long id) {
         return movieService.get(id).map(movie -> new ResponseEntity<>(movie, HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        movieService.delete(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

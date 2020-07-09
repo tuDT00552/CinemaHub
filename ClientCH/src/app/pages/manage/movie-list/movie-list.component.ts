@@ -47,6 +47,7 @@ export class MovieListComponent implements OnInit {
   showtime: ShowtimeModel;
 
 
+
   ngOnInit(): void {
       this.seats = [];
       this.sSelect = null;
@@ -75,7 +76,6 @@ export class MovieListComponent implements OnInit {
     this.ticketService.findbyShow(s.id).subscribe((ticket) => {
       this.ticketShow = ticket;
       this.seatService.findbyRoom(s.roomEntity.id).subscribe((seat) => {
-        
         this.seats = seat;
         console.log(this.ticketShow);
         console.log(this.seats);
@@ -86,7 +86,6 @@ export class MovieListComponent implements OnInit {
       this.seats = seat;
     });
   }
-
 
   seatSelect(s: SeatModel) {
     this.sSelect = s;
