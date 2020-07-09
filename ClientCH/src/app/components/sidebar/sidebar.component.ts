@@ -38,7 +38,8 @@ export class SidebarComponent implements OnInit {
 
   constructor(private router: Router,
 
-  private tokenStorageService: TokenStorageService) { }
+  private tokenStorageService : TokenStorageService) { }
+
 
   ngOnInit() {
     this.isLoggedIn = !!this.tokenStorageService.getToken();

@@ -23,6 +23,15 @@ public class SeatServiceImpl implements DAO<GheEntity> {
         return this.seatRepository.findAll();
     }
 
+    public List<GheEntity> findbyRoom(Long roomid) {
+        return this.seatRepository.findbyRoom(roomid);
+    }
+
+    @Override
+    public Optional<GheEntity> get(Long id) {
+        return seatRepository.findById(id);
+    }
+
     @Override
     public Optional<GheEntity> get(Long id) {
         return seatRepository.findById(id);

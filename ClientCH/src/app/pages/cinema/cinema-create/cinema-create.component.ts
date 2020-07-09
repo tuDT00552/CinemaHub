@@ -3,7 +3,6 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {CinemaService} from '../../../shared/service/cinema.service';
 import {ActivatedRoute, Router} from '@angular/router';
 
-
 @Component({
   selector: 'app-cinema-create',
   templateUrl: './cinema-create.component.html',

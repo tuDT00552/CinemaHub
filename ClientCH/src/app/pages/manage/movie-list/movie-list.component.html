@@ -26,10 +26,28 @@
                 <span>{{teng}}</span> - {{giave}}
               </div>
               <a class="btn" (click)="clickSelect()">Thanh Toán</a>
+              <div style=" padding: 30px;" class="col-3 btn-showtime" *ngFor="let s of showtimes" (click)="showtimeClick(s)">
+                <a  style="line-height: 10px; width: 200px;" class="btn btn-outline-secondary">{{s.timeStart}} - P{{s.roomEntity.maphong}}</a>
+              </div>
+              <div class="row seat">
+                <li [class.selected]="s === sSelect" class="col-1 nopadding" *ngFor="let s of seats">
+                  <img *ngIf="s.loaighe == 1" style="filter: hue-rotate(700deg);" src="assets/img/seat.png" alt="">
+                  <img *ngIf="s.loaighe == 2" style="filter: hue-rotate(500deg);" src="assets/img/seat.png" alt="">
+                  <img *ngIf="s.loaighe == 3" style="filter: hue-rotate(600deg);" src="assets/img/seat.png" alt="">
+                  <span class="seatname" (click)="seatSelect(s)">{{s.tenghe}}</span>
+<!--                  <span class="seatname" *ngIf="s.loaighe === 2" (click)="seatSelect(s)">{{s.tenghe}}</span>-->
+<!--                  <span class="seatname" *ngIf="s.loaighe === 3" (click)="seatSelect(s)">{{s.tenghe}}</span>-->
+                </li>
+              </div>
+              <div  style="font-weight: bold; margin-top: 10px;" *ngIf="sSelect != null">Select:
+                <span>{{teng}}</span> - {{giave}}
+                <a style="line-height: 10px; width: 200px; margin-left: 30px;" class="btn btn-info" (click)="clickSelect()">Checkout</a>
+              </div>
             </div>
           </div>
         </div>
       </div>
+      <app-ticket [ticket] = "ticket"></app-ticket>
     </div>
   </div>
 </div>

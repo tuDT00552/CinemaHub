@@ -62,7 +62,8 @@ import { MovieModule } from './pages/movie/movie.module';
     ManageModule,
     ReactiveFormsModule,
     MovieRoutingModule,
-    MovieModule
+    MovieModule,
+    ReactiveFormsModule
   ],
   declarations: [
     AppComponent,
@@ -81,6 +82,7 @@ import { MovieModule } from './pages/movie/movie.module';
     // MovieListComponent,
     // MovieCreateComponent,
     // MovieDeleteComponent
+    RoomDeleteComponent
   ],
   providers: [authInterceptorProviders,LocalStorageService],
 

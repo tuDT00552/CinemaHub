@@ -13,6 +13,7 @@ import {TicketService} from '../../../shared/service/ticket.service';
 import {TicketModel} from '../../../model/ticket.model';
 import {Router} from '@angular/router';
 import {MovieService} from '../../../shared/service/movie.service';
+import {SeatService} from '../../../shared/service/seat.service';
 
 @Component({
   selector: 'app-movie-list',
@@ -25,6 +26,7 @@ export class MovieListComponent implements OnInit {
               private showtimeService: ShowtimeService,
               private ticketService: TicketService,
               private movieService: MovieService,
+              private seatService: SeatService,
               private router: Router,
               private fb: FormBuilder) {
 
@@ -38,10 +40,17 @@ export class MovieListComponent implements OnInit {
   status = false;
   ticket: TicketModel;
   error: string;
+  sSelect: SeatModel;
+  teng: string;
+  giave: number;
+  ticketsuccess: TicketModel;
+  showtime: ShowtimeModel;
+
 
 
   ngOnInit(): void {
       this.seats = [];
+      this.sSelect = null;
   }
 
   OnSelect(movie: MovieModel) {
@@ -69,6 +78,14 @@ export class MovieListComponent implements OnInit {
   sSelect: SeatModel;
   teng: string;
   giave: number;
+    // this.ticket.lichchieu = s.id;
+    console.log(s.id);
+    this.showtime = s;
+    this.seatService.findbyRoom(s.roomEntity.id).subscribe((seat) => {
+      this.seats = seat;
+    });
+    // this.seats = s.roomEntity.gheEntities;
+  }
 
   seatSelect(s: SeatModel) {
     this.sSelect = s;
@@ -104,5 +121,7 @@ export class MovieListComponent implements OnInit {
         }
       },
       error => console.log(error));
+      // lichchieu: this.showtime.id
+    };
   }
 }

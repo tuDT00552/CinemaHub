@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {RoomModel} from '../../model/room.model';
 import {ENDPOINT_URL} from '../constants/app.constains';
 import {MovieModel} from '../../model/movie.model';
 

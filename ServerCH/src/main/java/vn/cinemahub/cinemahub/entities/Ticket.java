@@ -28,6 +28,10 @@ public class Ticket {
     @Column(name = "MARAP")
     private long marap;
 
+
+    @Column(name = "LICHCHIEU")
+    private long lichchieu;
+
     @Column(name = "GIAVE")
     private long giave;
 
