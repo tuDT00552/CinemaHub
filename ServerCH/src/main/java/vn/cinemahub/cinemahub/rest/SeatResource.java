@@ -27,6 +27,11 @@ public class SeatResource {
         return seatService.findAll();
     }
 
+    @GetMapping("/r/{id}")
+    public List<GheEntity> findbyRoom(@PathVariable Long id) {
+        return seatService.findbyRoom(id);
+    }
+
     @PostMapping
     public GheEntity save(@RequestBody GheEntity seat) {
         seat.setCreatedAt(date);
