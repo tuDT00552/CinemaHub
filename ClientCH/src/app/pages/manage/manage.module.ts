@@ -12,6 +12,7 @@ import { TicketComponent } from './ticket/ticket.component';
 
 
 
+
 @NgModule({
   declarations: [ManageComponent, MovieListComponent, RoomListComponent, SeatListComponent, TicketComponent],
   imports: [

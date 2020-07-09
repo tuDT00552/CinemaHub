@@ -1,4 +1,3 @@
-
 <div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
   <div class="container-fluid">
     <div class="header-body">
@@ -10,7 +9,7 @@
               <div class="row">
                 <div class="col">
                   <h5 class="card-title text-uppercase text-muted mb-0">Total Cinema</h5>
-                  <span class="h2 font-weight-bold mb-0">{{cinemas.length}}</span>
+                  <span class="h2 font-weight-bold mb-0">{{movies.length}}</span>
                 </div>
                 <div class="col-auto">
                   <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
@@ -99,48 +98,57 @@
     <div class="col">
       <div class="card shadow">
         <div class="card-header border-0">
-          <h3 class="mb-0">Cinema List</h3>
-          <h3 class="mb-0 right"><a class="btn btn-sm btn-primary" href="cinema/create"><i class="ni ni-fat-add"></i>Cinema</a></h3>
+          <h3 class="mb-0">Movies List</h3>
+          <h3 class="mb-0 right"><a class="btn btn-sm btn-primary" href="movie/create"><i class="ni ni-fat-add"></i>Movie</a></h3>
         </div>
         <div class="table-responsive">
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
             <tr>
-              <th scope="col">Mã Rạp</th>
-              <th scope="col">Tên Rạp</th>
-              <th scope="col">Địa Chỉ</th>
-              <th scope="col">Giới Thiệu</th>
+              <th scope="col">ID Phim</th>
+              <th scope="col">Mã Phim</th>
+              <th scope="col">Tên Phim</th>
+              <th scope="col">Loại Phim</th>
+              <th scope="col">Map Rạp</th>
               <th scope="col">Action</th>
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let cinema of cinemas">
+            <tr *ngFor="let movie of movies">
               <th scope="row">
                 <div class="media align-items-center">
                   <div class="media-body">
-                    <span class="mb-0 text-sm">{{cinema.marap}}</span>
+                    <span class="mb-0 text-sm">{{movie.id}}</span>
                   </div>
                 </div>
               </th>
               <th scope="row">
                 <div class="media align-items-center">
                   <div class="media-body">
-                    <span class="mb-0 text-sm">{{cinema.tenrap}}</span>
+                    <span class="mb-0 text-sm">{{movie.maphim}}</span>
+                  </div>
+                </div>
+              </th>
+              <th scope="row">
+                <div class="media align-items-center">
+                  <div class="media-body">
+                    <span class="mb-0 text-sm">{{movie.tenphim}}</span>
                   </div>
                 </div>
               </th>
               <td class="ell">
-                <span>{{cinema.diachi}}</span>
+                <span>{{movie.loaiphim}}</span>
               </td>
               <td class="ell">
                   <span sty class="badge badge-dot mr-4">
-                    <i class="bg-warning"></i> {{cinema.gioithieu}}
+<!--                    <i class="bg-warning"></i>-->
+                    {{movie.cinema.marap}}
                   </span>
               </td>
               <td class="ell">
                 <a class="" href=""><i class="ni ni-collection"></i></a>
-                <a class="" [routerLink]="['/cinema/update', cinema.id]"><i class="ni ni-settings-gear-65"></i></a>
-                <a class="" (click)="goToDelete(cinema)"><i class="ni ni-scissors"></i></a>
+                <a class="" [routerLink]="['/movie/update', movie.id]"><i class="ni ni-settings-gear-65"></i></a>
+                <a class="" (click)="goToDelete(movie)"><i class="ni ni-scissors"></i></a>
               </td>
             </tr>
             </tbody>

@@ -11,4 +11,5 @@ export class TicketModel {
     timeStart?: Date;
     timeEnd?: Date;
     lichchieu?: number;
+
 }

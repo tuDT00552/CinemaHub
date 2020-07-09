@@ -32,6 +32,11 @@ import { RefundticketRoutingModule } from './pages/RefundTicket/refundticket-rou
 import {LocalStorageService} from "./shared/service/local-storage.service";
 import { ShowtimeListComponent } from './pages/showtime/showtime-list/showtime-list.component';
 import { RoomDeleteComponent } from './pages/room/room-delete/room-delete.component';
+import { MovieListComponent } from './pages/movie/movie-list/movie-list.component';
+import { MovieCreateComponent } from './pages/movie/movie-create/movie-create.component';
+import { MovieDeleteComponent } from './pages/movie/movie-delete/movie-delete.component';
+import { MovieRoutingModule } from './pages/movie/movie-routing.module';
+import { MovieModule } from './pages/movie/movie.module';
 
 @NgModule({
   imports: [
@@ -55,6 +60,9 @@ import { RoomDeleteComponent } from './pages/room/room-delete/room-delete.compon
     CinemaModule,
     ManageRoutingModule,
     ManageModule,
+    ReactiveFormsModule,
+    MovieRoutingModule,
+    MovieModule,
     ReactiveFormsModule
   ],
   declarations: [
@@ -70,6 +78,10 @@ import { RoomDeleteComponent } from './pages/room/room-delete/room-delete.compon
     ProfileComponent,
     LoginComponent,
     RegisterComponent,
+    RoomDeleteComponent,
+    // MovieListComponent,
+    // MovieCreateComponent,
+    // MovieDeleteComponent
     RoomDeleteComponent
   ],
   providers: [authInterceptorProviders,LocalStorageService],

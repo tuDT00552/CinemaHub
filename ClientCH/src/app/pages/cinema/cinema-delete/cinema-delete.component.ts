@@ -3,6 +3,8 @@ import {CinemaModel} from '../../../model/cinema.model';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {EventManagement} from '../../../shared/service/event.management';
 import {CinemaService} from '../../../shared/service/cinema.service';
+import {MovieModel} from '../../../model/movie.model';
+import {MovieService} from '../../../shared/service/movie.service';
 
 @Component({
   selector: 'app-cinema-delete',
@@ -11,7 +13,7 @@ import {CinemaService} from '../../../shared/service/cinema.service';
 })
 export class CinemaDeleteComponent implements OnInit {
 
-  cinema: CinemaModel;
+  movie: MovieModel;
   constructor(public modal: NgbActiveModal,
               private cinemaService: CinemaService,
               private eventManagement: EventManagement) { }
@@ -20,7 +22,7 @@ export class CinemaDeleteComponent implements OnInit {
   }
 
   delete() {
-    this.cinemaService.delete(this.cinema.id).subscribe(
+    this.cinemaService.delete(this.movie.id).subscribe(
       () => {
         this.eventManagement.broadcast('UPDATE_CINEMA');
         this.modal.close();

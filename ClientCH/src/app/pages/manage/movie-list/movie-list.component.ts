@@ -47,6 +47,7 @@ export class MovieListComponent implements OnInit {
   showtime: ShowtimeModel;
 
 
+
   ngOnInit(): void {
       this.seats = [];
       this.sSelect = null;
@@ -71,6 +72,12 @@ export class MovieListComponent implements OnInit {
   }
 
   showtimeClick(s: ShowtimeModel) {
+    this.seats = s.roomEntity.gheEntities;
+  }
+
+  sSelect: SeatModel;
+  teng: string;
+  giave: number;
     // this.ticket.lichchieu = s.id;
     console.log(s.id);
     this.showtime = s;
@@ -79,7 +86,6 @@ export class MovieListComponent implements OnInit {
     });
     // this.seats = s.roomEntity.gheEntities;
   }
-
 
   seatSelect(s: SeatModel) {
     this.sSelect = s;
@@ -104,6 +110,17 @@ export class MovieListComponent implements OnInit {
       tenphim: this.movies[0].tenphim,
       timeStart: this.showtimes[0].dateStart,
       timeEnd: this.showtimes[0].dateEnd
+    };
+    this.ticketService.create(this.ticket).subscribe(
+      (data) => {
+        if (data == null) {
+          this.error = "co loi xay ra";
+        }
+        else {
+          this.router.navigateByUrl('/ticket');
+        }
+      },
+      error => console.log(error));
       // lichchieu: this.showtime.id
     };
   }

@@ -3,8 +3,8 @@ import {CinemaModel} from '../../../model/cinema.model';
 import {CinemaService} from '../../../shared/service/cinema.service';
 import {EventManagement} from '../../../shared/service/event.management';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {CinemaCreateComponent} from '../cinema-create/cinema-create.component';
 import {CinemaDeleteComponent} from '../cinema-delete/cinema-delete.component';
+
 
 @Component({
   selector: 'app-cinema-list',
