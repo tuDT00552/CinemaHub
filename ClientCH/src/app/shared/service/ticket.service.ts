@@ -14,6 +14,10 @@ export class TicketService {
     return this.http.get<TicketModel[]>(`${ENDPOINT_URL}/ticket`);
   }
 
+  findbyShow(id: any): Observable<TicketModel[]> {
+    return this.http.get<TicketModel[]>(`${ENDPOINT_URL}/ticket/s/${id}`);
+  }
+
   findOne(id: any): Observable<TicketModel> {
     return this.http.get<TicketModel>(`${ENDPOINT_URL}/ticket/${id}`);
   }

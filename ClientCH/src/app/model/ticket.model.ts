@@ -1,8 +1,6 @@
 export class TicketModel {
     id?: number;
     createdAt?: Date;
-    updteAt?: Date;
-    maVea?: number;
     tenphim?: string;
     idGhe?: number;
     marap?: number;

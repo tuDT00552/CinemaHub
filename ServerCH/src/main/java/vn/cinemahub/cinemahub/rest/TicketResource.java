@@ -25,9 +25,15 @@ public class TicketResource {
         return ticketService.findAll();
     }
 
+    @GetMapping({"/s/{id}"})
+    public List<Ticket> findbyShow(@PathVariable Long id) {
+        return ticketService.findbyShow(id);
+    }
+
     @PostMapping
     public Ticket save(@RequestBody Ticket ticket) {
         Date date = new Date();
+        System.out.println(ticket);
         ticket.setCreatedAt(date);
         ticket.setUpdateAt(date);
         ticket.setStatus(1);
