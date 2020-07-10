@@ -52,6 +52,18 @@ public class Ticket {
     @Column(name = "update_at")
     private Date updateAt;
 
+    @ManyToOne
+    @JoinColumn(name = "order_id", referencedColumnName = "ORDERID")
+    private Order order;
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
     public long getLichchieu() {
         return lichchieu;
     }

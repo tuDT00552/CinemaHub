@@ -14,6 +14,8 @@ import {TicketModel} from '../../../model/ticket.model';
 import {Router} from '@angular/router';
 import {MovieService} from '../../../shared/service/movie.service';
 import {SeatService} from '../../../shared/service/seat.service';
+import {Observable} from 'rxjs';
+import {OrderModel} from '../../../model/order.model';
 
 @Component({
   selector: 'app-movie-list',
@@ -33,7 +35,7 @@ export class MovieListComponent implements OnInit {
   }
   isUpdate: any = false;
   @Input() movies: MovieModel[];
-  @Input() ciid: number;
+  @Input() cinema: CinemaModel;
   showtimes: ShowtimeModel[];
   seats: SeatModel[];
   select: number;
@@ -45,6 +47,7 @@ export class MovieListComponent implements OnInit {
   giave: number;
   ticketShow: TicketModel[];
   showtime: ShowtimeModel;
+  order: OrderModel;
 
 
 
@@ -65,7 +68,7 @@ export class MovieListComponent implements OnInit {
     } else {
       this.select = null;
       this.sSelect = null;
-      this.movieService.findbyRap(this.ciid).subscribe((mov) => {
+      this.movieService.findbyRap(this.cinema.id).subscribe((mov) => {
         this.movies = mov;
       });
     }
@@ -76,12 +79,11 @@ export class MovieListComponent implements OnInit {
     this.ticketService.findbyShow(s.id).subscribe((ticket) => {
       this.ticketShow = ticket;
       this.seatService.findbyRoom(s.roomEntity.id).subscribe((seat) => {
-        // console.log(this.ticketShow);
-        // console.log(this.seats);
+        // tslint:disable-next-line:no-unused-expression
         ticket.forEach((elem1, index) => {elem1;
+          // tslint:disable-next-line:no-unused-expression no-shadowed-variable
           seat.forEach((elem2, index) => {elem2;
-            if(elem1.idGhe === elem2.id)
-            {
+            if (elem1.idGhe === elem2.id) {
               elem2.status = 2;
             }
           });
@@ -98,10 +100,9 @@ export class MovieListComponent implements OnInit {
   seatSelect(s: SeatModel) {
     this.sSelect = s;
     this.teng = s.tenghe;
-    if(s.loaighe == 1) {
+    if (s.loaighe === 1) {
       this.giave = 200000;
-    }
-    else if(s.loaighe == 2) {
+    } else if (s.loaighe === 2) {
       this.giave = 100000;
     }
   }
@@ -110,12 +111,21 @@ export class MovieListComponent implements OnInit {
   clickSelect() {
     this.ticket = {
       giave: this.giave,
-      marap: this.ciid,
+      marap: this.cinema.id,
       idGhe: this.sSelect.id,
       tenphim: this.movies[0].tenphim,
       timeStart: this.showtimes[0].dateStart,
       timeEnd: this.showtimes[0].dateEnd,
       lichchieu: this.showtime.id
+    };
+    this.order = {
+      orderid: null,
+      tenrap: this.cinema.tenrap,
+      phongchieu: this.showtime.roomEntity.maphong,
+      time: this.showtimes[0].dateStart,
+      tenphim: this.movies[0].tenphim,
+      sove: 2,
+      tongtien: this.giave
     };
   }
 }

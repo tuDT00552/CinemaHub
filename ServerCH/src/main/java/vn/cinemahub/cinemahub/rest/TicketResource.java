@@ -1,9 +1,11 @@
 package vn.cinemahub.cinemahub.rest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import vn.cinemahub.cinemahub.entities.Ticket;
+import vn.cinemahub.cinemahub.serviceImpl.OrderService;
 import vn.cinemahub.cinemahub.serviceImpl.TicketServiceImpl;
 
 import java.util.Date;
@@ -14,6 +16,9 @@ import java.util.List;
 @RequestMapping({"/api/ticket"})
 public class TicketResource {
     private final TicketServiceImpl ticketService;
+
+    @Autowired
+    private OrderService orderService;
 
     public TicketResource(TicketServiceImpl ticketService) {
 
@@ -33,10 +38,10 @@ public class TicketResource {
     @PostMapping
     public Ticket save(@RequestBody Ticket ticket) {
         Date date = new Date();
-        System.out.println(ticket);
         ticket.setCreatedAt(date);
         ticket.setUpdateAt(date);
         ticket.setStatus(1);
+        ticket.setOrder(orderService.findbyOid(ticket.getOrder().getOrderid()).get());
         return this.ticketService.save(ticket);
     }
 

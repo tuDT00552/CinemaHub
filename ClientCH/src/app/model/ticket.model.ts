@@ -1,3 +1,5 @@
+import {OrderModel} from './order.model';
+
 export class TicketModel {
     id?: number;
     createdAt?: Date;
@@ -9,5 +11,5 @@ export class TicketModel {
     timeStart?: Date;
     timeEnd?: Date;
     lichchieu?: number;
-
+    order?: OrderModel;
 }
