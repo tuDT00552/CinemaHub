@@ -10,7 +10,7 @@
         <span class="s">Thời gian: <span>{{ ticket.timeStart | date:'shortTime' }} - {{ ticket.timeEnd | date:'shortTime' }}</span></span>
         <span class="s">Ngày chiếu: <span>{{ ticket.timeStart | date }}</span></span>
         <a style="line-height: 10px; width: 200px;" *ngIf="success == null" class="btn btn-success" (click)="compTicket(ticket)">Hoàn Tất</a>
-        <span *ngIf="success != null" style="color: green;">{{success}}<a href="ticket">#{{ticketsuccess.marap}}{{ticketsuccess.idGhe}}{{ticketsuccess.id}}</a></span>
+        <span *ngIf="success != null" style="color: green;">{{success}}<a href="ticket">#{{ticketsuccess.lichchieu}}{{ticketsuccess.idGhe}}</a></span>
       </div>
     </div>
   </div>

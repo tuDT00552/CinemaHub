@@ -21,7 +21,7 @@
                   <div class="row">
                     <li [class.selected]="s === sSelect" class="col-1 nopadding" *ngFor="let s of seats">
                       <img *ngIf="s.loaighe == 1 && s.status == 1" style="filter: hue-rotate(700deg);" src="assets/img/seat.png" alt="">
-                      <img *ngIf="s.loaighe == 2 && s.status == 1" style="filter: hue-rotate(500deg);" src="assets/img/seat.png" alt="">
+                      <img *ngIf="s.loaighe == 2 && s.status == 1" style="filter: hue-rotate(600deg);" src="assets/img/seat.png" alt="">
                       <img *ngIf="s.loaighe == 3 && s.status == 1" style="filter: hue-rotate(600deg);" src="assets/img/seat.png" alt="">
                       <img *ngIf="s.status == 2" style="filter: grayscale(100%); cursor: no-drop" src="assets/img/seat.png" alt="">
                       <span *ngIf="s.status == 1" class="seatname" (click)="seatSelect(s)">{{s.tenghe}}</span>
@@ -43,7 +43,7 @@
           </div>
         </div>
       </div>
-      <app-ticket [ticket] = "ticket"></app-ticket>
+      <app-ticket [ticket] = "ticket" [order] = "order"></app-ticket>
     </div>
   </div>
 </div>

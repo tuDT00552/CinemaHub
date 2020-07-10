@@ -104,7 +104,7 @@ public class DataResource {
                     g.setLoaighe(2);
                 }
                 else if(g.getTenghe().equals("G"+j) || g.getTenghe().equals("H"+j)) {
-                    g.setLoaighe(3);
+                    g.setLoaighe(1);
                 }
                 g.setCreatedAt(date);
                 g.setUpdateAt(date);

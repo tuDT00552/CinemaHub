@@ -22,6 +22,13 @@ const routes: Routes = [
     }
   },
   {
+    path: 'order',
+    component: AdminLayoutComponent,
+    loadChildren: () => {
+      return import('../app/pages/order/order.module').then(m => m.OrderModule);
+    }
+  },
+  {
     path: 'room',
     component: AdminLayoutComponent,
     loadChildren: () => {

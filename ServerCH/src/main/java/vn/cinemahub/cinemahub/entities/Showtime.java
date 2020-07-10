@@ -29,6 +29,9 @@ public class Showtime {
     @Column(name = "TIMESTART")
     private String timeStart;
 
+    @Column(name = "PRICE")
+    private int price;
+
     @Column(name = "STATUS")
     private int status;
 
