@@ -4,7 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import vn.cinemahub.cinemahub.entities.Ticket;
-import vn.cinemahub.cinemahub.service.TicketService;
+import vn.cinemahub.cinemahub.serviceImpl.TicketServiceImpl;
 
 import java.util.Date;
 import java.util.List;
@@ -13,9 +13,9 @@ import java.util.List;
 @RestController
 @RequestMapping({"/api/ticket"})
 public class TicketResource {
-    private final TicketService ticketService;
+    private final TicketServiceImpl ticketService;
 
-    public TicketResource(TicketService ticketService) {
+    public TicketResource(TicketServiceImpl ticketService) {
 
         this.ticketService = ticketService;
     }
@@ -42,7 +42,7 @@ public class TicketResource {
 
     @GetMapping({"/{id}"})
     public ResponseEntity findOne(@PathVariable Long id) {
-        return (ResponseEntity)this.ticketService.findOne(id).map((ticket) -> {
+        return (ResponseEntity)this.ticketService.get(id).map((ticket) -> {
             return new ResponseEntity(ticket, HttpStatus.OK);
         }).orElse(new ResponseEntity(HttpStatus.NOT_FOUND));
     }
@@ -52,4 +52,18 @@ public class TicketResource {
         this.ticketService.delete(id);
         return new ResponseEntity(HttpStatus.OK);
     }
+
+    @GetMapping("/search/{idTicket}")
+    public List<Ticket> findByTicket(@PathVariable Long idTicket){
+        return ticketService.findByTicket(idTicket);
+    }
+
+
+
+//    @GetMapping({"/{id}"})
+//    public ResponseEntity search(@PathVariable Long id) {
+//        return (ResponseEntity)this.ticketService.get(id).map((ticket) -> {
+//            return new ResponseEntity(ticket, HttpStatus.OK);
+//        }).orElse(new ResponseEntity(HttpStatus.NOT_FOUND));
+//    }
 }

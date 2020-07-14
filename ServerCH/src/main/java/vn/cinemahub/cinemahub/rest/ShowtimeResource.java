@@ -4,14 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import vn.cinemahub.cinemahub.entities.Movie;
 import vn.cinemahub.cinemahub.entities.RoomEntity;
 import vn.cinemahub.cinemahub.entities.Showtime;
-import vn.cinemahub.cinemahub.service.MovieService;
-import vn.cinemahub.cinemahub.service.RoomService;
-import vn.cinemahub.cinemahub.service.ShowtimeService;
+import vn.cinemahub.cinemahub.serviceImpl.MovieService;
+import vn.cinemahub.cinemahub.serviceImpl.RoomServiceImpl;
+import vn.cinemahub.cinemahub.serviceImpl.ShowtimeServiceImpl;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -20,20 +18,14 @@ import java.util.List;
 @RestController
 @RequestMapping({"/api/showtime"})
 public class ShowtimeResource {
-    private final ShowtimeService showtimeService;
+    @Autowired
+    private ShowtimeServiceImpl showtimeService;
 
     @Autowired
     private MovieService movieService;
 
     @Autowired
-    private RoomService roomService;
-
-    @Autowired
-//    private MovieService movieService;
-
-    public ShowtimeResource(ShowtimeService showtimeService) {
-        this.showtimeService = showtimeService;
-    }
+    private RoomServiceImpl roomService;
 
     @GetMapping
     public List<Showtime> findAll() {
@@ -45,13 +37,6 @@ public class ShowtimeResource {
         return showtimeService.findAllByMovieID(id);
     }
 
-//    @GetMapping({"fbymovie/{id}"})
-//    public ResponseEntity findAllByMovieID(@PathVariable Long id) {
-//        return (ResponseEntity)this.showtimeService.findAllByRoom(id).map((showtime) -> {
-//            return new ResponseEntity(showtime, HttpStatus.OK);
-//        }).orElse(new ResponseEntity(HttpStatus.NOT_FOUND));
-//    }
-
     @PostMapping
     public Showtime save(@RequestBody Showtime showtime) {
         showtime.setStatus(1);
@@ -60,7 +45,7 @@ public class ShowtimeResource {
         def.setTime(date);
         showtime.setCreatedAt(date);
         showtime.setUpdateAt(date);
-        showtime.setMovie(movieService.findByID(showtime.getMovie().getId()).get());
+        showtime.setMovie(movieService.get(showtime.getMovie().getId()).get());
 
         //date start
         String start[] = showtime.getTimeStart().split(":");
@@ -72,7 +57,7 @@ public class ShowtimeResource {
 
         if(startT.before(def) == false) {
             // Date end
-            int movietime = movieService.findByID(showtime.getMovie().getId()).get().getMinutes();
+            int movietime = movieService.get(showtime.getMovie().getId()).get().getMinutes();
             int hours = movietime / 60;
             int minutes = movietime % 60;
             Calendar endT = Calendar.getInstance();
@@ -95,7 +80,7 @@ public class ShowtimeResource {
                             cbyM.setTime(maxDatebyM);
                             startT.set(Calendar.HOUR_OF_DAY, startT.get(Calendar.HOUR) - 1);
                             if(startT.getTime().after(cbyM.getTime())) {
-                                showtime.setRoomEntity(roomService.findByID(rooms.get(i).getId()).get());
+                                showtime.setRoomEntity(roomService.get(rooms.get(i).getId()).get());
                                 return this.showtimeService.save(showtime);
                             }
                             else {
@@ -104,7 +89,7 @@ public class ShowtimeResource {
                             }
                         }
                     } catch (Exception e) {
-                        showtime.setRoomEntity(roomService.findByID(rooms.get(i).getId()).get());
+                        showtime.setRoomEntity(roomService.get(rooms.get(i).getId()).get());
                         return this.showtimeService.save(showtime);
                     }
                 }
@@ -113,7 +98,7 @@ public class ShowtimeResource {
                         Date maxDate = shows.stream().map(s -> s.getDateEnd()).max(Date::compareTo).get();
                         getT.setTime(maxDate);
                         if(getT.getTime().before(showtime.getDateStart()) == true) {
-                            showtime.setRoomEntity(roomService.findByID(rooms.get(i).getId()).get());
+                            showtime.setRoomEntity(roomService.get(rooms.get(i).getId()).get());
                             startT.set(Calendar.MINUTE, startT.get(Calendar.MINUTE) + 10);
                             if (shows.get(j).getMovie().getId() == showtime.getMovie().getId()) {
                                 getT.set(Calendar.HOUR_OF_DAY, getT.get(Calendar.HOUR) +1);
@@ -139,8 +124,8 @@ public class ShowtimeResource {
 //                                System.out.println(showtime.getDateStart());
 //                                System.out.println(showtime.getDateStart().after(cbyM.getTime()));
 //                                if(showtime.getDateStart().after(cbyM.getTime()) == false) {
-                                    showtime.setRoomEntity(roomService.findByID(rooms.get(i).getId()).get());
-                                    return this.showtimeService.save(showtime);
+                                showtime.setRoomEntity(roomService.get(rooms.get(i).getId()).get());
+                                return this.showtimeService.save(showtime);
 //                                }
 //                                else {
 //                                    System.out.println("hon 1 tieng moi dc");
@@ -174,7 +159,7 @@ public class ShowtimeResource {
 
     @GetMapping({"/{id}"})
     public ResponseEntity findOne(@PathVariable Long id) {
-        return (ResponseEntity)this.showtimeService.findOne(id).map((showtime) -> {
+        return (ResponseEntity)this.showtimeService.get(id).map((showtime) -> {
             return new ResponseEntity(showtime, HttpStatus.OK);
         }).orElse(new ResponseEntity(HttpStatus.NOT_FOUND));
     }

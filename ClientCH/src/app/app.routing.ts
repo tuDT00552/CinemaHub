@@ -1,13 +1,12 @@
 import {NgModule} from '@angular/core';
-import {CommonModule, } from '@angular/common';
+import {CommonModule,} from '@angular/common';
 import {BrowserModule} from '@angular/platform-browser';
 import {Routes, RouterModule} from '@angular/router';
 import {AdminLayoutComponent} from './layouts/admin-layout/admin-layout.component';
 import {AuthLayoutComponent} from './layouts/auth-layout/auth-layout.component';
 import {LoginComponent} from './pages/login/login.component';
-import {PageNotFoundComponent} from './pages/page-not-found/page-not-found.component';
 import {DetailsGuardService} from './shared/service/details-guard.service';
-
+import {PageNotFoundComponent} from './pages/page-not-found/page-not-found.component';
 
 
 
@@ -58,7 +57,12 @@ const routes: Routes = [
       return import('../app/pages/cinema/cinema.module').then(m => m.CinemaModule);
     }
   },
-
+  //
+  // {
+  //       path: 'notfound',
+  //       component: PageNotFoundComponent
+  // }
+  // ,
   {
     path: 'seat',
     component: AdminLayoutComponent,
@@ -66,13 +70,17 @@ const routes: Routes = [
     loadChildren: () => {
       return import('../app/pages/seat/seat.module').then(m => m.SeatModule);
     }
-  }
-  // ,
-  // {
-  //       path: 'notfound',
-  //       component: PageNotFoundComponent
-  // }
-  ,
+  },
+  {
+    path: 'refundTicket',
+    component: AdminLayoutComponent,
+    canActivate: [DetailsGuardService],
+    loadChildren: () => {
+      return import('../app/pages/RefundTicket/refundticket.module').then(m => m.RefundticketModule);
+    }
+  },
+
+
 
   {
     path: '',

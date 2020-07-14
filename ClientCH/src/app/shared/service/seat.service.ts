@@ -21,6 +21,9 @@ export class SeatService {
   create(seat: SeatModel): Observable<SeatModel> {
     return this.http.post<SeatModel>(`${ENDPOINT_URL}/seat`, seat);
   }
+  findByLoaigheAndTenghe(name: any){
+    return this.http.post<any>(`${ENDPOINT_URL}/seat/search`,name)
+  }
 
   update(seat: SeatModel) {
     return this.http.put(`${ENDPOINT_URL}/seat`, seat);

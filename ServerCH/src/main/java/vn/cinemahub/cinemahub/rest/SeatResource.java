@@ -4,9 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import vn.cinemahub.cinemahub.dto.SeachSeatDto;
 import vn.cinemahub.cinemahub.entities.GheEntity;
-import vn.cinemahub.cinemahub.service.RoomService;
-import vn.cinemahub.cinemahub.service.SeatService;
+import vn.cinemahub.cinemahub.serviceImpl.RoomServiceImpl;
+import vn.cinemahub.cinemahub.serviceImpl.SeatServiceImpl;
 
 import java.util.Date;
 import java.util.List;
@@ -17,10 +18,10 @@ import java.util.List;
 public class SeatResource {
     Date date = new Date();
     @Autowired
-    private SeatService seatService;
+    private SeatServiceImpl seatService;
 
     @Autowired
-    private RoomService roomService;
+    private RoomServiceImpl roomService;
 
     @GetMapping
     public List<GheEntity> findAll() {
@@ -32,7 +33,6 @@ public class SeatResource {
         seat.setCreatedAt(date);
         seat.setUpdateAt(date);
         seat.setStatus(1);
-        seat.setRoomEntity(roomService.findbyMaphong(seat.getRoomEntity().getMaphong()).get());
         return this.seatService.save(seat);
     }
 
@@ -45,7 +45,7 @@ public class SeatResource {
 
     @GetMapping({"/{id}"})
     public ResponseEntity findOne(@PathVariable Long id) {
-        return (ResponseEntity)this.seatService.findOne(id).map((gheEntity) -> {
+        return (ResponseEntity)this.seatService.get(id).map((gheEntity) -> {
             return new ResponseEntity(gheEntity, HttpStatus.OK);
         }).orElse(new ResponseEntity(HttpStatus.NOT_FOUND));
     }
@@ -54,5 +54,9 @@ public class SeatResource {
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         this.seatService.delete(id);
         return new ResponseEntity(HttpStatus.OK);
+    }
+    @PostMapping("/search")
+    public List<GheEntity> findByLoaigheAndTengh(@RequestBody SeachSeatDto name){
+        return seatService.findByLoaigheAndTenghe(name.getName());
     }
 }

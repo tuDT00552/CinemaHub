@@ -5,14 +5,11 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import vn.cinemahub.cinemahub.entities.Cinema;
-import vn.cinemahub.cinemahub.entities.GheEntity;
-import vn.cinemahub.cinemahub.entities.Movie;
-import vn.cinemahub.cinemahub.entities.RoomEntity;
-import vn.cinemahub.cinemahub.service.CinemaService;
-import vn.cinemahub.cinemahub.service.MovieService;
-import vn.cinemahub.cinemahub.service.RoomService;
-import vn.cinemahub.cinemahub.service.SeatService;
+import vn.cinemahub.cinemahub.entities.*;
+import vn.cinemahub.cinemahub.serviceImpl.MovieService;
+import vn.cinemahub.cinemahub.serviceImpl.RoleService;
+import vn.cinemahub.cinemahub.serviceImpl.RoomServiceImpl;
+import vn.cinemahub.cinemahub.serviceImpl.SeatServiceImpl;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -31,10 +28,17 @@ public class DataResource {
     private MovieService movieService;
 
     @Autowired
-    private RoomService roomService;
+    private RoomServiceImpl roomService;
 
     @Autowired
-    private SeatService seatService;
+    private SeatServiceImpl seatService;
+
+    @Autowired
+    private RoleService roleService;
+
+
+
+
 
     @GetMapping
     public List<Cinema> Insert() {
@@ -65,6 +69,9 @@ public class DataResource {
                 "https://www.cgv.vn/media/catalog/product/cache/1/image/c5f0a1eff4c394a251036189ccddaacd/g/i/gia_tai_toi_loi___poster_1_.jpg","https://youtu.be/lY_1ptUWQFw","Gia Tài Tội Lỗi kể về một tộc trưởng của một gia đình giàu có và quyền lực đột nhiên qua đời, để lại cho vợ và các con của ông khối tài sản kế thừa không lồ. Tuy nhiên, thật kỳ lạ là người con gái yêu quý duy nhất của ông lại chỉ được thừa hưởng một chiếc chìa khóa đầy bí ẩn?",1,c1);
         movies.addAll(Arrays.asList(m1,m2,m3,m4,m5));
 
+
+
+
         List<RoomEntity> rooms = new ArrayList<>();
         RoomEntity r = new RoomEntity(1, c1);
         RoomEntity r1 = new RoomEntity(2, c1);
@@ -93,6 +100,17 @@ public class DataResource {
             roomEntity.setStatus(1);
             roomService.save(roomEntity);
         }
+
+        List<Role> roles= new ArrayList<>();
+        Role ro1 = new Role(1,ERole.ROLE_ADMIN);
+        Role ro2 = new Role(2,ERole.ROLE_USER);
+        roles.addAll(Arrays.asList(ro1,ro2));
+
+        for (Role role : roles) {
+            roleService.save(role);
+        }
+
+
         String[] abc = {"A","B","C","E","G","H"};
         for (int i = 0; i < abc.length; i++) {
             for (int j = 1; j < 13; j++) {

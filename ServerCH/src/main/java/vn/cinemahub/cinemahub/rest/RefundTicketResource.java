@@ -1,13 +1,16 @@
 package vn.cinemahub.cinemahub.rest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import vn.cinemahub.cinemahub.entities.GheEntity;
+import vn.cinemahub.cinemahub.dto.ReTicketDto;
 import vn.cinemahub.cinemahub.entities.RefundTicket;
-import vn.cinemahub.cinemahub.service.RefundTicketService;
-import vn.cinemahub.cinemahub.service.SeatService;
+import vn.cinemahub.cinemahub.entities.Ticket;
+import vn.cinemahub.cinemahub.serviceImpl.RefundTicketServiceImpl;
+import vn.cinemahub.cinemahub.serviceImpl.TicketServiceImpl;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -15,12 +18,12 @@ import java.util.List;
 @RestController
 @RequestMapping({"/api/refundTicket"})
 public class RefundTicketResource {
-    private final RefundTicketService refundTicketService;
 
-    public RefundTicketResource(RefundTicketService refundTicketService) {
-        this.refundTicketService = refundTicketService;
+    @Autowired
+    private RefundTicketServiceImpl refundTicketService;
 
-    }
+    @Autowired
+    private TicketServiceImpl ticketService;
 
     @GetMapping
     public List<RefundTicket> findAll() {
@@ -43,7 +46,7 @@ public class RefundTicketResource {
 
     @GetMapping({"/{id}"})
     public ResponseEntity findOne(@PathVariable Long id) {
-        return (ResponseEntity)this.refundTicketService.findOne(id).map((refundTicket) -> {
+        return (ResponseEntity)this.refundTicketService.get(id).map((refundTicket) -> {
             return new ResponseEntity(refundTicket, HttpStatus.OK);
         }).orElse(new ResponseEntity(HttpStatus.NOT_FOUND));
     }
@@ -53,4 +56,14 @@ public class RefundTicketResource {
         this.refundTicketService.delete(id);
         return new ResponseEntity(HttpStatus.OK);
     }
+
+
+    @PostMapping("/reticket")
+    public RefundTicket reTicket(@RequestBody ReTicketDto refundTicket){
+//        RefundTicket refundTicket1=new RefundTicket();
+//        refundTicket1.setId(refundTicket.getId());
+        return this.refundTicketService.reTicket(refundTicket);
+    }
+
+
 }

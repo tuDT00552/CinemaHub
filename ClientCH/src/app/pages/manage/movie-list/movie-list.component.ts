@@ -8,6 +8,11 @@ import {CinemaModel} from '../../../model/cinema.model';
 import {SeatModel} from '../../../model/seat.model';
 import {ShowtimeModel} from '../../../model/showtime.model';
 import {ShowtimeService} from '../../../shared/service/showtime.service';
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {TicketService} from '../../../shared/service/ticket.service';
+import {TicketModel} from '../../../model/ticket.model';
+import {Router} from '@angular/router';
+import {MovieService} from '../../../shared/service/movie.service';
 
 @Component({
   selector: 'app-movie-list',
@@ -17,23 +22,28 @@ import {ShowtimeService} from '../../../shared/service/showtime.service';
 export class MovieListComponent implements OnInit {
 
   constructor(private cinemaService: CinemaService,
-              private showtimeService: ShowtimeService) {
+              private showtimeService: ShowtimeService,
+              private ticketService: TicketService,
+              private movieService: MovieService,
+              private router: Router,
+              private fb: FormBuilder) {
 
   }
+  isUpdate: any = false;
   @Input() movies: MovieModel[];
   @Input() ciid: number;
   showtimes: ShowtimeModel[];
   seats: SeatModel[];
   select: number;
-
   status = false;
+  ticket: TicketModel;
+  error: string;
 
-
-  sSelect: Array<SeatModel> = [];
 
   ngOnInit(): void {
       this.seats = [];
   }
+
   OnSelect(movie: MovieModel) {
     this.status = !this.status;
     if (this.status) {
@@ -46,8 +56,8 @@ export class MovieListComponent implements OnInit {
     } else {
       this.select = null;
       this.sSelect = null;
-      this.cinemaService.findOne(this.ciid).subscribe((cinema) => {
-        this.movies = cinema.movies;
+      this.movieService.findbyRap(this.ciid).subscribe((mov) => {
+        this.movies = mov;
       });
     }
   }
@@ -56,7 +66,43 @@ export class MovieListComponent implements OnInit {
     this.seats = s.roomEntity.gheEntities;
   }
 
+  sSelect: SeatModel;
+  teng: string;
+  giave: number;
+
   seatSelect(s: SeatModel) {
-    this.sSelect.push(s);
+    this.sSelect = s;
+    this.teng = s.tenghe;
+    if(s.loaighe == 1) {
+      this.giave = 200000;
+    }
+    else if(s.loaighe == 2) {
+      this.giave = 100000;
+    }
+    else if(s.loaighe == 3) {
+      this.giave = 150000;
+    }
+  }
+
+
+  clickSelect() {
+    this.ticket = {
+      giave: this.giave,
+      marap: this.ciid,
+      idGhe: this.sSelect.id,
+      tenphim: this.movies[0].tenphim,
+      timeStart: this.showtimes[0].dateStart,
+      timeEnd: this.showtimes[0].dateEnd
+    };
+    this.ticketService.create(this.ticket).subscribe(
+      (data) => {
+        if (data == null) {
+          this.error = "co loi xay ra";
+        }
+        else {
+          this.router.navigateByUrl('/ticket');
+        }
+      },
+      error => console.log(error));
   }
 }

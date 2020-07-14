@@ -13,10 +13,10 @@ export class NavbarComponent implements OnInit {
   public focus;
   public listTitles: any[];
   public location: Location;
-  username: string;
   isLoggedIn = false;
+  username: string;
   constructor(location: Location,  private element: ElementRef, private router: Router,
-              private tokenStorageService: TokenStorageService) {
+              private tokenStorageService : TokenStorageService) {
     this.location = location;
   }
   logout(){

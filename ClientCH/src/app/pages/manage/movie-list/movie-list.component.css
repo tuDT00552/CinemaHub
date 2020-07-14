@@ -24,6 +24,9 @@ img {
   margin: 5px;
 }
 
+.spseat {
+  cursor: pointer;
+}
 
 .active {
   background-color: #bfb0b0;

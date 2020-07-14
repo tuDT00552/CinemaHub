@@ -111,9 +111,11 @@
             <thead class="thead-light">
             <tr>
 <!--              <th scope="col">Mã Vé</th>-->
+              <th scope="col">Mã Vé</th>
               <th scope="col">Tên Phim</th>
               <th scope="col">Mã Ghế</th>
               <th scope="col">Mã Rạp</th>
+              <th scope="col">Mã Phòng</th>
               <th scope="col">Giá Vé</th>
               <th scope="col">Giờ Bắt Đầu</th>
               <th scope="col">Giờ Kết thúc</th>
@@ -129,6 +131,12 @@
 <!--                  </div>-->
 <!--                </div>-->
 <!--              </th>-->
+              <th scope="row">
+                <div class="media align-items-center">
+                  <div class="media-body">
+                    <span class="mb-0 text-sm">{{ticket.id}}</span>
+                  </div>
+                </div>
               <th scope="row">
                 <div class="media align-items-center">
                   <div class="media-body">
@@ -153,6 +161,13 @@
               <th scope="row">
                 <div class="media align-items-center">
                   <div class="media-body">
+                    <span class="mb-0 text-sm">{{ticket.maphong}}</span>
+                  </div>
+                </div>
+              </th>
+              <th scope="row">
+                <div class="media align-items-center">
+                  <div class="media-body">
                     <span class="mb-0 text-sm">{{ticket.giave}}</span>
                   </div>
                 </div>
@@ -160,14 +175,14 @@
               <th scope="row">
                 <div class="media align-items-center">
                   <div class="media-body">
-                    <span class="mb-0 text-sm">{{ticket.timeStart}}</span>
+                    <span class="mb-0 text-sm">{{ ticket.timeStart | date:'medium' }}</span>
                   </div>
                 </div>
               </th>
               <th scope="row">
                 <div class="media align-items-center">
                   <div class="media-body">
-                    <span class="mb-0 text-sm">{{ticket.timeEnd}}</span>
+                    <span class="mb-0 text-sm">{{ ticket.timeEnd | date:'medium' }}</span>
                   </div>
                 </div>
               </th>

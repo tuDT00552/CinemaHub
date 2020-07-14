@@ -4,10 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import vn.cinemahub.cinemahub.entities.Movie;
 import vn.cinemahub.cinemahub.entities.RoomEntity;
-import vn.cinemahub.cinemahub.service.CinemaService;
-import vn.cinemahub.cinemahub.service.RoomService;
+import vn.cinemahub.cinemahub.serviceImpl.CinemaService;
+import vn.cinemahub.cinemahub.serviceImpl.RoomServiceImpl;
 
 import java.util.Date;
 import java.util.List;
@@ -17,7 +16,7 @@ import java.util.List;
 @RequestMapping({"/api/room"})
 public class RoomResource {
     @Autowired
-    private RoomService roomService;
+    private RoomServiceImpl roomService;
 
     @Autowired
     private CinemaService cinemaService;
@@ -33,13 +32,13 @@ public class RoomResource {
         roomEntity.setCreatedAt(date);
         roomEntity.setUpdateAt(date);
         roomEntity.setStatus(1);
-        roomEntity.setRap(cinemaService.findbyMarap(roomEntity.getRap().getMarap()).get());
+        roomEntity.setCinema(cinemaService.findbyMarap(roomEntity.getCinema().getMarap()).get());
         return roomService.save(roomEntity);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<RoomEntity> findOne(@PathVariable Long id) {
-        return roomService.findByID(id).map(room -> new ResponseEntity<>(room, HttpStatus.OK))
+        return roomService.get(id).map(room -> new ResponseEntity<>(room, HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 }

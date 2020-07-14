@@ -6,9 +6,11 @@ export class TicketModel {
     tenphim?: string;
     idGhe?: number;
     marap?: number;
+    maphong?: number;
     giave?: number;
     status?: number;
-    timeStart?: string;
-    timeEnd?: string;
+    date?: Date;
+    timeStart?: Date;
+    timeEnd?: Date;
 
 }
