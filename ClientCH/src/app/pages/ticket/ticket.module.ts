@@ -6,6 +6,7 @@ import {TicketDeleteComponent} from './ticket-delete/ticket-delete.component';
 import {TicketListComponent} from './ticket-list/ticket-list.component';
 import {TicketRoutingModule} from './ticket-routing.module';
 import {Ng2SearchPipeModule} from "ng2-search-filter";
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 
 
 
@@ -17,7 +18,9 @@ import {Ng2SearchPipeModule} from "ng2-search-filter";
     TicketRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule,
   ]
 })
 export class TicketModule { }

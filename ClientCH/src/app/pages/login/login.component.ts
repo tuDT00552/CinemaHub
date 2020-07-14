@@ -15,16 +15,14 @@ export class LoginComponent implements OnInit{
   errorMessage = '';
   roles: string[] = [];
 
-  constructor(private authService: AuthService, private tokenStorage: TokenStorageService
-  , private route: ActivatedRoute,
-              private router: Router) {
+  constructor(private authService: AuthService, private tokenStorage: TokenStorageService) {
   }
 
   ngOnInit() {
-    // if (this.tokenStorage.getToken()) {
-    //   this.isLoggedIn = true;
-    //   this.roles = this.tokenStorage.getUser().roles;
-    // }
+    if (this.tokenStorage.getToken()) {
+      this.isLoggedIn = true;
+      this.roles = this.tokenStorage.getUser().roles;
+    }
   }
   onSubmit() {
     this.authService.login(this.form).subscribe(

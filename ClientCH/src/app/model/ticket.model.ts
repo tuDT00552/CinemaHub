@@ -6,10 +6,12 @@ export class TicketModel {
     tenphim?: string;
     idGhe?: number;
     marap?: number;
+    maphong?: number;
     giave?: number;
     status?: number;
     timeStart?: Date;
     timeEnd?: Date;
     lichchieu?: number;
     order?: OrderModel;
+    date?: Date;
 }

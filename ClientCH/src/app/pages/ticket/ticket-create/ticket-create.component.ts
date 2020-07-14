@@ -40,6 +40,7 @@ export class TicketCreateComponent implements OnInit {
       tenphim: ['', Validators.required],
       idGhe: ['', Validators.required],
       marap: ['', Validators.required],
+      maphong: ['', Validators.required],
       giave: ['', Validators.required],
       timeStart: ['', Validators.required],
       timeEnd: ['', Validators.required],
@@ -56,6 +57,7 @@ export class TicketCreateComponent implements OnInit {
           tenphim: ticket.tenphim,
           idGhe: ticket.idGhe,
           marap: ticket.marap,
+          maphong: ticket.maphong,
           giave: ticket.giave,
           timeStart: ticket.timeStart,
           timeEnd: ticket.timeEnd

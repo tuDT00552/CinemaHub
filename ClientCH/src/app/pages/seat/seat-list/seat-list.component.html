@@ -104,8 +104,13 @@
             <h3 class="mb-0 right"><a class="btn btn-sm btn-primary" href="seat/create"><i class="ni ni-fat-add"></i>Seat</a></h3>
           </div>
           <div class="col-2"></div>
-          <div class="search-seat col-8">
-            <input class="form-control" type="text"   name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442;  Start searching for a Seat ">
+
+          <div class="form-group col-8">
+            <form [noValidate]="true" [formGroup]="form" (ngSubmit)="doSubmit()">
+               <label class="form-control-label">Tìm Kiếm</label>
+                <input id="name" formControlName="name" class="form-control form-control-alternative" placeholder="Tìm Kiếm" type="text">
+                <button type="submit" class="btn btn-success">Tìm Kiếm</button>
+            </form>
           </div>
 
         </div>
@@ -122,8 +127,8 @@
               <th scope="col">Action</th>
             </tr>
             </thead>
-            <tbody>
-            <tr *ngFor="let seat of seats | filter:searchText">
+            <tbody >
+            <tr *ngFor="let seat of seats ">
               <th scope="row">
                 <div class="media align-items-center">
                   <div class="media-body">
@@ -152,8 +157,8 @@
                   </div>
                 </div>
               </th>
-              <td class="ell">
-                <a class="" href=""><i class="ni ni-collection"></i></a>
+              <td class="action-item">
+<!--                <a class="" href=""><i class="ni ni-collection"></i></a>-->
                 <a class="" [routerLink]="['/seat/update', seat.id]"><i class="ni ni-settings-gear-65"></i></a>
                 <a class="" (click)="goToDelete(seat)"><i class="ni ni-scissors"></i></a>
               </td>

@@ -1,32 +1,35 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {SeatModel} from "../../model/seat.model";
+
 import {ENDPOINT_URL} from "../constants/app.constains";
-import {RefundTicketModule} from "../../model/refundticket";
+
+import {RefundTicketModel} from '../../model/refundticket.model';
+import {SeatModel} from '../../model/seat.model';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class RefundticketService {
   constructor(private http: HttpClient) { }
-  fetch(): Observable<RefundTicketModule[]> {
-    return this.http.get<RefundTicketModule[]>(`${ENDPOINT_URL}/refundticket`);
+  fetch(): Observable<RefundTicketModel[]> {
+    return this.http.get<RefundTicketModel[]>(`${ENDPOINT_URL}/refundTicket`);
   }
 
-  findOne(id: any): Observable<RefundTicketModule> {
-    return this.http.get<RefundTicketModule>(`${ENDPOINT_URL}/refundticket/${id}`);
+  findOne(id: any): Observable<RefundTicketModel> {
+    return this.http.get<RefundTicketModel>(`${ENDPOINT_URL}/refundTicket/${id}`);
   }
 
-  create(refundticket: RefundTicketModule): Observable<RefundTicketModule> {
-    return this.http.post<RefundTicketModule>(`${ENDPOINT_URL}/refundticket`, refundticket);
+  create(refundticket: RefundTicketModel): Observable<RefundTicketModel> {
+    return this.http.post<RefundTicketModel>(`${ENDPOINT_URL}/refundTicket`, refundticket);
   }
 
-  update(refundticket: RefundTicketModule) {
-    return this.http.put(`${ENDPOINT_URL}/refundticket`, refundticket);
+  update(refundticket: RefundTicketModel) {
+    return this.http.put(`${ENDPOINT_URL}/refundTicket`, refundticket);
   }
 
   delete(id: number) {
-    return this.http.delete(`${ENDPOINT_URL}/refundticket/${id}`);
+    return this.http.delete(`${ENDPOINT_URL}/refundTicket/${id}`);
   }
 }
