@@ -28,6 +28,10 @@ public class Ticket {
     @Column(name = "MARAP")
     private long marap;
 
+
+    @Column(name = "LICHCHIEU")
+    private long lichchieu;
+
     @Column(name = "GIAVE")
     private long giave;
 
@@ -47,6 +51,26 @@ public class Ticket {
     @LastModifiedDate
     @Column(name = "update_at")
     private Date updateAt;
+
+    @ManyToOne
+    @JoinColumn(name = "order_id", referencedColumnName = "ORDERID")
+    private Order order;
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
+    public long getLichchieu() {
+        return lichchieu;
+    }
+
+    public void setLichchieu(long lichchieu) {
+        this.lichchieu = lichchieu;
+    }
 
     public Long getId() {
         return id;

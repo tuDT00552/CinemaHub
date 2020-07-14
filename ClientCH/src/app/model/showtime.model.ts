@@ -6,6 +6,7 @@ export class ShowtimeModel {
   createdAt?: Date;
   updateAt?: Date;
   dateStart?: Date;
+  price?: number;
   dateEnd?: Date;
   timeStart?: string;
   status?: number;

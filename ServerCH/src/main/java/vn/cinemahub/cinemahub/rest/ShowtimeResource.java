@@ -102,8 +102,6 @@ public class ShowtimeResource {
                             startT.set(Calendar.MINUTE, startT.get(Calendar.MINUTE) + 10);
                             if (shows.get(j).getMovie().getId() == showtime.getMovie().getId()) {
                                 getT.set(Calendar.HOUR_OF_DAY, getT.get(Calendar.HOUR) +1);
-                                System.out.println(getT.getTime());
-                                System.out.println(showtime.getDateStart());
                                 if(getT.getTime().before(showtime.getDateStart())) {
                                     startT.set(Calendar.HOUR_OF_DAY, startT.get(Calendar.HOUR));
                                     showtime.setDateStart(startT.getTime());

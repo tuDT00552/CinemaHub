@@ -13,6 +13,9 @@ import { ComponentsModule } from './components/components.module';
 import { CinemaModule } from './pages/cinema/cinema.module';
 import { ManageRoutingModule } from './pages/manage/manage-routing.module';
 import { ManageModule } from './pages/manage/manage.module';
+
+import {Ng2SearchPipeModule} from 'ng2-search-filter';
+
 import { BoardAdminComponent } from './pages/board-admin/board-admin.component';
 import { BoardUserComponent } from './pages/board-user/board-user.component';
 import { BoardModeratorComponent } from './pages/board-moderator/board-moderator.component';
@@ -23,10 +26,9 @@ import {LoginComponent} from './pages/login/login.component';
 import {RegisterComponent} from './pages/register/register.component';
 import {LocalStorageService} from './shared/service/local-storage.service';
 import { RoomDeleteComponent } from './pages/room/room-delete/room-delete.component';
-import { PticketCreateComponent } from './pages/pticket/pticket-create/pticket-create.component';
-import { PticketDeleteComponent } from './pages/pticket/pticket-delete/pticket-delete.component';
-import { PticketListComponent } from './pages/pticket/pticket-list/pticket-list.component';
-import {Ng2SearchPipeModule} from 'ng2-search-filter';
+
+import { MovieRoutingModule } from './pages/movie/movie-routing.module';
+import { MovieModule } from './pages/movie/movie.module';
 
 
 @NgModule({
@@ -44,6 +46,9 @@ import {Ng2SearchPipeModule} from 'ng2-search-filter';
     ManageModule,
     ReactiveFormsModule,
     Ng2SearchPipeModule,
+    MovieRoutingModule,
+    MovieModule,
+    ReactiveFormsModule
   ],
   declarations: [
     AppComponent,
@@ -56,9 +61,7 @@ import {Ng2SearchPipeModule} from 'ng2-search-filter';
     LoginComponent,
     RegisterComponent,
     RoomDeleteComponent,
-    // PticketCreateComponent,
-    // PticketDeleteComponent,
-    // PticketListComponent
+    RoomDeleteComponent
   ],
   providers: [authInterceptorProviders, LocalStorageService],
 
