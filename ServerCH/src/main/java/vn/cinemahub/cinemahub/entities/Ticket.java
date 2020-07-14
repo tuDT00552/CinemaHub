@@ -1,47 +1,85 @@
 package vn.cinemahub.cinemahub.entities;
 
+import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.Objects;
 
 @Entity
-@Table(name = "Ticket")
+@Table(name = "TICKET")
 @EntityListeners(AuditingEntityListener.class)
-public class Ticket extends BaseEntity{
-//    private long idDatve;
-//    private long date;
-    private long maVe;
+public class Ticket {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "TK_SEQ")
+    @SequenceGenerator(sequenceName = "TICKET_SEQ", allocationSize = 1, name = "TK_SEQ")
+    @Column(name = "ID")
+    private Long id;
+
+    @Column(name = "TENPHIM")
     private String tenphim;
+
+    @Column(name = "IDGHE")
     private long idGhe;
+
+    @Column(name = "MARAP")
     private long marap;
+
+
+    @Column(name = "LICHCHIEU")
+    private long lichchieu;
+
+    @Column(name = "GIAVE")
     private long giave;
+
+    @Column(name = "STATUS")
     private int status;
+
+    @Column(name = "TIMESTART")
     private String timeStart;
+
+    @Column(name = "TIMEEND")
     private String timeEnd;
 
-    @Basic
-    @Column(name = "MAVE")
-    public long getMaVe() {
-        return maVe;
+    @CreatedDate
+    @Column(name = "created_at", nullable = false, updatable = false)
+    private Date createdAt;
+
+    @LastModifiedDate
+    @Column(name = "update_at")
+    private Date updateAt;
+
+    @ManyToOne
+    @JoinColumn(name = "order_id", referencedColumnName = "ORDERID")
+    private Order order;
+
+    public Order getOrder() {
+        return order;
     }
 
-    public void setMaVe(long maVe) {
-        this.maVe = maVe;
+    public void setOrder(Order order) {
+        this.order = order;
     }
 
-    @Basic
-    @Column(name = "STATUS")
-    public int getStatus() {
-        return status;
+    public long getLichchieu() {
+        return lichchieu;
     }
 
-    public void setStatus(int status) {
-        this.status = status;
+    public void setLichchieu(long lichchieu) {
+        this.lichchieu = lichchieu;
     }
 
-    @Basic
-    @Column(name = "TENPHIM")
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getTenphim() {
         return tenphim;
     }
@@ -50,8 +88,6 @@ public class Ticket extends BaseEntity{
         this.tenphim = tenphim;
     }
 
-    @Basic
-    @Column(name = "ID_GHE")
     public long getIdGhe() {
         return idGhe;
     }
@@ -60,8 +96,6 @@ public class Ticket extends BaseEntity{
         this.idGhe = idGhe;
     }
 
-    @Basic
-    @Column(name = "MARAP")
     public long getMarap() {
         return marap;
     }
@@ -70,14 +104,20 @@ public class Ticket extends BaseEntity{
         this.marap = marap;
     }
 
-    @Basic
-    @Column(name = "GIAVE")
     public long getGiave() {
         return giave;
     }
 
     public void setGiave(long giave) {
         this.giave = giave;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     public String getTimeStart() {
@@ -96,5 +136,19 @@ public class Ticket extends BaseEntity{
         this.timeEnd = timeEnd;
     }
 
+    public Date getCreatedAt() {
+        return createdAt;
+    }
 
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Date getUpdateAt() {
+        return updateAt;
+    }
+
+    public void setUpdateAt(Date updateAt) {
+        this.updateAt = updateAt;
+    }
 }

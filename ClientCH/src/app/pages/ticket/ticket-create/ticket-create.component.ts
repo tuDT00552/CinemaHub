@@ -99,4 +99,5 @@ export class TicketCreateComponent implements OnInit {
   getCinema() {
 
   }
+
 }

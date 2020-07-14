@@ -7,6 +7,8 @@ import {CinemaDeleteComponent} from '../../cinema/cinema-delete/cinema-delete.co
 import {RoomModel} from '../../../model/room.model';
 import {MovieModel} from '../../../model/movie.model';
 import {SeatModel} from '../../../model/seat.model';
+import {MovieService} from '../../../shared/service/movie.service';
+import {TicketModel} from '../../../model/ticket.model';
 
 @Component({
   selector: 'app-manage',
@@ -19,9 +21,11 @@ export class ManageComponent implements OnInit {
   movies: MovieModel[];
   seats: SeatModel[];
   options: string;
-  ciid: number;
+  cinema: CinemaModel;
 
-  constructor(private cinemaService: CinemaService, private eventManagement: EventManagement,
+  constructor(private cinemaService: CinemaService,
+              private movieService: MovieService,
+              private eventManagement: EventManagement,
               public modal: NgbModal) {
   }
 
@@ -32,20 +36,19 @@ export class ManageComponent implements OnInit {
   loadCinemas() {
     this.cinemaService.fetch().subscribe(cinemas => {
       this.cinemas = cinemas;
-      this.rooms = cinemas[0].roomEntities;
       this.options = cinemas[0].tenrap;
-      this.movies = cinemas[0].movies;
-      this.ciid = cinemas[0].id;
+      this.cinema = cinemas[0];
+      this.movieService.findbyRap(cinemas[0].id).subscribe((movie) => {
+        this.movies = movie;
+      });
     }, error => console.log(error));
   }
 
   onSelect(cinema: any) {
     this.options = cinema.tenrap;
-    this.ciid = cinema.id;
-    // this.movies = cinema.movies;
-    // tslint:disable-next-line:no-shadowed-variable
-    cinema = this.cinemaService.findOne(cinema.id).subscribe((cinema) => {
-      this.movies = cinema.movies;
+    this.cinema = cinema;
+    this.movieService.findbyRap(cinema.id).subscribe((movie) => {
+      this.movies = movie;
     });
   }
 }

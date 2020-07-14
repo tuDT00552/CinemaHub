@@ -1,72 +1,80 @@
 package vn.cinemahub.cinemahub.entities;
 
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.Data;
+import lombok.*;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
-@Table(name = "movie")
+@Table(name = "MOVIE")
 @EntityListeners(AuditingEntityListener.class)
-public class Movie extends BaseEntity {
+public class Movie {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "MV_SEQ")
+    @SequenceGenerator(sequenceName = "MOVIE_SEQ", allocationSize = 1, name = "MV_SEQ")
+    @Column(name = "ID")
+    private Long id;
 
-    @Column(name = "maphim")
+    @Column(name = "MAPHIM")
     private int maphim;
 
-    @Column(name = "tenphim")
+    @Column(name = "TENPHIM")
     private String tenphim;
 
-    @Column(name = "loaiphim")
+    @Column(name = "LOAIPHIM")
     private String loaiphim;
 
-    @Column(name = "theloai")
+    @Column(name = "THELOAI")
     private String theloai;
 
-    @Column(name = "minutes")
+    @Column(name = "MINUTES")
     private int minutes;
 
-    @Column(name = "namsx")
+    @Column(name = "NAMSX")
     private int namsx;
 
-    @Column(name = "image")
+    @Column(name = "IMAGE")
     private String image;
 
-    @Column(name = "trailer")
+    @Column(name = "TRAILER")
     private String trailer;
 
-    @Column(name = "mota", length = 500)
+    @Column(name = "DES", length = 500)
     private String mota;
 
-    @Column(name = "status")
+    @Column(name = "STATUS")
     private int status;
 
-    //    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//    @JoinTable(name = "cinema_movie",
-//            joinColumns = { @JoinColumn(name = "movie_id") },
-//            inverseJoinColumns = {@JoinColumn(name = "cinema_id") })
-//    private Set<Cinema> cinemas = new HashSet<>();
+    @CreatedDate
+    @Column(name = "created_at", nullable = false, updatable = false)
+    private Date createdAt;
 
-    @JsonBackReference
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "marap", referencedColumnName = "MARAP")
+    @LastModifiedDate
+    @Column(name = "update_at")
+    private Date updateAt;
+
+    @ManyToOne
+    @JoinColumn(name = "cinema_id", referencedColumnName = "id")
     private Cinema cinema;
 
-//    @JsonManagedReference(value="phim")
-    @JsonIgnore
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "movie",cascade = CascadeType.ALL)
-    @Fetch(value = FetchMode.SELECT)
-    private List<Showtime> showtimes = new ArrayList<>();
+    public Cinema getCinema() {
+        return cinema;
+    }
+
+    public void setCinema(Cinema cinema) {
+        this.cinema = cinema;
+    }
 
     public Movie() {
     }
@@ -85,12 +93,12 @@ public class Movie extends BaseEntity {
         this.cinema = cinema;
     }
 
-    public int getMinutes() {
-        return minutes;
+    public Long getId() {
+        return id;
     }
 
-    public void setMinutes(int minutes) {
-        this.minutes = minutes;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public int getMaphim() {
@@ -123,6 +131,14 @@ public class Movie extends BaseEntity {
 
     public void setTheloai(String theloai) {
         this.theloai = theloai;
+    }
+
+    public int getMinutes() {
+        return minutes;
+    }
+
+    public void setMinutes(int minutes) {
+        this.minutes = minutes;
     }
 
     public int getNamsx() {
@@ -165,11 +181,19 @@ public class Movie extends BaseEntity {
         this.status = status;
     }
 
-    public Cinema getCinema() {
-        return cinema;
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCinema(Cinema cinema) {
-        this.cinema = cinema;
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Date getUpdateAt() {
+        return updateAt;
+    }
+
+    public void setUpdateAt(Date updateAt) {
+        this.updateAt = updateAt;
     }
 }

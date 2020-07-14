@@ -1,79 +1,62 @@
 package vn.cinemahub.cinemahub.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.Data;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
-import org.hibernate.annotations.NaturalId;
+import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
 import javax.persistence.*;
-import java.io.Serializable;
-import java.util.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "CINEMA")
 @EntityListeners(AuditingEntityListener.class)
-public class Cinema extends BaseEntity implements Serializable {
-    @NaturalId
-    @Column(name = "marap")
+public class Cinema {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "CIA_SEQ")
+    @SequenceGenerator(sequenceName = "CINEMA_SEQ", allocationSize = 1, name = "CIA_SEQ")
+    @Column(name = "ID")
+    private Long id;
+
+    @Column(name = "MARAP")
     private int marap;
 
-    @Column(name = "tenrap")
+    @Column(name = "TENRAP")
     private String tenrap;
 
-    @Column(name = "diachi")
+    @Column(name = "DIACHI")
     private String diachi;
 
-    @Column(name = "gioithieu")
-    private String gioithieurap;
+    @Column(name = "GIOITHIEU")
+    private String gioithieu;
 
-    @Column(name = "status")
+    @Column(name = "STATUS")
     private int status;
 
-//    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//    @JoinTable(name = "cinema_movie",
-//            joinColumns = { @JoinColumn(name = "cinema_id") },
-//            inverseJoinColumns = {@JoinColumn(name = "movie_id") })
-//    private Set<Movie> movies = new HashSet<>();
+    @CreatedDate
+    @Column(name = "created_at", nullable = false, updatable = false)
+    private Date createdAt;
 
-    @JsonManagedReference
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "cinema",cascade = CascadeType.ALL)
-    @Fetch(value = FetchMode.SELECT)
-    private List<Movie> movies = new ArrayList<>();
-
-
-    @JsonManagedReference
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "rap",cascade = CascadeType.ALL)
-    @Fetch(value = FetchMode.SELECT)
-    private List<RoomEntity> roomEntities = new ArrayList<>();
-
-    public List<Movie> getMovies() {
-        return movies;
-    }
-
-    public List<RoomEntity> getRoomEntities() {
-        return roomEntities;
-    }
-
-    public void setRoomEntities(List<RoomEntity> roomEntities) {
-        this.roomEntities = roomEntities;
-    }
-
-    public void setMovies(List<Movie> movies) {
-        this.movies = movies;
-    }
+    @LastModifiedDate
+    @Column(name = "update_at")
+    private Date updateAt;
 
     public Cinema() {
     }
 
-    public Cinema(int marap, String tenrap, String diachi, String gioithieurap, int status) {
+    public Cinema(int marap, String tenrap, String diachi, String gioithieu, int status) {
         this.marap = marap;
         this.tenrap = tenrap;
         this.diachi = diachi;
-        this.gioithieurap = gioithieurap;
+        this.gioithieu = gioithieu;
         this.status = status;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public int getMarap() {
@@ -100,12 +83,12 @@ public class Cinema extends BaseEntity implements Serializable {
         this.diachi = diachi;
     }
 
-    public String getGioithieurap() {
-        return gioithieurap;
+    public String getGioithieu() {
+        return gioithieu;
     }
 
-    public void setGioithieurap(String gioithieurap) {
-        this.gioithieurap = gioithieurap;
+    public void setGioithieu(String gioithieu) {
+        this.gioithieu = gioithieu;
     }
 
     public int getStatus() {
@@ -114,5 +97,21 @@ public class Cinema extends BaseEntity implements Serializable {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Date getUpdateAt() {
+        return updateAt;
+    }
+
+    public void setUpdateAt(Date updateAt) {
+        this.updateAt = updateAt;
     }
 }

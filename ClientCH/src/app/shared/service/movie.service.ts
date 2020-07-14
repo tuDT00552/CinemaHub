@@ -15,6 +15,10 @@ export class MovieService {
     return this.http.get<MovieModel[]>(`${ENDPOINT_URL}/movie`);
   }
 
+  findbyRap(id: any): Observable<MovieModel[]> {
+    return this.http.get<MovieModel[]>(`${ENDPOINT_URL}/movie/c/${id}`);
+  }
+
   findOne(id: any): Observable<MovieModel> {
     return this.http.get<MovieModel>(`${ENDPOINT_URL}/movie/${id}`);
   }

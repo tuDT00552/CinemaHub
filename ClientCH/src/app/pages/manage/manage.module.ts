@@ -8,11 +8,13 @@ import { RoomListComponent } from './room-list/room-list.component';
 import { SeatListComponent } from './seat-list/seat-list.component';
 import {ComponentsModule} from '../../components/components.module';
 import {IgxDropDownModule, IgxToggleModule} from 'igniteui-angular';
+import { TicketComponent } from './ticket/ticket.component';
+
 
 
 
 @NgModule({
-  declarations: [ManageComponent, MovieListComponent, RoomListComponent, SeatListComponent],
+  declarations: [ManageComponent, MovieListComponent, RoomListComponent, SeatListComponent, TicketComponent],
   imports: [
     CommonModule,
     ManageRoutingModule,

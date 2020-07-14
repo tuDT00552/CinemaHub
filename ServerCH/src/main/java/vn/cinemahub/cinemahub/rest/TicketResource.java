@@ -1,10 +1,12 @@
 package vn.cinemahub.cinemahub.rest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import vn.cinemahub.cinemahub.entities.Ticket;
-import vn.cinemahub.cinemahub.service.TicketService;
+import vn.cinemahub.cinemahub.serviceImpl.OrderService;
+import vn.cinemahub.cinemahub.serviceImpl.TicketServiceImpl;
 
 import java.util.Date;
 import java.util.List;
@@ -13,9 +15,12 @@ import java.util.List;
 @RestController
 @RequestMapping({"/api/ticket"})
 public class TicketResource {
-    private final TicketService ticketService;
+    private final TicketServiceImpl ticketService;
 
-    public TicketResource(TicketService ticketService) {
+    @Autowired
+    private OrderService orderService;
+
+    public TicketResource(TicketServiceImpl ticketService) {
 
         this.ticketService = ticketService;
     }
@@ -25,12 +30,23 @@ public class TicketResource {
         return ticketService.findAll();
     }
 
+    @GetMapping({"/s/{id}"})
+    public List<Ticket> findbyShow(@PathVariable Long id) {
+        return ticketService.findbyShow(id);
+    }
+
+    @GetMapping({"/o/{id}"})
+    public List<Ticket> findbyOrd(@PathVariable Long id) {
+        return ticketService.findbyOrdID(id);
+    }
+
     @PostMapping
     public Ticket save(@RequestBody Ticket ticket) {
         Date date = new Date();
         ticket.setCreatedAt(date);
         ticket.setUpdateAt(date);
         ticket.setStatus(1);
+        ticket.setOrder(orderService.findbyOid(ticket.getOrder().getOrderid()).get());
         return this.ticketService.save(ticket);
     }
 
@@ -42,7 +58,7 @@ public class TicketResource {
 
     @GetMapping({"/{id}"})
     public ResponseEntity findOne(@PathVariable Long id) {
-        return (ResponseEntity)this.ticketService.findOne(id).map((ticket) -> {
+        return (ResponseEntity)this.ticketService.get(id).map((ticket) -> {
             return new ResponseEntity(ticket, HttpStatus.OK);
         }).orElse(new ResponseEntity(HttpStatus.NOT_FOUND));
     }

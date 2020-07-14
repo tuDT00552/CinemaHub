@@ -2,6 +2,9 @@ package vn.cinemahub.cinemahub.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
@@ -10,17 +13,88 @@ import java.util.Date;
 @Entity
 @Table(name = "SHOWTIME")
 @EntityListeners(AuditingEntityListener.class)
-public class Showtime extends BaseEntity {
+public class Showtime {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "SHT_SEQ")
+    @SequenceGenerator(sequenceName = "SHOW_SEQ", allocationSize = 1, name = "SHT_SEQ")
+    @Column(name = "ID")
+    private Long id;
+
+    @Column(name = "DATESTART")
     private Date dateStart;
+
+    @Column(name = "DATEEND")
     private Date dateEnd;
+
+    @Column(name = "TIMESTART")
     private String timeStart;
+
+    @Column(name = "PRICE")
+    private int price;
+
+    @Column(name = "STATUS")
     private int status;
-    public int getStatus() {
-        return status;
+
+    @CreatedDate
+    @Column(name = "created_at", nullable = false, updatable = false)
+    private Date createdAt;
+
+    @LastModifiedDate
+    @Column(name = "update_at")
+    private Date updateAt;
+
+    public Showtime() {
     }
 
-    public void setStatus(int status) {
+    public Showtime(Long id, Date dateStart, Date dateEnd, String timeStart,int price, int status, Date createdAt, Date updateAt) {
+        this.id = id;
+        this.dateStart = dateStart;
+        this.dateEnd = dateEnd;
+        this.timeStart = timeStart;
+        this.price = price;
         this.status = status;
+        this.createdAt = createdAt;
+        this.updateAt = updateAt;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "room_id", referencedColumnName = "id")
+    private RoomEntity roomEntity;
+
+    @ManyToOne
+    @JoinColumn(name = "movie_id", referencedColumnName = "id")
+    private Movie movie;
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public Movie getMovie() {
+        return movie;
+    }
+
+    public void setMovie(Movie movie) {
+        this.movie = movie;
+    }
+
+    public RoomEntity getRoomEntity() {
+        return roomEntity;
+    }
+
+    public void setRoomEntity(RoomEntity roomEntity) {
+        this.roomEntity = roomEntity;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Date getDateStart() {
@@ -39,37 +113,35 @@ public class Showtime extends BaseEntity {
         this.dateEnd = dateEnd;
     }
 
-    public Movie getMovie() {
-        return movie;
-    }
-
-    public void setMovie(Movie movie) {
-        this.movie = movie;
-    }
-
-//    @JsonBackReference(value="phim")
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "phimid")
-    private Movie movie;
-
-//    @JsonBackReference(value="phong")
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "roomid")
-    private RoomEntity roomEntity;
-
-    public RoomEntity getRoomEntity() {
-        return roomEntity;
-    }
-
-    public void setRoomEntity(RoomEntity roomEntity) {
-        this.roomEntity = roomEntity;
-    }
-
     public String getTimeStart() {
         return timeStart;
     }
 
     public void setTimeStart(String timeStart) {
         this.timeStart = timeStart;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Date getUpdateAt() {
+        return updateAt;
+    }
+
+    public void setUpdateAt(Date updateAt) {
+        this.updateAt = updateAt;
     }
 }

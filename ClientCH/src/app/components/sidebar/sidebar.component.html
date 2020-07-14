@@ -96,13 +96,17 @@
                   <i class="ni ni-box-2 text-pink"></i>
                   DashBoard
               </a>
+            <a  routerLinkActive="active" routerLink="/cinema" class="nav-link"  *ngIf="showAdmin">
+              <i class="ni ni-tv-2 text-pink"></i>
+              Cinema
+            </a>
             <a  routerLinkActive="active" routerLink="/manage" class="nav-link"    *ngIf="showAdmin">
               <i class="ni ni-box-2 text-pink"></i>
               Manage
             </a>
-            <a  routerLinkActive="active" routerLink="/cinema" class="nav-link"  *ngIf="showAdmin">
-              <i class="ni ni-tv-2 text-pink"></i>
-              Cinema
+            <a  routerLinkActive="active" routerLink="/order" class="nav-link"  *ngIf="showAdmin">
+              <i class="ni ni-box-2 text-pink"></i>
+              Order
             </a>
             <a  routerLinkActive="active" routerLink="/seat" class="nav-link"    *ngIf="showAdmin">
               <i class="ni ni-box-2 text-pink"></i>
@@ -128,7 +132,10 @@
               <i class="ni ni-box-2 text-pink"></i>
               Showtime
             </a>
-
+            <a  routerLinkActive="active" routerLink="/movie" class="nav-link"    *ngIf="showAdmin">
+              <i class="ni ni-box-2 text-pink"></i>
+              Movie
+            </a>
           </li>
       </ul>
       <!-- Divider -->

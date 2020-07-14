@@ -30,6 +30,7 @@ export class ShowtimeCreateComponent implements OnInit {
               private route: ActivatedRoute,
               private showtimeService: ShowtimeService,
               private cinemaService: CinemaService,
+              private movieService: MovieService,
               private roomService: RoomService,
               private moviesService: MovieService) {
   }
@@ -41,6 +42,7 @@ export class ShowtimeCreateComponent implements OnInit {
       dateStart: ['', Validators.required],
       moviez: ['', Validators.required],
       marap: ['', Validators.required],
+      price: ['', Validators.required],
       timeStart: ['', Validators.required],
     });
 
@@ -49,6 +51,7 @@ export class ShowtimeCreateComponent implements OnInit {
       if (this.isUpdate) {
         this.form.patchValue({
           id: showtime.id,
+          price: showtime.price,
           dateStart: showtime.dateStart,
           roomEntity: showtime.roomEntity,
           movie: showtime.movie,
@@ -80,7 +83,9 @@ export class ShowtimeCreateComponent implements OnInit {
 
   getCinema() {
     this.cinemaService.findOne(this.cID).subscribe((cinema) => {
-      this.movies = cinema.movies;
+      this.movieService.findbyRap(this.cID).subscribe((movie) => {
+        this.movies = movie;
+      });
       this.rooms = cinema.roomEntities;
     });
   }

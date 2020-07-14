@@ -5,8 +5,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import vn.cinemahub.cinemahub.entities.GheEntity;
-import vn.cinemahub.cinemahub.service.RoomService;
-import vn.cinemahub.cinemahub.service.SeatService;
+import vn.cinemahub.cinemahub.serviceImpl.RoomServiceImpl;
+import vn.cinemahub.cinemahub.serviceImpl.SeatServiceImpl;
 
 import java.util.Date;
 import java.util.List;
@@ -17,14 +17,19 @@ import java.util.List;
 public class SeatResource {
     Date date = new Date();
     @Autowired
-    private SeatService seatService;
+    private SeatServiceImpl seatService;
 
     @Autowired
-    private RoomService roomService;
+    private RoomServiceImpl roomService;
 
     @GetMapping
     public List<GheEntity> findAll() {
         return seatService.findAll();
+    }
+
+    @GetMapping("/r/{id}")
+    public List<GheEntity> findbyRoom(@PathVariable Long id) {
+        return seatService.findbyRoom(id);
     }
 
     @PostMapping
@@ -45,7 +50,7 @@ public class SeatResource {
 
     @GetMapping({"/{id}"})
     public ResponseEntity findOne(@PathVariable Long id) {
-        return (ResponseEntity)this.seatService.findOne(id).map((gheEntity) -> {
+        return (ResponseEntity)this.seatService.get(id).map((gheEntity) -> {
             return new ResponseEntity(gheEntity, HttpStatus.OK);
         }).orElse(new ResponseEntity(HttpStatus.NOT_FOUND));
     }
