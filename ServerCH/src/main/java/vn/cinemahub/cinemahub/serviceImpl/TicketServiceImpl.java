@@ -22,18 +22,14 @@ public class TicketServiceImpl implements DAO<Ticket> {
 
     public List<Ticket> findbyShow(Long idshow) {
         return this.ticketRepository.findbyShow(idshow);
-		
+    }
+
     @Override
     public Optional<Ticket> get(Long id) {
         return ticketRepository.findById(id);
     }
 
-    public List<Ticket> findbyOrdID(Long ordid) { return this.ticketRepository.findbyOrdID(ordid); };
-
-    @Override
-    public Optional<Ticket> get(Long id) {
-        return ticketRepository.findById(id);
-    }
+    public List<Ticket> findbyOrdID(Long ordid) { return this.ticketRepository.findbyOrdID(ordid); }
 
     @Override
     public Ticket save(Ticket ticket) {
@@ -49,4 +45,6 @@ public class TicketServiceImpl implements DAO<Ticket> {
     public void delete(Long id) {
         this.ticketRepository.deleteById(id);
     }
+
+    public List<Ticket> findByTicket(Long id){return ticketRepository.findByTicket(id);}
 }

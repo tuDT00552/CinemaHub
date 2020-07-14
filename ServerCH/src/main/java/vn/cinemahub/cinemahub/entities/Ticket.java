@@ -28,7 +28,6 @@ public class Ticket {
     @Column(name = "MARAP")
     private long marap;
 
-
     @Column(name = "LICHCHIEU")
     private long lichchieu;
 

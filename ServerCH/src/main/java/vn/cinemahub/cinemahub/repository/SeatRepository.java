@@ -13,4 +13,7 @@ import java.util.Optional;
 public interface SeatRepository extends JpaRepository<GheEntity, Long> {
     @Query("SELECT g FROM GheEntity g where g.roomEntity.id = :roomid")
     List<GheEntity> findbyRoom(Long roomid);
+
+    @Query("SELECT s FROM GheEntity s WHERE lower(s.loaighe)=lower(?1) or lower(s.tenghe)=lower(?1) ")
+    List<GheEntity> findByLoaigheAndTenghe(String name);
 }

@@ -14,6 +14,4 @@ export class TicketModel {
     lichchieu?: number;
     order?: OrderModel;
     date?: Date;
-    timeStart?: Date;
-    timeEnd?: Date;
 }

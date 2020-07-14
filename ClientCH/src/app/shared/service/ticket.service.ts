@@ -21,10 +21,7 @@ export class TicketService {
 
   findbyShow(id: any): Observable<TicketModel[]> {
     return this.http.get<TicketModel[]>(`${ENDPOINT_URL}/ticket/s/${id}`);
-
-  // findOnee(id: any): Observable<TicketModel[]> {
-  //   return this.http.get<TicketModel[]>(`${ENDPOINT_URL}/ticket/${id}`);
-  // }
+  }
   findByTicket(id: any): Observable<TicketModel[]> {
     return this.http.get<TicketModel[]>(`${ENDPOINT_URL}/ticket/search/${id}`);
   }
