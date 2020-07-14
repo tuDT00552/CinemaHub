@@ -1,10 +1,10 @@
 import {NgModule} from '@angular/core';
-import {CommonModule,} from '@angular/common';
+import {CommonModule, } from '@angular/common';
 import {BrowserModule} from '@angular/platform-browser';
 import {Routes, RouterModule} from '@angular/router';
 import {AdminLayoutComponent} from './layouts/admin-layout/admin-layout.component';
 import {AuthLayoutComponent} from './layouts/auth-layout/auth-layout.component';
-import {LoginComponent} from "./pages/login/login.component";
+import {LoginComponent} from './pages/login/login.component';
 
 
 
@@ -59,7 +59,13 @@ const routes: Routes = [
     }
   },
 
-
+  {
+    path: 'pticket',
+    component: AdminLayoutComponent,
+    loadChildren: () => {
+      return import('./pages/pticket/pticket.module').then(m => m.PticketModule);
+    }
+  },
 
   {
     path: '',

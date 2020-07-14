@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import vn.cinemahub.cinemahub.entities.Cinema;
 import vn.cinemahub.cinemahub.entities.RefundTicket;
 import vn.cinemahub.cinemahub.serviceImpl.RefundTicketServiceImpl;
 
@@ -14,7 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping({"/api/refundTicket"})
 public class RefundTicketResource {
-
+    Date date = new Date();
     @Autowired
     private RefundTicketServiceImpl refundTicketService;
 
@@ -33,6 +34,7 @@ public class RefundTicketResource {
 
     @PutMapping
     public ResponseEntity<Void> update(@RequestBody RefundTicket refundTicket) {
+        refundTicket.setCreatedAt(date);
         this.refundTicketService.update(refundTicket);
         return new ResponseEntity(HttpStatus.OK);
     }

@@ -3,6 +3,7 @@ package vn.cinemahub.cinemahub.serviceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import vn.cinemahub.cinemahub.entities.Cinema;
 import vn.cinemahub.cinemahub.entities.RefundTicket;
 import vn.cinemahub.cinemahub.repository.RefundTicketRepository;
 import vn.cinemahub.cinemahub.service.DAO;

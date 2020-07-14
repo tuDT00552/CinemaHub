@@ -2,7 +2,7 @@ import { Component, OnInit, ElementRef } from '@angular/core';
 import { ROUTES } from '../sidebar/sidebar.component';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { Router } from '@angular/router';
-import {TokenStorageService} from "../../shared/service/token-storage.service";
+import {TokenStorageService} from '../../shared/service/token-storage.service';
 
 @Component({
   selector: 'app-navbar',
@@ -14,25 +14,25 @@ export class NavbarComponent implements OnInit {
   public listTitles: any[];
   public location: Location;
   constructor(location: Location,  private element: ElementRef, private router: Router,
-              private tokenStorageService : TokenStorageService) {
+              private tokenStorageService: TokenStorageService) {
     this.location = location;
   }
-  logout(){
+  logout() {
     this.tokenStorageService.signOut();
-    window.location.replace('/login')
+    window.location.replace('/login');
   }
 
   ngOnInit() {
     this.listTitles = ROUTES.filter(listTitle => listTitle);
   }
-  getTitle(){
-    var titlee = this.location.prepareExternalUrl(this.location.path());
-    if(titlee.charAt(0) === '#'){
+  getTitle() {
+    let titlee = this.location.prepareExternalUrl(this.location.path());
+    if (titlee.charAt(0) === '#') {
         titlee = titlee.slice( 1 );
     }
 
-    for(var item = 0; item < this.listTitles.length; item++){
-        if(this.listTitles[item].path === titlee){
+    for (let item = 0; item < this.listTitles.length; item++) {
+        if (this.listTitles[item].path === titlee) {
             return this.listTitles[item].title;
         }
     }

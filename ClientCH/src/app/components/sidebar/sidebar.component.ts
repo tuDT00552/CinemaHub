@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {TokenStorageService} from "../../shared/service/token-storage.service";
+import {TokenStorageService} from '../../shared/service/token-storage.service';
 
 declare interface RouteInfo {
     path: string;
@@ -11,15 +11,17 @@ declare interface RouteInfo {
 export const ROUTES: RouteInfo[] = [
     { path: '/dashboard', title: 'Dashboard',  icon: 'ni-tv-2 text-primary', class: '' },
     { path: '/manage', title: 'Manage',  icon: 'ni-settings text-primary', class: '' },
-    { path: '/showtime' , title: 'Showtime',  icon:'ni-calendar-grid-58 text-green', class: '' },
-    { path: '/icons', title: 'Icons',  icon:'ni-planet text-blue', class: '' },
-    { path: '/maps', title: 'Maps',  icon:'ni-pin-3 text-orange', class: '' },
-    { path: '/user-profile', title: 'User profile',  icon:'ni-single-02 text-yellow', class: '' },
-    { path: '/tables', title: 'Tables',  icon:'ni-bullet-list-67 text-red', class: '' },
-    { path: '/register', title: 'Register',  icon:'ni-circle-08 text-pink', class: '' },
-    { path: '/seat' , title: 'Seat',  icon:'ni-box-2 text-pink', class: '' },
-    { path: '/ticket' , title: 'Ticket',  icon:'ni-box-2 text-pink', class: '' },
-    { path: '/cinema', title: 'Cinema',  icon:'ni-tv-2 text-pink', class: '' }];
+    { path: '/showtime' , title: 'Showtime',  icon: 'ni-calendar-grid-58 text-green', class: '' },
+    { path: '/icons', title: 'Icons',  icon: 'ni-planet text-blue', class: '' },
+    { path: '/maps', title: 'Maps',  icon: 'ni-pin-3 text-orange', class: '' },
+    { path: '/user-profile', title: 'User profile',  icon: 'ni-single-02 text-yellow', class: '' },
+    { path: '/tables', title: 'Tables',  icon: 'ni-bullet-list-67 text-red', class: '' },
+    { path: '/register', title: 'Register',  icon: 'ni-circle-08 text-pink', class: '' },
+    { path: '/seat' , title: 'Seat',  icon: 'ni-box-2 text-pink', class: '' },
+    { path: '/ticket' , title: 'Ticket',  icon: 'ni-box-2 text-pink', class: '' },
+    { path: '/pticket' , title: 'Pticket',  icon: 'ni-box-2 text-pink', class: '' },
+    { path: '/cinema', title: 'Cinema',  icon: 'ni-tv-2 text-pink', class: '' }];
+
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
@@ -29,7 +31,7 @@ export class SidebarComponent implements OnInit {
   isLoggedIn = false;
   showAdmin = false;
   showModeratorBoard = false;
-  showUser=false;
+  showUser = false;
   public menuItems: any[];
   public isCollapsed = true;
   private roles: string[];
@@ -37,7 +39,7 @@ export class SidebarComponent implements OnInit {
 
   constructor(private router: Router,
 
-  private tokenStorageService : TokenStorageService) { }
+  private tokenStorageService: TokenStorageService) { }
 
   ngOnInit() {
     this.isLoggedIn = !!this.tokenStorageService.getToken();

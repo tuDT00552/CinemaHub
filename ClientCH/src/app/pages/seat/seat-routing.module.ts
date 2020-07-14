@@ -1,10 +1,10 @@
 import {Injectable, NgModule} from '@angular/core';
-import {ActivatedRouteSnapshot, Resolve, RouterModule, RouterStateSnapshot, Routes} from "@angular/router";
-import {SeatService} from "../../shared/service/seat.service";
-import {SeatModel} from "../../model/seat.model";
-import {Observable} from "rxjs";
-import {SeatCreatComponent} from "./seat-creat/seat-creat.component";
-import {SeatListComponent} from "./seat-list/seat-list.component";
+import {ActivatedRouteSnapshot, Resolve, RouterModule, RouterStateSnapshot, Routes} from '@angular/router';
+import {SeatService} from '../../shared/service/seat.service';
+import {SeatModel} from '../../model/seat.model';
+import {Observable} from 'rxjs';
+import {SeatCreatComponent} from './seat-creat/seat-creat.component';
+import {SeatListComponent} from './seat-list/seat-list.component';
 
 
 @Injectable({providedIn: 'root'})
@@ -35,13 +35,6 @@ const routes: Routes = [
       seat: SeatResolver
     }
   },
-  // {
-  //   path: 'detail/:id',
-  //   component: ProductCreateComponent,
-  //   resolve: {
-  //     product: ProductResolver
-  //   }
-  // }
 ];
 
 @NgModule({
