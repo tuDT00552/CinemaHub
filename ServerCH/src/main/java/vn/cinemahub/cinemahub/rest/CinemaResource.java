@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import vn.cinemahub.cinemahub.entities.Cinema;
 import vn.cinemahub.cinemahub.serviceImpl.CinemaService;
 
+
 import java.util.Date;
 import java.util.List;
 
