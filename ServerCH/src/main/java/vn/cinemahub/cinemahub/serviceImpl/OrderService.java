@@ -41,7 +41,7 @@ public class OrderService implements DAO<Order> {
         orderRepository.deleteById(id);
     }
 
-    public Optional<Order> findbyOid(int Oid) {
+    public Optional<Order> findbyOid(Long Oid) {
         return orderRepository.findbyOid(Oid);
     };
 }

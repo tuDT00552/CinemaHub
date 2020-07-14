@@ -46,11 +46,12 @@ public class Showtime {
     public Showtime() {
     }
 
-    public Showtime(Long id, Date dateStart, Date dateEnd, String timeStart, int status, Date createdAt, Date updateAt) {
+    public Showtime(Long id, Date dateStart, Date dateEnd, String timeStart,int price, int status, Date createdAt, Date updateAt) {
         this.id = id;
         this.dateStart = dateStart;
         this.dateEnd = dateEnd;
         this.timeStart = timeStart;
+        this.price = price;
         this.status = status;
         this.createdAt = createdAt;
         this.updateAt = updateAt;
@@ -63,6 +64,14 @@ public class Showtime {
     @ManyToOne
     @JoinColumn(name = "movie_id", referencedColumnName = "id")
     private Movie movie;
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
 
     public Movie getMovie() {
         return movie;

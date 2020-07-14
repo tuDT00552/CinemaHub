@@ -48,8 +48,9 @@ export class MovieListComponent implements OnInit {
   ticketShow: TicketModel[];
   showtime: ShowtimeModel;
   order: OrderModel;
-
-
+  const; // @ts-ignore
+  listSeat: { id: number, tenghe: string, loaighe: number, status: number, createdAt: Date, updateAt: Date }[] = [];
+  listTicket: { giave: number, tenphim: string, idGhe: number, marap: number, timeStart: Date, timeEnd: Date, lichchieu: number }[] = [];
 
   ngOnInit(): void {
       this.seats = null;
@@ -76,6 +77,7 @@ export class MovieListComponent implements OnInit {
 
   showtimeClick(s: ShowtimeModel) {
     this.showtime = s;
+    this.giave = s.price;
     this.ticketService.findbyShow(s.id).subscribe((ticket) => {
       this.ticketShow = ticket;
       this.seatService.findbyRoom(s.roomEntity.id).subscribe((seat) => {
@@ -96,15 +98,33 @@ export class MovieListComponent implements OnInit {
       this.seats = seat;
     });
   }
-
+  xz: SeatModel;
   seatSelect(s: SeatModel) {
+    // @ts-ignore
+    if (this.listSeat.length === 0) {
+      // @ts-ignore
+      this.listSeat.push(s);
+    } else {
+      this.listSeat.forEach( (seat) => {
+        if ( seat === s) {
+          // @ts-ignore
+          this.xz = seat;
+          // @ts-ignore
+          this.listSeat.pop(seat);
+        } else {
+
+        }
+      });
+      // @ts-ignore
+      this.listSeat.push(s);
+      // // @ts-ignore
+      // this.listSeat.pop(this.xz);
+    }
+    console.log(this.listSeat);
+
+    // console.log(this.listSeat);
     this.sSelect = s;
     this.teng = s.tenghe;
-    if (s.loaighe === 1) {
-      this.giave = 200000;
-    } else if (s.loaighe === 2) {
-      this.giave = 100000;
-    }
   }
 
 
@@ -116,7 +136,8 @@ export class MovieListComponent implements OnInit {
       tenphim: this.movies[0].tenphim,
       timeStart: this.showtimes[0].dateStart,
       timeEnd: this.showtimes[0].dateEnd,
-      lichchieu: this.showtime.id
+      lichchieu: this.showtime.id,
+      order: null
     };
     this.order = {
       orderid: null,
@@ -124,7 +145,7 @@ export class MovieListComponent implements OnInit {
       phongchieu: this.showtime.roomEntity.maphong,
       time: this.showtimes[0].dateStart,
       tenphim: this.movies[0].tenphim,
-      sove: 2,
+      sove: this.listSeat.length,
       tongtien: this.giave
     };
   }

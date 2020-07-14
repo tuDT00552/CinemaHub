@@ -35,6 +35,11 @@ public class TicketResource {
         return ticketService.findbyShow(id);
     }
 
+    @GetMapping({"/o/{id}"})
+    public List<Ticket> findbyOrd(@PathVariable Long id) {
+        return ticketService.findbyOrdID(id);
+    }
+
     @PostMapping
     public Ticket save(@RequestBody Ticket ticket) {
         Date date = new Date();

@@ -9,5 +9,5 @@ import java.util.Optional;
 
 public interface OrderRepository extends JpaRepository<Order, Long> {
     @Query("SELECT o FROM Order o where o.orderid = :Oid")
-    Optional<Order> findbyOid(int Oid);
+    Optional<Order> findbyOid(Long Oid);
 }
