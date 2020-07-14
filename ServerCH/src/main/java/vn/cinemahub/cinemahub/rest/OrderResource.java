@@ -12,6 +12,8 @@ import vn.cinemahub.cinemahub.serviceImpl.OrderService;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 @CrossOrigin
 @RestController
@@ -28,6 +30,8 @@ public class OrderResource {
 
     @PostMapping
     public Order save(@RequestBody Order order) {
+        Random ran = new Random();
+//        order.setOrderid(order.getOrderid() + x);
         order.setCreatedAt(date);
         order.setUpdateAt(date);
         order.setStatus(1);

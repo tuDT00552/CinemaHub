@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {ENDPOINT_URL} from '../constants/app.constains';
 import {TicketModel} from '../../model/ticket.model';
+import {OrderModel} from '../../model/order.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,10 @@ export class TicketService {
   constructor(private http: HttpClient) { }
   fetch(): Observable<TicketModel[]> {
     return this.http.get<TicketModel[]>(`${ENDPOINT_URL}/ticket`);
+  }
+
+  findbyOrdid(id: any): Observable<TicketModel[]> {
+    return this.http.get<TicketModel[]>(`${ENDPOINT_URL}/ticket/o/${id}`);
   }
 
   findbyShow(id: any): Observable<TicketModel[]> {

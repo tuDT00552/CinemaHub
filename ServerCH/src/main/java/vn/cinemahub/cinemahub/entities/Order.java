@@ -1,24 +1,27 @@
 package vn.cinemahub.cinemahub.entities;
 
+import org.hibernate.annotations.NaturalId;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @Table(name = "ORDERS")
 @EntityListeners(AuditingEntityListener.class)
-public class Order {
+public class Order implements Serializable   {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "ORD_SEQ")
     @SequenceGenerator(sequenceName = "ORDER_SEQ", allocationSize = 1, name = "ORD_SEQ")
     @Column(name = "ID")
     private Long id;
 
+    @NaturalId
     @Column(name = "ORDERID")
-    private int orderid;
+    private Long orderid;
 
     @Column(name = "TENRAP")
     private String tenrap;
@@ -57,11 +60,11 @@ public class Order {
         this.id = id;
     }
 
-    public int getOrderid() {
+    public Long getOrderid() {
         return orderid;
     }
 
-    public void setOrderid(int orderid) {
+    public void setOrderid(Long orderid) {
         this.orderid = orderid;
     }
 
