@@ -29,7 +29,7 @@ public class CinemaResource {
         cinema.setUpdateAt(date);
         cinema.setStatus(1);
         if (cinemaService.checkExitsTenRap(cinema.getTenrap()) == null
-        && cinemaService.checkExitsMaRap(cinema.getMarap()) == null) {
+                && cinemaService.checkExitsMaRap(cinema.getMarap()) == null) {
             return cinemaService.save(cinema);
         }
         else

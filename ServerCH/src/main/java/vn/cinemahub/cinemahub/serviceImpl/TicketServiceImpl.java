@@ -22,6 +22,10 @@ public class TicketServiceImpl implements DAO<Ticket> {
 
     public List<Ticket> findbyShow(Long idshow) {
         return this.ticketRepository.findbyShow(idshow);
+		
+    @Override
+    public Optional<Ticket> get(Long id) {
+        return ticketRepository.findById(id);
     }
 
     public List<Ticket> findbyOrdID(Long ordid) { return this.ticketRepository.findbyOrdID(ordid); };

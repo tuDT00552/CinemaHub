@@ -22,6 +22,8 @@ export const ROUTES: RouteInfo[] = [
     { path: '/seat' , title: 'Seat',  icon:'ni-box-2 text-pink', class: '' },
     { path: '/ticket' , title: 'Ticket',  icon:'ni-box-2 text-pink', class: '' },
     { path: '/movie', title: 'Movie',  icon:'ni-tv-2 text-pink', class: '' }];
+    { path: '/cinema', title: 'Cinema',  icon:'ni-tv-2 text-pink', class: '' },
+    { path: '/refundTicket', title: 'RefundTicket',  icon:'ni-tv-2 text-pink', class: '' }];
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',

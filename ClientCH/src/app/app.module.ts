@@ -39,6 +39,9 @@ import { OrderRoutingModule } from './pages/order-routing.module';
 import { OrderModule } from './pages/order.module';
 // @ts-ignore
 import { AppCreateModule } from './pages/order/app-create.module';
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+import {DetailsGuardService} from './shared/service/details-guard.service';
+import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 
 @NgModule({
   imports: [
@@ -52,6 +55,8 @@ import { AppCreateModule } from './pages/order/app-create.module';
     RefundticketModule,
     RefundticketRoutingModule,
     ReactiveFormsModule,
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule,
     CinemaModule,
     ManageRoutingModule,
     ManageModule,
@@ -64,19 +69,17 @@ import { AppCreateModule } from './pages/order/app-create.module';
     AppComponent,
     AdminLayoutComponent,
     AuthLayoutComponent,
-    RefundTicketListComponent,
-    RefundTicketCreateComponent,
-    RefundticketDeleteComponent,
-    BoardAdminComponent,
-    BoardUserComponent,
-    BoardModeratorComponent,
-    ProfileComponent,
+    // RefundticketDeleteComponent,
+    // BoardAdminComponent,
+    // BoardUserComponent,
+    // BoardModeratorComponent,
+    // ProfileComponent,
     LoginComponent,
     RegisterComponent,
     RoomDeleteComponent,
-    RoomDeleteComponent
+    PageNotFoundComponent
   ],
-  providers: [authInterceptorProviders, LocalStorageService],
+  providers: [authInterceptorProviders, LocalStorageService, DetailsGuardService],
 
   bootstrap: [AppComponent]
 })

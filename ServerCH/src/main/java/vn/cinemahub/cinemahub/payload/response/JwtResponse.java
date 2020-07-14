@@ -2,7 +2,7 @@ package vn.cinemahub.cinemahub.payload.response;
 
 import java.util.List;
 
-public class JwtResponse {
+public class    JwtResponse {
     private String token;
     private String type="Bearer";
     private Long id;

@@ -10,6 +10,7 @@ import {SeatModel} from '../../../model/seat.model';
 import {MovieService} from '../../../shared/service/movie.service';
 import {TicketModel} from '../../../model/ticket.model';
 
+
 @Component({
   selector: 'app-manage',
   templateUrl: './manage.component.html',

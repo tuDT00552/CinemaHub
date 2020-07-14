@@ -29,8 +29,7 @@ export class AppComponent {
 
       this.username = user.username;
     }
-    const newTodo = 'new todo';
-    this.localStorageService.storeOnLocalStorage(newTodo);
+
   }
 
   logout() {

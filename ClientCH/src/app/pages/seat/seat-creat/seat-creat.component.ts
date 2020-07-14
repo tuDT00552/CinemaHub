@@ -22,12 +22,12 @@ export class SeatCreatComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      id: ['', Validators.required],
-       idGhe: ['', Validators.required],
-      createdAt: ['', Validators.required],
-      updateAt: ['', Validators.required],
+      id: [''],
+       // idGhe: ['', Validators.required],
+      createdAt: [''],
+      updateAt: [''],
       loaighe: ['', Validators.required],
-      maphong: ['', Validators.required],
+      tenghe: ['', Validators.required],
       status: ['', Validators.required],
     });
 
@@ -36,11 +36,11 @@ export class SeatCreatComponent implements OnInit {
       if (this.isUpdate) {
         this.form.patchValue({
           id: seat.id,
-          idGhe: seat.idGhe,
+          // idGhe: seat.idGhe,
           createdAt: seat.createdAt,
           updateAt: seat.updateAt,
           loaighe: seat.loaighe,
-          maphong: seat.maphong,
+          tenghe: seat.tenghe,
           status: seat.status
         });
       }

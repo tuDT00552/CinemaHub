@@ -33,6 +33,11 @@ public class SeatServiceImpl implements DAO<GheEntity> {
     }
 
     @Override
+    public Optional<GheEntity> get(Long id) {
+        return seatRepository.findById(id);
+    }
+
+    @Override
     public GheEntity save(GheEntity gheEntity) {
         return seatRepository.save(gheEntity);
     }
@@ -46,4 +51,6 @@ public class SeatServiceImpl implements DAO<GheEntity> {
     public void delete(Long id) {
         this.seatRepository.deleteById(id);
     }
+
+    public List<GheEntity> findByLoaigheAndTenghe(String name){return seatRepository.findByLoaigheAndTenghe(name);}
 }

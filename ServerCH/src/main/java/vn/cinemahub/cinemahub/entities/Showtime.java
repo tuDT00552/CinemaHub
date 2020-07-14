@@ -73,20 +73,20 @@ public class Showtime {
         this.price = price;
     }
 
-    public Movie getMovie() {
-        return movie;
+    public String getTimeStart() {
+        return timeStart;
     }
 
-    public void setMovie(Movie movie) {
-        this.movie = movie;
+    public void setTimeStart(String timeStart) {
+        this.timeStart = timeStart;
     }
 
     public RoomEntity getRoomEntity() {
         return roomEntity;
     }
 
-    public void setRoomEntity(RoomEntity roomEntity) {
-        this.roomEntity = roomEntity;
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
     public Long getId() {
@@ -117,8 +117,8 @@ public class Showtime {
         return timeStart;
     }
 
-    public void setTimeStart(String timeStart) {
-        this.timeStart = timeStart;
+    public void setUpdateAt(Date updateAt) {
+        this.updateAt = updateAt;
     }
 
     public int getStatus() {

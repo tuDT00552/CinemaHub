@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import {SeatModel} from "../../../model/seat.model";
-import {SeatService} from "../../../shared/service/seat.service";
+
 import {EventManagement} from "../../../shared/service/event.management";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
-import {SeatDeleteComponent} from "../../seat/seat-delete/seat-delete.component";
+
 import {RefundticketService} from "../../../shared/service/refundticket.service";
-import {RefundTicketModule} from "../../../model/refundticket";
+
 import {RefundticketDeleteComponent} from "../refundticket-delete/refundticket-delete.component";
+import {RefundTicketModel} from '../../../model/refundticket.model';
+
 
 @Component({
   selector: 'app-refund-ticket-list',
@@ -15,25 +16,25 @@ import {RefundticketDeleteComponent} from "../refundticket-delete/refundticket-d
 })
 export class RefundTicketListComponent implements OnInit {
 
-  refundTickets: RefundTicketModule[] = [];
+  ReTickets: RefundTicketModel[] = [];
   searchText;
-  constructor(private refundTicketService: RefundticketService,
+  constructor(private seatService: RefundticketService,
               private eventManagement: EventManagement,
               public modal: NgbModal) { }
 
   ngOnInit(): void {
-    // this.loadSeats();
-    // this.eventManagement.subscribe('UPDATE_REFUNDTICKET', () => this.loadSeats());
+    this.loadSeats();
+    this.eventManagement.subscribe('UPDATE_REFUNDTICKET', () => this.loadSeats());
   }
-  // loadSeats() {
-  //   this.refundTicketService.fetch().subscribe(refundTicket => {
-  //     this.refundTickets = refundTicket;
-  //   }, error => console.log(error));
-  // }
-  //
-  // goToDelete(refundTicket: RefundTicketModule) {
-  //   const modalRef = this.modal.open(RefundticketDeleteComponent);
-  //   modalRef.componentInstance.refundTicket = refundTicket;
-  // }
+  loadSeats() {
+    this.seatService.fetch().subscribe(reTicket => {
+      this.ReTickets = reTicket;
+    }, error => console.log(error));
+  }
+
+  goToDelete(refundTicket: RefundTicketModel) {
+    const modalRef = this.modal.open(RefundticketDeleteComponent);
+    modalRef.componentInstance.refundTicket = refundTicket;
+  }
 
 }

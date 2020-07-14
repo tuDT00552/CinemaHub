@@ -68,4 +68,18 @@ public class TicketResource {
         this.ticketService.delete(id);
         return new ResponseEntity(HttpStatus.OK);
     }
+
+    @GetMapping("/search/{idTicket}")
+    public List<Ticket> findByTicket(@PathVariable Long idTicket){
+        return ticketService.findByTicket(idTicket);
+    }
+
+
+
+//    @GetMapping({"/{id}"})
+//    public ResponseEntity search(@PathVariable Long id) {
+//        return (ResponseEntity)this.ticketService.get(id).map((ticket) -> {
+//            return new ResponseEntity(ticket, HttpStatus.OK);
+//        }).orElse(new ResponseEntity(HttpStatus.NOT_FOUND));
+//    }
 }
