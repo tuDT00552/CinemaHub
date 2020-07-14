@@ -14,6 +14,12 @@ public interface TicketRepository extends JpaRepository<Ticket,Long> {
 
     @Query("SELECT t FROM Ticket t where t.order.orderid = :ordid")
     List<Ticket> findbyOrdID(Long ordid);
+
+    @Query("SELECT t FROM Ticket t where t.id = :maVe")
+    List<Ticket> findByTicket(Long maVe);
+
+//    @Query("select  r FROM  Room  r WHERE r.cinema.id =?1")
+//    List<Room> findRoomByCinema_IdContains(Long name);
 //
 //    @Query("SELECT t.id FROM Ticket t where t.id = :tenrap")
 //    Long checkExitsTenRap(String tenrap);

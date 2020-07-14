@@ -46,4 +46,6 @@ public class SeatServiceImpl implements DAO<GheEntity> {
     public void delete(Long id) {
         this.seatRepository.deleteById(id);
     }
+
+    public List<GheEntity> findByLoaigheAndTenghe(String name){return seatRepository.findByLoaigheAndTenghe(name);}
 }
