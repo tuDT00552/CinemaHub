@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import vn.cinemahub.cinemahub.entities.RoomEntity;
 import vn.cinemahub.cinemahub.serviceImpl.CinemaService;
-import vn.cinemahub.cinemahub.serviceImpl.RoomServiceImpl;
+import vn.cinemahub.cinemahub.serviceImpl.RoomService;
 
 import java.util.Date;
 import java.util.List;
@@ -16,7 +16,7 @@ import java.util.List;
 @RequestMapping({"/api/room"})
 public class RoomResource {
     @Autowired
-    private RoomServiceImpl roomService;
+    private RoomService roomService;
 
     @Autowired
     private CinemaService cinemaService;

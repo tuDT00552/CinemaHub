@@ -4,16 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import vn.cinemahub.cinemahub.entities.Movie;
 import vn.cinemahub.cinemahub.entities.Order;
-import vn.cinemahub.cinemahub.serviceImpl.CinemaService;
-import vn.cinemahub.cinemahub.serviceImpl.MovieService;
 import vn.cinemahub.cinemahub.serviceImpl.OrderService;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
 
 @CrossOrigin
 @RestController

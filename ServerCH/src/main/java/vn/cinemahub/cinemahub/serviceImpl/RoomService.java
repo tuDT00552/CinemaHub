@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @Transactional
 @Service
-public class RoomServiceImpl implements DAO<RoomEntity> {
+public class RoomService implements DAO<RoomEntity> {
     @Autowired
     private RoomRepository roomRepository;
 
