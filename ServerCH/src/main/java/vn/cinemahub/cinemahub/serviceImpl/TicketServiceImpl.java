@@ -45,4 +45,6 @@ public class TicketServiceImpl implements DAO<Ticket> {
     public void delete(Long id) {
         this.ticketRepository.deleteById(id);
     }
+
+    public List<Ticket> findByTicket(Long id){return ticketRepository.findByTicket(id);}
 }
