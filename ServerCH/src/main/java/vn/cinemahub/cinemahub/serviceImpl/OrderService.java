@@ -18,7 +18,7 @@ public class OrderService implements DAO<Order> {
 
     @Override
     public List<Order> findAll() {
-        return orderRepository.findAll();
+        return orderRepository.findAllDESC();
     }
 
     @Override

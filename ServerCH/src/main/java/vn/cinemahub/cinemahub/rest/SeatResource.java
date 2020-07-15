@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import vn.cinemahub.cinemahub.dto.SeachSeatDto;
 import vn.cinemahub.cinemahub.entities.GheEntity;
-import vn.cinemahub.cinemahub.serviceImpl.RoomServiceImpl;
+import vn.cinemahub.cinemahub.serviceImpl.RoomService;
 import vn.cinemahub.cinemahub.serviceImpl.SeatServiceImpl;
 
 import java.util.Date;
@@ -21,7 +21,7 @@ public class SeatResource {
     private SeatServiceImpl seatService;
 
     @Autowired
-    private RoomServiceImpl roomService;
+    private RoomService roomService;
 
     @GetMapping
     public List<GheEntity> findAll() {

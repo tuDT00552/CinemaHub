@@ -12,7 +12,7 @@ import vn.cinemahub.cinemahub.entities.RoomEntity;
 import vn.cinemahub.cinemahub.entities.*;
 import vn.cinemahub.cinemahub.serviceImpl.MovieService;
 import vn.cinemahub.cinemahub.serviceImpl.RoleService;
-import vn.cinemahub.cinemahub.serviceImpl.RoomServiceImpl;
+import vn.cinemahub.cinemahub.serviceImpl.RoomService;
 import vn.cinemahub.cinemahub.serviceImpl.SeatServiceImpl;
 
 import java.util.ArrayList;
@@ -32,7 +32,7 @@ public class DataResource {
     private MovieService movieService;
 
     @Autowired
-    private RoomServiceImpl roomService;
+    private RoomService roomService;
 
     @Autowired
     private SeatServiceImpl seatService;
