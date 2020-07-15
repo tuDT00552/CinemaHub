@@ -45,7 +45,7 @@ public class TicketResource {
         Date date = new Date();
         ticket.setCreatedAt(date);
         ticket.setUpdateAt(date);
-        ticket.setOrder(orderService.findbyOid(ticket.getOrder().getOrderid()).get());
+        ticket.setOrder(orderService.get(ticket.getOrder().getId()).get());
         return this.ticketService.save(ticket);
     }
 

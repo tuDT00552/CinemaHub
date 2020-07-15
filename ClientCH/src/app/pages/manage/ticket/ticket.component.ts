@@ -41,7 +41,7 @@ export class TicketComponent implements OnInit {
           this.error = 'co loi xay ra';
           this.ticketsuccess = null;
         } else {
-          this.ticket.order = {orderid: data.orderid};
+          this.ticket.order = {id: data.id};
           this.listSeat.forEach( (tck) => {
             this.ticket.idGhe = tck.id;
             if (tck.loaighe === 1) {
@@ -73,9 +73,8 @@ export class TicketComponent implements OnInit {
               this.ticketsuccess = data;
               this.success = 'Dat ve thanh cong. Id don hang la: ';
             }
-
+            this.router.navigate(['order/detail', data.id]);
           });
-          this.router.navigate(['order/detail', data.orderid]);
         }
       },
       error => console.log(error));
