@@ -21,4 +21,7 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
 
     @Query("SELECT m FROM Movie m where m.cinema.id = :idrap")
     List<Movie> findbyRap(Long idrap);
+
+    @Query("SELECT max(m.theloai) as theloai FROM Movie m where m.cinema.id = :idrap group by m.theloai")
+    List<String> findbyTheloai(Long idrap);
 }
