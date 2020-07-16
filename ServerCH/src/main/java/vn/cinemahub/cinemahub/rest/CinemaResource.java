@@ -1,10 +1,15 @@
 package vn.cinemahub.cinemahub.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import vn.cinemahub.cinemahub.dto.CinemaDto;
 import vn.cinemahub.cinemahub.entities.Cinema;
+import vn.cinemahub.cinemahub.repository.CinemaRepository;
 import vn.cinemahub.cinemahub.serviceImpl.CinemaService;
 
 
@@ -55,4 +60,18 @@ public class CinemaResource {
         cinemaService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+//    @GetMapping
+//    public Page<CinemaDto> list(@RequestParam(name = "page", defaultValue = "0") int page,
+//                                @RequestParam(name = "size", defaultValue = "5") int size) {
+//        PageRequest pageRequest = PageRequest.of(page, size);
+//        Page<Cinema> pageResult = cinemaRepository.findAll(pageRequest);
+//        List<CinemaDto> todos = pageResult
+//                .stream()
+//                .map(CinemaDto::new)
+//                .collect(pageResult.toList());
+//
+//        return new PageImpl<>(todos, pageRequest, pageResult.getTotalElements());
+//
+//    }
 }

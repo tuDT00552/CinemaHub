@@ -5,22 +5,19 @@ import {CinemaDeleteComponent} from './cinema-delete/cinema-delete.component';
 import {CinemaListComponent} from './cinema-list/cinema-list.component';
 import {CinemaRoutingModule} from './cinema-routing.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { CinemaListmovieComponent } from './cinema-listmovie/cinema-listmovie.component';
-import {IgxDropDownModule, IgxToggleModule} from 'igniteui-angular';
-import { CinemamovieDeleteComponent } from './cinemamovie-delete/cinemamovie-delete.component';
+import {MatPaginatorModule} from '@angular/material';
 
 
 
 @NgModule({
-  declarations: [CinemaCreateComponent, CinemaDeleteComponent, CinemaListComponent, CinemaListmovieComponent, CinemamovieDeleteComponent],
+  declarations: [CinemaCreateComponent, CinemaDeleteComponent, CinemaListComponent],
   exports: [CinemaCreateComponent],
-  imports: [
-    CommonModule,
-    CinemaRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    IgxToggleModule,
-    IgxDropDownModule
-  ]
+    imports: [
+        CommonModule,
+        CinemaRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatPaginatorModule
+    ]
 })
 export class CinemaModule { }

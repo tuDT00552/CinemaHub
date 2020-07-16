@@ -1,14 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {CinemaModel} from '../../../model/cinema.model';
 import {ActivatedRoute, Router} from '@angular/router';
 import {MovieService} from '../../../shared/service/movie.service';
 import {CinemaService} from '../../../shared/service/cinema.service';
-import {HttpEventType, HttpResponse} from '@angular/common/http';
-import {UploadFileService} from '../../../shared/service/upload-file.service';
-import {Observable} from 'rxjs';
-import {FileUploadModel} from '../../../model/fileupload.model';
-import {Response} from '@angular/http';
 
 @Component({
   selector: 'app-movie-create',
@@ -20,19 +15,12 @@ export class MovieCreateComponent implements OnInit {
   isUpdate: any = false;
   error: string;
   cinemas: CinemaModel[];
-  selectedFiles: FileList[] = [];
-  progressInfos: any[] = [];
-  message: string;
-  isLoad: any = false;
-  fileInfos: Observable<any>;
 
   constructor(private fb: FormBuilder,
-              private uploadService: UploadFileService,
               private router: Router,
               private route: ActivatedRoute,
               private movieService: MovieService,
-              private cinemaService: CinemaService) {
-  }
+              private cinemaService: CinemaService) { }
 
   ngOnInit(): void {
     this.loadMovies();
@@ -44,10 +32,10 @@ export class MovieCreateComponent implements OnInit {
       theloai: ['', Validators.required],
       namsx: ['', Validators.required],
       image: ['', Validators.required],
-      // trailer: ['', Validators.required],
+      trailer: ['', Validators.required],
       minutes: ['', Validators.required],
       mota: ['', Validators.required],
-      // idrap: ['', Validators.required],
+      idrap: ['', Validators.required],
     });
 
     this.route.data.subscribe(({movie}) => {
@@ -61,10 +49,10 @@ export class MovieCreateComponent implements OnInit {
           theloai: movie.theloai,
           namsx: movie.namsx,
           image: movie.image,
-          // trailer: movie.trailer,
+          trailer: movie.trailer,
           minutes: movie.minutes,
           mota: movie.mota,
-          // idrap: movie.idrap,
+          idrap: movie.idrap,
         });
       }
     });
@@ -76,71 +64,19 @@ export class MovieCreateComponent implements OnInit {
     }, error => console.log(error));
   }
 
-  onFileChanged(event) {
-    this.progressInfos = [];
-     this.selectedFiles.push(event.target.files);
-  }
-
-  selectFiles(event) {
-    this.progressInfos = [];
-    this.selectedFiles = event.target.files;
-    this.form.controls.image.setValue(event.target.files[0].name);
-  }
-
-  uploadFiles() {
-    this.message = '';
-    for (let i = 0; i < this.selectedFiles.length; i++) {
-       this.upload(i, this.selectedFiles[i]);
-    }
-  }
-
-  // @ts-ignore
-  upload(idx, file) {
-    this.progressInfos[idx] = { value: 0 , fileName : file.name };
-
-    this.uploadService.upload(file[0]).subscribe(
-      (event) => {
-         if (event['body'] !== undefined) {
-           if (idx === 0) {
-             this.form.patchValue({
-               image: event['body'].message,
-             });
-           }
-           if (idx === 1) {
-             this.form.patchValue({
-               trailer: event['body'].message,
-             });
-           }
-        }
-    },
-      err => {
-        this.progressInfos[idx].value = 0 as Number;
-        this.isLoad = false;
-        this.message = 'Could not upload the file:' + file.name;
-      }
-      );
-  }
-
   doSubmit() {
     const movie = this.form.value;
     movie.cinema = {id: movie.idrap};
     if (this.isUpdate) {
-      // tslint:disable-next-line:max-line-length
-      if (movie.maphim === '' || movie.tenphim === '' || movie.loaiphim === '' || movie.theloai === '' || movie.namsx === '' || movie.minutes === '') {
-        if (movie.image === '') {
-          this.error = 'Thông tin không được để trống !';
-        } else {
-          // this.
-        }
+      if (movie.maphim === '' || movie.tenphim === '' || movie.loaiphim === '' || movie.theloai === '' || movie.namsx === '' || movie.minutes === '' ) {
+        this.error = 'Thông tin không được để trống !';
       } else {
         this.movieService.update(movie).subscribe(
           () => this.router.navigateByUrl('/movie'),
           error => console.log(error));
-
       }
     } else {
-      // tslint:disable-next-line:max-line-length
-      if (movie.maphim === '' || movie.tenphim === '' || movie.loaiphim === '' || movie.theloai === '' || movie.namsx === '' || movie.minutes === '') {
+      if (movie.maphim === '' || movie.tenphim === '' || movie.loaiphim === '' || movie.theloai === '' || movie.namsx === '' || movie.minutes === '' ) {
         this.error = 'Thông tin không được để trống !';
       } else {
         this.movieService.create(movie).subscribe(

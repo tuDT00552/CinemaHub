@@ -51,6 +51,17 @@ public class Cinema {
         this.status = status;
     }
 
+    public Cinema(Long id, int marap, String tenrap, String diachi, String gioithieu, int status, Date createdAt, Date updateAt) {
+        this.id = id;
+        this.marap = marap;
+        this.tenrap = tenrap;
+        this.diachi = diachi;
+        this.gioithieu = gioithieu;
+        this.status = status;
+        this.createdAt = createdAt;
+        this.updateAt = updateAt;
+    }
+
     public Long getId() {
         return id;
     }
