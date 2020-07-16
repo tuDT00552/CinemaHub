@@ -5,11 +5,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import vn.cinemahub.cinemahub.dto.ReTicketDto;
-import vn.cinemahub.cinemahub.dto.SeachSeatDto;
 import vn.cinemahub.cinemahub.dto.SearchTicketDto;
-import vn.cinemahub.cinemahub.dto.ThongkeDto;
-import vn.cinemahub.cinemahub.entities.GheEntity;
-import vn.cinemahub.cinemahub.entities.RefundTicket;
+import vn.cinemahub.cinemahub.dto.ThKeDto;
 import vn.cinemahub.cinemahub.entities.Ticket;
 import vn.cinemahub.cinemahub.serviceImpl.OrderService;
 import vn.cinemahub.cinemahub.serviceImpl.TicketServiceImpl;
@@ -94,7 +91,7 @@ public class TicketResource {
     }
 
     @PostMapping("/thongke")
-     public List<ThongkeDto>thongke(@RequestBody ThongkeDto thongke){
+     public List<ThKeDto>thongke(@RequestBody ThKeDto thongke){
          return this.ticketService.thongke(thongke);
 
         }
