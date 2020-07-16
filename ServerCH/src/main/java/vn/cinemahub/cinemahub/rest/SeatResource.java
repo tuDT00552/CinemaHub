@@ -4,8 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import vn.cinemahub.cinemahub.dto.SeachSeatDto;
 import vn.cinemahub.cinemahub.entities.GheEntity;
-import vn.cinemahub.cinemahub.serviceImpl.RoomServiceImpl;
+import vn.cinemahub.cinemahub.serviceImpl.RoomService;
 import vn.cinemahub.cinemahub.serviceImpl.SeatServiceImpl;
 
 import java.util.Date;
@@ -20,7 +21,7 @@ public class SeatResource {
     private SeatServiceImpl seatService;
 
     @Autowired
-    private RoomServiceImpl roomService;
+    private RoomService roomService;
 
     @GetMapping
     public List<GheEntity> findAll() {
@@ -37,7 +38,6 @@ public class SeatResource {
         seat.setCreatedAt(date);
         seat.setUpdateAt(date);
         seat.setStatus(1);
-        seat.setRoomEntity(roomService.findbyMaphong(seat.getRoomEntity().getMaphong()).get());
         return this.seatService.save(seat);
     }
 
@@ -59,5 +59,9 @@ public class SeatResource {
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         this.seatService.delete(id);
         return new ResponseEntity(HttpStatus.OK);
+    }
+    @PostMapping("/search")
+    public List<GheEntity> findByLoaigheAndTengh(@RequestBody SeachSeatDto name){
+        return seatService.findByLoaigheAndTenghe(name.getName());
     }
 }

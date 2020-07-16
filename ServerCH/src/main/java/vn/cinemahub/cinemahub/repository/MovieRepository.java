@@ -3,10 +3,14 @@ package vn.cinemahub.cinemahub.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+import vn.cinemahub.cinemahub.entities.Cinema;
 import vn.cinemahub.cinemahub.entities.Movie;
 import java.util.List;
 import vn.cinemahub.cinemahub.entities.Cinema;
 import vn.cinemahub.cinemahub.entities.Movie;
+import java.util.List;
+import java.util.Optional;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -17,4 +21,7 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
 
     @Query("SELECT m FROM Movie m where m.cinema.id = :idrap")
     List<Movie> findbyRap(Long idrap);
+
+    @Query("SELECT max(m.theloai) as theloai FROM Movie m where m.cinema.id = :idrap group by m.theloai")
+    List<String> findbyTheloai(Long idrap);
 }

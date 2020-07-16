@@ -1,15 +1,17 @@
+import {OrderModel} from './order.model';
+
 export class TicketModel {
     id?: number;
     createdAt?: Date;
-    updteAt?: Date;
-    maVea?: number;
     tenphim?: string;
     idGhe?: number;
     marap?: number;
+    maphong?: number;
     giave?: number;
     status?: number;
     timeStart?: Date;
     timeEnd?: Date;
     lichchieu?: number;
-
+    order?: OrderModel;
+    date?: Date;
 }

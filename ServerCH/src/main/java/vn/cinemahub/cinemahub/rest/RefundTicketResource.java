@@ -4,9 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import vn.cinemahub.cinemahub.dto.ReTicketDto;
 import vn.cinemahub.cinemahub.entities.RefundTicket;
+import vn.cinemahub.cinemahub.entities.Ticket;
 import vn.cinemahub.cinemahub.serviceImpl.RefundTicketServiceImpl;
+import vn.cinemahub.cinemahub.serviceImpl.TicketServiceImpl;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -17,6 +21,9 @@ public class RefundTicketResource {
 
     @Autowired
     private RefundTicketServiceImpl refundTicketService;
+
+    @Autowired
+    private TicketServiceImpl ticketService;
 
     @GetMapping
     public List<RefundTicket> findAll() {
@@ -49,4 +56,14 @@ public class RefundTicketResource {
         this.refundTicketService.delete(id);
         return new ResponseEntity(HttpStatus.OK);
     }
+
+
+    @PostMapping("/reticket")
+    public RefundTicket reTicket(@RequestBody ReTicketDto refundTicket){
+//        RefundTicket refundTicket1=new RefundTicket();
+//        refundTicket1.setId(refundTicket.getId());
+        return this.refundTicketService.reTicket(refundTicket);
+    }
+
+
 }

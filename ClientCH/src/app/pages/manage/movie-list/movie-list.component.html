@@ -3,6 +3,8 @@
     <div class="col">
       <div class="card shadow">
         <div class="card-header border-0">
+          <label><input type="radio" id="theloai" name="theloai" (change)="clickTheloaiAll()">All</label>
+          <label style="margin-left: 20px;" *ngFor="let t of theloai"><input type="radio" id="theloai" name="theloai" (change)="clickTheloai(t)"> {{t}}</label>
           <div class="row">
               <div class="col-3" *ngFor="let movie of movies" (click)="OnSelect(movie)">
                 <div class="movie">
@@ -10,44 +12,47 @@
                   <div class="moviename">{{movie.tenphim}}</div>
                 </div>
               </div>
-            <div class="col-9" *ngIf="select != null">
+            <div *ngIf="showtimes != null && status == true" class="col-9">
               <div class="titleshowtime">CHỌN XUẤT CHIẾU</div>
               <div class="col-3 btn-showtime" *ngFor="let s of showtimes" (click)="showtimeClick(s)">
-                <a class="btn btn-outline-secondary">{{s.timeStart}} - P{{s.roomEntity.maphong}}</a>
-              </div>
-              <div class="row seat">
-                <div class="col-1 spseat" *ngFor="let s of seats">
-                  <span class="" *ngIf="s.loaighe === 1" style="color: blue;" (click)="seatSelect(s)">{{s.tenghe}}</span>
-                  <span class="" *ngIf="s.loaighe === 2" style="color: red;" (click)="seatSelect(s)">{{s.tenghe}}</span>
-                  <span class="" *ngIf="s.loaighe === 3" style="color: green;" (click)="seatSelect(s)">{{s.tenghe}}</span>
-                </div>
-              </div>
-              <div>Select:
-                <span>{{teng}}</span> - {{giave}}
-              </div>
-              <a class="btn" (click)="clickSelect()">Thanh Toán</a>
-              <div style=" padding: 30px;" class="col-3 btn-showtime" *ngFor="let s of showtimes" (click)="showtimeClick(s)">
                 <a  style="line-height: 10px; width: 200px;" class="btn btn-outline-secondary">{{s.timeStart}} - P{{s.roomEntity.maphong}}</a>
               </div>
-              <div class="row seat">
-                <li [class.selected]="s === sSelect" class="col-1 nopadding" *ngFor="let s of seats">
-                  <img *ngIf="s.loaighe == 1" style="filter: hue-rotate(700deg);" src="assets/img/seat.png" alt="">
-                  <img *ngIf="s.loaighe == 2" style="filter: hue-rotate(500deg);" src="assets/img/seat.png" alt="">
-                  <img *ngIf="s.loaighe == 3" style="filter: hue-rotate(600deg);" src="assets/img/seat.png" alt="">
-                  <span class="seatname" (click)="seatSelect(s)">{{s.tenghe}}</span>
-<!--                  <span class="seatname" *ngIf="s.loaighe === 2" (click)="seatSelect(s)">{{s.tenghe}}</span>-->
-<!--                  <span class="seatname" *ngIf="s.loaighe === 3" (click)="seatSelect(s)">{{s.tenghe}}</span>-->
-                </li>
+              <div class="row" *ngIf="seats != null">
+                <div class="col-1 cua"><img src="https://cdn4.iconfinder.com/data/icons/simple-arrow-1/32/Arrow_26-512.png" alt=""></div>
+                <div class="col-7">
+                  <div class="manhinh">Màn Hình</div>
+                </div>
+                <div class="col-4"></div>
               </div>
-              <div  style="font-weight: bold; margin-top: 10px;" *ngIf="sSelect != null">Select:
-                <span>{{teng}}</span> - {{giave}}
-                <a style="line-height: 10px; width: 200px; margin-left: 30px;" class="btn btn-info" (click)="clickSelect()">Checkout</a>
+              <div class="row seat" *ngIf="seats != null">
+                <div *ngIf="seats != null" class="col-1 loidi">Lối Đi</div>
+                <div class="col-7">
+                  <div class="row">
+                    <li [class.selected]="s === listSeat" class="col-1" *ngFor="let s of seats">
+                      <img *ngIf="s.loaighe == 1 && s.status == 1" style="filter: hue-rotate(700deg);" src="assets/img/seat.png" alt="">
+                      <img *ngIf="s.loaighe == 2 && s.status == 1" style="filter: hue-rotate(600deg);" src="assets/img/seat.png" alt="">
+                      <img *ngIf="s.loaighe == 3 && s.status == 1" style="filter: hue-rotate(600deg);" src="assets/img/seat.png" alt="">
+                      <img *ngIf="s.status == 2" style="filter: grayscale(100%); cursor: no-drop" src="assets/img/seat.png" alt="">
+                      <span *ngIf="s.status == 1" class="seatname" (click)="seatSelect(s)">{{s.tenghe}}</span>
+                      <span *ngIf="s.status == 2" class="seatnamebuy">{{s.tenghe}}</span>
+                    </li>
+                  </div>
+                  <div *ngIf="listSeat.length !== 0" style="font-weight: bold; margin-top: 10px;">Select:
+                    <span *ngFor="let sx of listSeat">{{sx.tenghe}},</span> - {{giaveshow}} vnd
+                    <a style="line-height: 10px; width: 200px; margin-left: 30px;" class="btn btn-info" (click)="clickSelect()">Checkout</a>
+                  </div>
+                </div>
+                <div *ngIf="seats != null"  class="col-4 chitiet">
+                  <img class="info" style="filter: hue-rotate(700deg);" src="assets/img/seat.png">: <span style="font-weight: bold">Ghế Thường</span><br>
+                  <img class="info" style="filter: hue-rotate(600deg);" src="assets/img/seat.png">: <span style="font-weight: bold">Ghế VIP</span><br>
+                  <img class="info" style="filter: grayscale(100%);" src="assets/img/seat.png">: <span  style="font-weight: bold">Đã Mua</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <app-ticket [ticket] = "ticket"></app-ticket>
+      <app-ticket [ticket]="ticket" [order] = "order" [listSeat]="listSeat"></app-ticket>
     </div>
   </div>
 </div>

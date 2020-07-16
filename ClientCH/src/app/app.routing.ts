@@ -4,7 +4,9 @@ import {BrowserModule} from '@angular/platform-browser';
 import {Routes, RouterModule} from '@angular/router';
 import {AdminLayoutComponent} from './layouts/admin-layout/admin-layout.component';
 import {AuthLayoutComponent} from './layouts/auth-layout/auth-layout.component';
-import {LoginComponent} from "./pages/login/login.component";
+import {LoginComponent} from './pages/login/login.component';
+import {DetailsGuardService} from './shared/service/details-guard.service';
+import {PageNotFoundComponent} from './pages/page-not-found/page-not-found.component';
 
 
 
@@ -17,13 +19,22 @@ const routes: Routes = [
   {
     path: 'ticket',
     component: AdminLayoutComponent,
+    canActivate: [DetailsGuardService],
     loadChildren: () => {
       return import('../app/pages/ticket/ticket.module').then(m => m.TicketModule);
     }
   },
   {
+    path: 'order',
+    component: AdminLayoutComponent,
+    loadChildren: () => {
+      return import('../app/pages/order/order.module').then(m => m.OrderModule);
+    }
+  },
+  {
     path: 'room',
     component: AdminLayoutComponent,
+    canActivate: [DetailsGuardService],
     loadChildren: () => {
       return import('../app/pages/room/room.module').then(m => m.RoomModule);
     }
@@ -31,6 +42,7 @@ const routes: Routes = [
   {
     path: 'showtime',
     component: AdminLayoutComponent,
+    canActivate: [DetailsGuardService],
     loadChildren: () => {
       return import('../app/pages/showtime/showtime.module').then(m => m.ShowtimeModule);
     }
@@ -38,6 +50,7 @@ const routes: Routes = [
   {
     path: 'manage',
     component: AdminLayoutComponent,
+    canActivate: [DetailsGuardService],
     loadChildren: () => {
       return import('../app/pages/manage/manage.module').then(m => m.ManageModule);
     }
@@ -45,6 +58,7 @@ const routes: Routes = [
   {
     path: 'cinema',
     component: AdminLayoutComponent,
+    canActivate: [DetailsGuardService],
     loadChildren: () => {
       return import('../app/pages/cinema/cinema.module').then(m => m.CinemaModule);
     }
@@ -56,12 +70,26 @@ const routes: Routes = [
       return import('../app/pages/movie/movie.module').then(m => m.MovieModule);
     }
   },
-
+  //
+  // {
+  //       path: 'notfound',
+  //       component: PageNotFoundComponent
+  // }
+  // ,
   {
     path: 'seat',
     component: AdminLayoutComponent,
+    canActivate: [DetailsGuardService],
     loadChildren: () => {
       return import('../app/pages/seat/seat.module').then(m => m.SeatModule);
+    }
+  },
+  {
+    path: 'refundTicket',
+    component: AdminLayoutComponent,
+    canActivate: [DetailsGuardService],
+    loadChildren: () => {
+      return import('../app/pages/RefundTicket/refundticket.module').then(m => m.RefundticketModule);
     }
   },
 
@@ -85,6 +113,10 @@ const routes: Routes = [
         loadChildren: './layouts/auth-layout/auth-layout.module#AuthLayoutModule'
       }
     ]
+  },
+  {
+    path: '**',
+    component: PageNotFoundComponent
   },
 ];
 

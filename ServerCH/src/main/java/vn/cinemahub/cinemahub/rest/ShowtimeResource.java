@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import vn.cinemahub.cinemahub.entities.RoomEntity;
 import vn.cinemahub.cinemahub.entities.Showtime;
 import vn.cinemahub.cinemahub.serviceImpl.MovieService;
-import vn.cinemahub.cinemahub.serviceImpl.RoomServiceImpl;
+import vn.cinemahub.cinemahub.serviceImpl.RoomService;
 import vn.cinemahub.cinemahub.serviceImpl.ShowtimeServiceImpl;
 
 import java.util.Calendar;
@@ -25,7 +25,7 @@ public class ShowtimeResource {
     private MovieService movieService;
 
     @Autowired
-    private RoomServiceImpl roomService;
+    private RoomService roomService;
 
     @GetMapping
     public List<Showtime> findAll() {
@@ -102,8 +102,6 @@ public class ShowtimeResource {
                             startT.set(Calendar.MINUTE, startT.get(Calendar.MINUTE) + 10);
                             if (shows.get(j).getMovie().getId() == showtime.getMovie().getId()) {
                                 getT.set(Calendar.HOUR_OF_DAY, getT.get(Calendar.HOUR) +1);
-                                System.out.println(getT.getTime());
-                                System.out.println(showtime.getDateStart());
                                 if(getT.getTime().before(showtime.getDateStart())) {
                                     startT.set(Calendar.HOUR_OF_DAY, startT.get(Calendar.HOUR));
                                     showtime.setDateStart(startT.getTime());

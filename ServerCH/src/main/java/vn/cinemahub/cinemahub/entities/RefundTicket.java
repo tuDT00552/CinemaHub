@@ -18,17 +18,69 @@ public class RefundTicket {
     @Column(name = "ID")
     private Long id;
 
-    @Column(name = "USERNAME")
-    private String userName;
+    @Column(name = "MAVE")
+    private long mave;
 
-    @Column(name = "TOTAL")
-    private long tong;
+    @Column(name ="MARAP")
+    private long marap;
+
+    @Column(name = "TENPHIM")
+    private String tenphim;
+
+    @Column(name = "MAGHE")
+    private long maghe;
+
+    @Column(name = "MAPHONG")
+    private long maphong;
+
+    @Column(name = "GIAVE")
+    private long giave;
+
+    @Column(name = "NGAYCHIEU")
+    private Date ngaychieu;
+
+    @Column(name = "KHUNGGIO")
+    private String khunggio;
+
+    @Column(name = "GIOTRA")
+    private Date giotra;
+
+    public long getMarap() {
+        return marap;
+    }
+
+    public Date getGiotra() {
+        return giotra;
+    }
+
+    public void setGiotra(Date giotra) {
+        this.giotra = giotra;
+    }
+
+    public void setMarap(long marap) {
+        this.marap = marap;
+    }
+
+
 
     @Column(name = "TIENPHAT")
     private long tienphat;
 
-    @Column(name = "HOANTIEN")
-    private long hoantien;
+    public String getKhunggio() {
+        return khunggio;
+    }
+
+    public void setKhunggio(String khunggio) {
+        this.khunggio = khunggio;
+    }
+
+    public long getTienphat() {
+        return tienphat;
+    }
+
+    public void setTienphat(long tienphat) {
+        this.tienphat = tienphat;
+    }
 
     @CreatedDate
     @Column(name = "created_at", nullable = false, updatable = false)
@@ -46,37 +98,54 @@ public class RefundTicket {
         this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
+    public long getMave() {
+        return mave;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setMave(long mave) {
+        this.mave = mave;
     }
 
-    public long getTong() {
-        return tong;
+    public String getTenphim() {
+        return tenphim;
     }
 
-    public void setTong(long tong) {
-        this.tong = tong;
+    public void setTenphim(String tenphim) {
+        this.tenphim = tenphim;
     }
 
-    public long getTienphat() {
-        return tienphat;
+    public long getMaghe() {
+        return maghe;
     }
 
-    public void setTienphat(long tienphat) {
-        this.tienphat = tienphat;
+    public void setMaghe(long maghe) {
+        this.maghe = maghe;
     }
 
-    public long getHoantien() {
-        return hoantien;
+    public long getMaphong() {
+        return maphong;
     }
 
-    public void setHoantien(long hoantien) {
-        this.hoantien = hoantien;
+    public void setMaphong(long maphong) {
+        this.maphong = maphong;
     }
+
+    public long getGiave() {
+        return giave;
+    }
+
+    public void setGiave(long giave) {
+        this.giave = giave;
+    }
+
+    public Date getNgaychieu() {
+        return ngaychieu;
+    }
+
+    public void setNgaychieu(Date ngaychieu) {
+        this.ngaychieu = ngaychieu;
+    }
+
 
     public Date getCreatedAt() {
         return createdAt;
@@ -93,4 +162,7 @@ public class RefundTicket {
     public void setUpdateAt(Date updateAt) {
         this.updateAt = updateAt;
     }
+
+
+
 }
