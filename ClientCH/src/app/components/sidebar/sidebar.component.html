@@ -100,9 +100,13 @@
               <i class="ni ni-box-2 text-pink"></i>
               Manage
             </a>
-            <a  routerLinkActive="active" routerLink="/cinema" class="nav-link"  *ngIf="showUser">
+            <a  routerLinkActive="active" routerLink="/cinema" class="nav-link"  *ngIf="showUser || showAdmin">
               <i class="ni ni-tv-2 text-pink"></i>
               Cinema
+            </a>
+            <a  routerLinkActive="active" routerLink="/movie  " class="nav-link"  *ngIf="showUser || showAdmin">
+              <i class="ni ni-tv-2 text-pink"></i>
+              Movie
             </a>
             <a  routerLinkActive="active" routerLink="/order" class="nav-link"  *ngIf="showAdmin">
               <i class="ni ni-box-2 text-pink"></i>

@@ -36,18 +36,22 @@ export class MovieListComponent implements OnInit {
   isUpdate: any = false;
   @Input() movies: MovieModel[];
   @Input() cinema: CinemaModel;
+  @Input() theloai: String[];
   showtimes: ShowtimeModel[];
   seats: SeatModel[];
+  sx: SeatModel;
   select: number;
   status = false;
   ticket: TicketModel;
   error: string;
   sSelect: SeatModel;
-  teng: string;
+  teng: string[];
   giave: number;
+  giaveshow: number;
   ticketShow: TicketModel[];
   showtime: ShowtimeModel;
   order: OrderModel;
+  tongiaghe: number;
   const; // @ts-ignore
   listSeat: { id: number, tenghe: string, loaighe: number, status: number, createdAt: Date, updateAt: Date }[] = [];
   listTicket: { giave: number, tenphim: string, idGhe: number, marap: number, timeStart: Date, timeEnd: Date, lichchieu: number }[] = [];
@@ -55,6 +59,8 @@ export class MovieListComponent implements OnInit {
   ngOnInit(): void {
       this.seats = null;
       this.sSelect = null;
+      this.select = null;
+      this.tongiaghe = 0;
   }
 
   OnSelect(movie: MovieModel) {
@@ -62,18 +68,33 @@ export class MovieListComponent implements OnInit {
     if (this.status) {
       this.select = movie.id;
       this.movies = [movie];
-      this.seats = [];
+      this.seats = null;
+      this.listSeat = [];
       this.showtimeService.findbyMovieID(movie.id).subscribe((showtime) => {
         this.showtimes = showtime;
       });
     } else {
-      this.select = null;
+      this.showtimes = null;
       this.sSelect = null;
+      this.seats = null;
       this.movieService.findbyRap(this.cinema.id).subscribe((mov) => {
         this.movies = mov;
       });
     }
   }
+
+  clickTheloai(t: String) {
+    this.status = false;
+    this.movies = [];
+    this.movieService.findbyRap(this.cinema.id).subscribe((movie) => {
+      movie.forEach( (mv) => {
+        if (mv.theloai === t) {
+          this.movies.push(mv);
+        }
+      });
+    });
+  }
+
 
   showtimeClick(s: ShowtimeModel) {
     this.showtime = s;
@@ -98,38 +119,29 @@ export class MovieListComponent implements OnInit {
       this.seats = seat;
     });
   }
-  xz: SeatModel;
   seatSelect(s: SeatModel) {
-    // @ts-ignore
-    if (this.listSeat.length === 0) {
+    const data = this.listSeat.find(ob => ob.id === s.id);
+    if (data === null || data === undefined || this.listSeat.length === 0) {
+      if (s.loaighe === 1) {
+        this.tongiaghe += 50000;
+      }
       // @ts-ignore
       this.listSeat.push(s);
     } else {
-      this.listSeat.forEach( (seat) => {
-        if ( seat === s) {
-          // @ts-ignore
-          this.xz = seat;
-          // @ts-ignore
-          this.listSeat.pop(seat);
-        } else {
-
-        }
-      });
       // @ts-ignore
-      this.listSeat.push(s);
-      // // @ts-ignore
-      // this.listSeat.pop(this.xz);
+      if (s.loaighe === 1) {
+        this.tongiaghe -= 50000;
+      }
+      const index = this.listSeat.findIndex(d => d.id === s.id);
+      this.listSeat.splice(index, 1);
     }
-    console.log(this.listSeat);
-
-    // console.log(this.listSeat);
+    this.giaveshow = (this.showtime.price * this.listSeat.length) + this.tongiaghe;
     this.sSelect = s;
-    this.teng = s.tenghe;
   }
-
 
   clickSelect() {
     this.ticket = {
+      maphong: this.showtimes[0].roomEntity.id,
       giave: this.giave,
       marap: this.cinema.id,
       idGhe: this.sSelect.id,
@@ -146,7 +158,14 @@ export class MovieListComponent implements OnInit {
       time: this.showtimes[0].dateStart,
       tenphim: this.movies[0].tenphim,
       sove: this.listSeat.length,
-      tongtien: this.giave
+      tongtien: this.giaveshow
     };
+  }
+
+  clickTheloaiAll() {
+    this.status = false;
+    this.movieService.findbyRap(this.cinema.id).subscribe((mov) => {
+      this.movies = mov;
+    });
   }
 }

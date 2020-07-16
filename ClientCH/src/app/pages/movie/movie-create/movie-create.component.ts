@@ -82,7 +82,7 @@ export class MovieCreateComponent implements OnInit {
         this.movieService.create(movie).subscribe(
           (data) => {
             if (data == null) {
-              this.error = 'Mã rạp hoặc tên rạp đã tồn tại!';
+              this.error = 'Mã phim hoặc tên phim đã tồn tại!';
             } else {
               this.router.navigateByUrl('/movie');
             }
