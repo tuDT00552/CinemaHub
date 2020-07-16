@@ -46,8 +46,6 @@ public class RefundTicketServiceImpl implements DAO<RefundTicket> {
     public void delete(Long id) {
         this.refundTicketRepository.deleteById(id);
     }
-
-
 }
 
 

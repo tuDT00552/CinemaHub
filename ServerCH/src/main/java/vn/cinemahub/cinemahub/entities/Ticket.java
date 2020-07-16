@@ -79,7 +79,7 @@ public class Ticket {
     private Date updateAt;
 
     @ManyToOne
-    @JoinColumn(name = "order_id", referencedColumnName = "ORDERID")
+    @JoinColumn(name = "order_id", referencedColumnName = "id")
     private Order order;
 
     public Order getOrder() {
