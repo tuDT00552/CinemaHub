@@ -7,6 +7,41 @@ img {
   cursor: pointer;
 }
 
+.seatname {
+  cursor: pointer;
+  position: absolute;
+  top: 40%;
+  left: 53%;
+  transform: translate(-50%, -50%);
+  font-size: 14px;
+  color: #fff;
+}
+
+.seatnamebuy {
+  cursor: no-drop;
+  position: absolute;
+  top: 40%;
+  left: 53%;
+  transform: translate(-50%, -50%);
+  font-size: 14px;
+  color: #fff;
+}
+
+.seat li img {
+  width: 40px;
+  height: auto;
+}
+
+.info {
+  width: 40px;
+  height: auto;
+}
+
+.nopadding {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
 .moviename {
   text-align: center;
   line-height: 30px;
@@ -14,8 +49,22 @@ img {
   font-weight: bold;
 }
 
+li {
+  list-style-type: none;
+}
+
+.seat li.selected {
+  background-color: #CFD8DC;
+  color: white;
+}
+.seat li.selected:hover {
+  background-color: #BBD8DC;
+  color: white;
+}
+
 .btn-showtime {
   display: inline;
+  margin-bottom: 20px;
 }
 
 .titleshowtime {

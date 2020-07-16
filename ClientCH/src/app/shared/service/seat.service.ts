@@ -14,6 +14,10 @@ export class SeatService {
     return this.http.get<SeatModel[]>(`${ENDPOINT_URL}/seat`);
   }
 
+  findbyRoom(id: any): Observable<SeatModel[]> {
+    return this.http.get<SeatModel[]>(`${ENDPOINT_URL}/seat/r/${id}`);
+  }
+
   findOne(id: any): Observable<SeatModel> {
     return this.http.get<SeatModel>(`${ENDPOINT_URL}/seat/${id}`);
   }

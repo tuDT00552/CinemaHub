@@ -15,7 +15,6 @@ const routes: Routes = [
     path: '',
     component: LoginComponent,
     pathMatch: 'full' ,
-
   },
   {
     path: 'ticket',
@@ -23,6 +22,13 @@ const routes: Routes = [
     canActivate: [DetailsGuardService],
     loadChildren: () => {
       return import('../app/pages/ticket/ticket.module').then(m => m.TicketModule);
+    }
+  },
+  {
+    path: 'order',
+    component: AdminLayoutComponent,
+    loadChildren: () => {
+      return import('../app/pages/order/order.module').then(m => m.OrderModule);
     }
   },
   {
@@ -57,12 +63,13 @@ const routes: Routes = [
       return import('../app/pages/cinema/cinema.module').then(m => m.CinemaModule);
     }
   },
-  //
-  // {
-  //       path: 'notfound',
-  //       component: PageNotFoundComponent
-  // }
-  // ,
+  {
+    path: 'movie',
+    component: AdminLayoutComponent,
+    loadChildren: () => {
+      return import('../app/pages/movie/movie.module').then(m => m.MovieModule);
+    }
+  },
   {
     path: 'seat',
     component: AdminLayoutComponent,

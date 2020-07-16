@@ -130,7 +130,7 @@ public class TicketServiceImpl implements DAO<Ticket> {
 
     @PersistenceContext
     EntityManager emm;
-    public void thongke(ThongkeDto thongke){
+    public List<ThongkeDto> thongke(ThongkeDto thongke){
 //        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
         String d1=thongke.getTimeStart();
         String d2=thongke.getTimeEnd();
@@ -138,15 +138,14 @@ public class TicketServiceImpl implements DAO<Ticket> {
 
 
 
-        String setClause1="SELECT tenphim,SUM(TICKET.GIAVE) AS doanhthu,count (TICKET.ID) AS sove " +
-                "FROM TICKET" +
-                "WHERE TICKET.STATUS=" + 0 + "AND"
-                + "   to_char(TICKET.TIMESTART,'YYYY-MM-DD ') " +
-                "BETWEEN 'to_char("+d1+",'YYYY-MM-DD ')' AND 'to_char("+d2+",'YYYY-MM-DD ')'";
+        String setClause1="SELECT tenphim ,SUM(giave) AS doanhthu,count(id) AS sove " +
+                "FROM TICKET " +
+                "WHERE TICKET.STATUS=0 AND TICKET.TIMESTART BETWEEN to_date('"+d1+"','YYYY.MM.DD ') AND to_date('"+d2+"','YYYY.MM.DD ')\n" +
+                "GROUP BY ticket.tenphim;";
 
         Query query = emm.createNativeQuery(setClause1,"ThongkeDto");
 
-        query.getResultList();
+        return query.getResultList();
 
 
     }

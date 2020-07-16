@@ -93,10 +93,10 @@ public class TicketResource {
         return ticketService.findByCinemaAndPhimAndMaghe(ticket.getTenphim(),ticket.getIdghe(),ticket.getStatus());
     }
 
-    @PutMapping("/thongke")
-     public ResponseEntity<Void>thongke(@RequestBody ThongkeDto thongke){
-         this.ticketService.thongke(thongke);
-        return new ResponseEntity(HttpStatus.OK);
+    @PostMapping("/thongke")
+     public List<ThongkeDto>thongke(@RequestBody ThongkeDto thongke){
+         return this.ticketService.thongke(thongke);
+
         }
 
 }

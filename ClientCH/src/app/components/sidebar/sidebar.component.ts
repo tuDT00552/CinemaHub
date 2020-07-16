@@ -10,7 +10,9 @@ declare interface RouteInfo {
 }
 export const ROUTES: RouteInfo[] = [
     { path: '/dashboard', title: 'Dashboard',  icon: 'ni-tv-2 text-primary', class: '' },
+    { path: '/cinema', title: 'Cinema',  icon:'ni-tv-2 text-pink', class: '' },
     { path: '/manage', title: 'Manage',  icon: 'ni-settings text-primary', class: '' },
+    { path: '/order', title: 'Order',  icon:'ni-tv-2 text-pink', class: '' },
     { path: '/showtime' , title: 'Showtime',  icon:'ni-calendar-grid-58 text-green', class: '' },
     { path: '/icons', title: 'Icons',  icon:'ni-planet text-blue', class: '' },
     { path: '/maps', title: 'Maps',  icon:'ni-pin-3 text-orange', class: '' },
@@ -19,7 +21,7 @@ export const ROUTES: RouteInfo[] = [
     { path: '/register', title: 'Register',  icon:'ni-circle-08 text-pink', class: '' },
     { path: '/seat' , title: 'Seat',  icon:'ni-box-2 text-pink', class: '' },
     { path: '/ticket' , title: 'Ticket',  icon:'ni-box-2 text-pink', class: '' },
-    { path: '/cinema', title: 'Cinema',  icon:'ni-tv-2 text-pink', class: '' },
+    { path: '/movie', title: 'Movie',  icon:'ni-tv-2 text-pink', class: '' },
     { path: '/refundTicket', title: 'RefundTicket',  icon:'ni-tv-2 text-pink', class: '' }];
 @Component({
   selector: 'app-sidebar',
@@ -39,6 +41,7 @@ export class SidebarComponent implements OnInit {
   constructor(private router: Router,
 
   private tokenStorageService : TokenStorageService) { }
+
 
   ngOnInit() {
     this.isLoggedIn = !!this.tokenStorageService.getToken();
