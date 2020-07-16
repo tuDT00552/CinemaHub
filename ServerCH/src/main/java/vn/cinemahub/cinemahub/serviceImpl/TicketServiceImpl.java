@@ -126,13 +126,13 @@ public class TicketServiceImpl implements DAO<Ticket> {
     }
 
     @PersistenceContext
-    EntityManager emm;
-    public List<ThKeDto> thongke(ThKeDto thongke){
-
-        String d1=thongke.getTimeStart();
+    EntityManager ethongke.getTimeStart();
         String d2=thongke.getTimeEnd();
 
+        mm;
+        public List<ThKeDto> thongke(ThKeDto thongke){
 
+            String d1=
 
 
         String setClause1="SELECT tenphim ,SUM(giave) AS doanhthu,count(id) AS sove " +
