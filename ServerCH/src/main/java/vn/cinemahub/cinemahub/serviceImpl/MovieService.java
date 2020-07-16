@@ -32,6 +32,10 @@ public class MovieService implements DAO<Movie> {
 //        return Optional.ofNullable(entityManager.find(Movie.class, id));
     }
 
+    public List<String> findbyTheloai(Long idrap) {
+        return movieRepository.findbyTheloai(idrap);
+    };
+
 
     @Override
     public Movie save(Movie movie) {

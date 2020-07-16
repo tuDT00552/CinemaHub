@@ -53,6 +53,4 @@ public class ShowtimeServiceImpl implements DAO<Showtime> {
     public List<Date> findDatebyMovie(Long phimid) {
         return showtimeRepository.findDatebyMovie(phimid);
     }
-
-
 }

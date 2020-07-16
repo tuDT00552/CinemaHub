@@ -35,7 +35,6 @@ public class Ticket {
     @Column(name = "TENPHIM")
     private String tenphim;
 
-
     @Column(name = "IDGHE")
     private long idGhe;
 
@@ -51,27 +50,14 @@ public class Ticket {
     @Column(name = "STATUS")
     private int status;
 
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm",timezone = "Asia/Ho_Chi_Minh")
     @Column(name = "TIMESTART")
-    private Date timeStart;
+    private String timeStart;
 
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm",timezone = "Asia/Ho_Chi_Minh")
     @Column(name = "TIMEEND")
-    private Date timeEnd;
-
-    public long getTienphat() {
-        return tienphat;
-    }
-
-    public void setTienphat(long tienphat) {
-        this.tienphat = tienphat;
-    }
-
-    @Column(name = "TIENPHAT")
-    private long tienphat;
+    private String timeEnd;
 
     @CreatedDate
-    @Column(name = "created_at", nullable = true, updatable = true)
+    @Column(name = "created_at", nullable = false, updatable = false)
     private Date createdAt;
 
     @LastModifiedDate
@@ -105,8 +91,6 @@ public class Ticket {
     public void setId(Long id) {
         this.id = id;
     }
-
-
 
     public String getTenphim() {
         return tenphim;
@@ -148,19 +132,19 @@ public class Ticket {
         this.status = status;
     }
 
-    public Date getTimeStart() {
+    public String getTimeStart() {
         return timeStart;
     }
 
-    public void setTimeStart(Date timeStart) {
+    public void setTimeStart(String timeStart) {
         this.timeStart = timeStart;
     }
 
-    public Date getTimeEnd() {
+    public String getTimeEnd() {
         return timeEnd;
     }
 
-    public void setTimeEnd(Date timeEnd) {
+    public void setTimeEnd(String timeEnd) {
         this.timeEnd = timeEnd;
     }
 

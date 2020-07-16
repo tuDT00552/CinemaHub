@@ -58,5 +58,12 @@ public class RefundTicketResource {
     }
 
 
+    @PostMapping("/reticket")
+    public RefundTicket reTicket(@RequestBody ReTicketDto refundTicket){
+//        RefundTicket refundTicket1=new RefundTicket();
+//        refundTicket1.setId(refundTicket.getId());
+        return this.refundTicketService.reTicket(refundTicket);
+    }
+
 
 }

@@ -48,9 +48,6 @@ public class TicketResource {
         Date date = new Date();
         ticket.setCreatedAt(date);
         ticket.setUpdateAt(date);
-        ticket.setStatus(0);
-        ticket.setTienphat(0);
-        ticket.setOrder(orderService.findbyOid(ticket.getOrder().getOrderid()).get());
         ticket.setOrder(orderService.get(ticket.getOrder().getId()).get());
         return this.ticketService.save(ticket);
     }
@@ -85,20 +82,17 @@ public class TicketResource {
         return ticketService.findByTicket(idTicket);
     }
 
-    @PutMapping("/reticket")
-    public ResponseEntity<Void> reTicket(@RequestBody ReTicketDto refundTicket){
-         this.ticketService.reTicket(refundTicket);
-        return new ResponseEntity(HttpStatus.OK);
-    }
 
-    @PostMapping("/search")
-    public List<Ticket> findByCinemaAndPhimAndMaghe(@RequestBody SearchTicketDto ticket){
-        return ticketService.findByCinemaAndPhimAndMaghe(ticket.getTenphim(),ticket.getIdghe(),ticket.getStatus());
-    }
+
 
     @PostMapping("/thongke")
      public List<ThKeDto>thongke(@RequestBody ThKeDto thongke){
          return this.ticketService.thongke(thongke);
 
-        }
+//    @GetMapping({"/{id}"})
+//    public ResponseEntity search(@PathVariable Long id) {
+//        return (ResponseEntity)this.ticketService.get(id).map((ticket) -> {
+//            return new ResponseEntity(ticket, HttpStatus.OK);
+//        }).orElse(new ResponseEntity(HttpStatus.NOT_FOUND));
+//    }
 }

@@ -12,7 +12,6 @@ export class TicketModel {
     timeStart?: Date;
     timeEnd?: Date;
     lichchieu?: number;
-    tienphat?: number;
     order?: OrderModel;
     date?: Date;
 }
