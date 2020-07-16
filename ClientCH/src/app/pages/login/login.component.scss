@@ -1,39 +1,56 @@
-label {
-  display: block;
-  margin-top: 10px;
+logo-t1 {
+  font-weight: bold;
+  font-size: 25px;
+  color: #673ab7;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  //font-family: "Allerta Stencil", Sans-serif;
 }
 
-.card-container.card {
-  max-width: 400px !important;
-  padding: 40px 40px;
-  //background-color: #ba1414;
+.form-inline a {
+  color: #fff;
+  font-weight: bold;
 }
 
-.card {
-  background-color: #f7f7f7;
-  padding: 20px 25px 30px;
-  margin: 0 auto 25px;
-  margin-top: 50px;
-  -moz-border-radius: 2px;
-  -webkit-border-radius: 2px;
-  border-radius: 2px;
-  -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-  -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+.bg-dark {
+  background-color: #117a8b !important;
 }
 
-.profile-img-card {
-  width: 96px;
-  height: 96px;
-  margin: 0 auto 10px;
-  display: block;
-  -moz-border-radius: 50%;
-  -webkit-border-radius: 50%;
-  border-radius: 50%;
+.logo-t2 {
+  //background-color: rgb(128, 255, 255);
+  border-radius: 3px;
+  padding: 3px;
+
 }
-.alert-success {
-  color: #0b3121;
-  background-color: #4fd69c;
-  border-color: #4fd69c;
+.form-control{
+  width: 300px;
+  margin-left: 510px;
+  margin-top: 30px;
 }
+.pass{
+  text-align: center;
+}
+.btn:not(:disabled):not(.disabled) {
+  cursor: pointer;
+  width: 300px;
+  margin-left: 510px;
+}
+//.form-group{
+//  background-image: url(https://tophinhnen.com/wp-content/uploads/2018/01/tai-hinh-nen-thien-nhien-4k-dep-114.jpg);
+//  background-size: cover;
+//}
+
+img {
+
+  border-radius:50%;
+  -moz-border-radius:50%;
+  -webkit-border-radius:50%;
+  display: inline-block;
+  width: 150px;
+  img.profile-img-card{display: block; margin-left: auto; margin-right: auto;}
+  margin: auto;
+
+
+}
+
+
 

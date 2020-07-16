@@ -1,6 +1,5 @@
 package vn.cinemahub.cinemahub.dto;
 
-import vn.cinemahub.cinemahub.entities.Order;
 import vn.cinemahub.cinemahub.entities.RefundTicket;
 
 import java.util.Date;
@@ -10,66 +9,20 @@ public class ReTicketDto {
     private long mave;
     private long marap;
     private String tenphim;
-    private long idGhe;
+    private long maghe;
     private long maphong;
     private long giave;
-    private Date timeStart;
-    private Date timeEnd;
+    private Date ngaychieu;
     private String khunggio;
-    private long lichchieu;
     private Date giotra;
-    private long orderid;
-    private int status;
     private long tienphat;
-    private Order order;
 
-    public long getLichchieu() {
-        return lichchieu;
+    public Date getNgaychieu() {
+        return ngaychieu;
     }
 
-    public void setLichchieu(long lichchieu) {
-        this.lichchieu = lichchieu;
-    }
-
-
-    public long getOrderid() {
-        return orderid;
-    }
-
-    public void setOrderid(long orderid) {
-        this.orderid = orderid;
-    }
-
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
-    }
-
-    public Date getTimeStart() {
-        return timeStart;
-    }
-
-    public void setTimeStart(Date timeStart) {
-        this.timeStart = timeStart;
-    }
-
-    public Date getTimeEnd() {
-        return timeEnd;
-    }
-
-    public void setTimeEnd(Date timeEnd) {
-        this.timeEnd = timeEnd;
-    }
-
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
+    public void setNgaychieu(Date ngaychieu) {
+        this.ngaychieu = ngaychieu;
     }
 
     public Date getGiotra() {
@@ -112,12 +65,12 @@ public class ReTicketDto {
         this.tenphim = tenphim;
     }
 
-    public long getIdGhe() {
-        return idGhe;
+    public long getMaghe() {
+        return maghe;
     }
 
-    public void setIdGhe(long idGhe) {
-        this.idGhe = idGhe;
+    public void setMaghe(long maghe) {
+        this.maghe = maghe;
     }
 
     public long getMaphong() {
