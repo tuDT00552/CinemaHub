@@ -1,29 +1,14 @@
 package vn.cinemahub.cinemahub.entities;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-import vn.cinemahub.cinemahub.dto.ThongkeDto;
 
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Objects;
 
-@SqlResultSetMapping(
-        name = "ThongkeDto",
-        classes = {
-                @ConstructorResult(targetClass = ThongkeDto.class,
-                        columns = {
-                                @ColumnResult(name = "film_name", type = String.class),
-                                @ColumnResult(name = "tong_doanh_thu",type = long.class),
-                                @ColumnResult(name = "tong_so_ve",type = long.class)
-                        }
-                ),
-
-        }
-)
 @Entity
 @Table(name = "TICKET")
 @EntityListeners(AuditingEntityListener.class)
@@ -36,7 +21,6 @@ public class Ticket {
 
     @Column(name = "TENPHIM")
     private String tenphim;
-
 
     @Column(name = "IDGHE")
     private long idGhe;
@@ -53,27 +37,14 @@ public class Ticket {
     @Column(name = "STATUS")
     private int status;
 
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm",timezone = "Asia/Ho_Chi_Minh")
     @Column(name = "TIMESTART")
-    private Date timeStart;
+    private String timeStart;
 
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm",timezone = "Asia/Ho_Chi_Minh")
     @Column(name = "TIMEEND")
-    private Date timeEnd;
-
-    public long getTienphat() {
-        return tienphat;
-    }
-
-    public void setTienphat(long tienphat) {
-        this.tienphat = tienphat;
-    }
-
-    @Column(name = "TIENPHAT")
-    private long tienphat;
+    private String timeEnd;
 
     @CreatedDate
-    @Column(name = "created_at", nullable = true, updatable = true)
+    @Column(name = "created_at", nullable = false, updatable = false)
     private Date createdAt;
 
     @LastModifiedDate
@@ -107,8 +78,6 @@ public class Ticket {
     public void setId(Long id) {
         this.id = id;
     }
-
-
 
     public String getTenphim() {
         return tenphim;
@@ -150,19 +119,19 @@ public class Ticket {
         this.status = status;
     }
 
-    public Date getTimeStart() {
+    public String getTimeStart() {
         return timeStart;
     }
 
-    public void setTimeStart(Date timeStart) {
+    public void setTimeStart(String timeStart) {
         this.timeStart = timeStart;
     }
 
-    public Date getTimeEnd() {
+    public String getTimeEnd() {
         return timeEnd;
     }
 
-    public void setTimeEnd(Date timeEnd) {
+    public void setTimeEnd(String timeEnd) {
         this.timeEnd = timeEnd;
     }
 

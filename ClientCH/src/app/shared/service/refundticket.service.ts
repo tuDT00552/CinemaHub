@@ -21,8 +21,6 @@ export class RefundticketService {
     return this.http.get<RefundTicketModel>(`${ENDPOINT_URL}/refundTicket/${id}`);
   }
 
-
-
   create(refundticket: RefundTicketModel): Observable<RefundTicketModel> {
     return this.http.post<RefundTicketModel>(`${ENDPOINT_URL}/refundTicket`, refundticket);
   }
