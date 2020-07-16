@@ -26,7 +26,6 @@ export class TicketService {
   reTicket(ticket: RefundTicketModel){
     return this.http.put(`${ENDPOINT_URL}/ticket/reticket`, ticket);
   }
-
   findbyShow(id: any): Observable<TicketModel[]> {
     return this.http.get<TicketModel[]>(`${ENDPOINT_URL}/ticket/s/${id}`);
   }

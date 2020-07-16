@@ -54,7 +54,7 @@ public class TicketResource {
         ticket.setStatus(0);
         ticket.setTienphat(0);
         ticket.setOrder(orderService.findbyOid(ticket.getOrder().getOrderid()).get());
-
+        ticket.setOrder(orderService.get(ticket.getOrder().getId()).get());
         return this.ticketService.save(ticket);
     }
 
@@ -77,6 +77,12 @@ public class TicketResource {
         return new ResponseEntity(HttpStatus.OK);
     }
 
+
+//    @GetMapping("/search/{idTicket}")
+//    public List<Ticket> findByTicket(@PathVariable Long idTicket){
+//        return ticketService.findByTicket(idTicket);
+//    }
+
     @GetMapping("/search/{idTicket}")
     public List<Ticket> findByTicket(@PathVariable Long idTicket){
         return ticketService.findByTicket(idTicket);
@@ -98,5 +104,4 @@ public class TicketResource {
          return this.ticketService.thongke(thongke);
 
         }
-
 }

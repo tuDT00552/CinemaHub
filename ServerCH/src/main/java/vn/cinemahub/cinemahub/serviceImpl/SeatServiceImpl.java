@@ -1,6 +1,7 @@
 package vn.cinemahub.cinemahub.serviceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -48,6 +49,4 @@ public class SeatServiceImpl implements DAO<GheEntity> {
     }
 
     public List<GheEntity> findByLoaigheAndTenghe(String name){return seatRepository.findByLoaigheAndTenghe(name);}
-
-
 }

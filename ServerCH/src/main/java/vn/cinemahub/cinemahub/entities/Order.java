@@ -27,7 +27,8 @@ public class Order implements Serializable   {
     private String tenrap;
 
     @Column(name = "PHONGCHIEU")
-    private Long phongchieu;
+    private int phongchieu;
+
 
     @Column(name = "TIME")
     private Date time;
@@ -76,11 +77,11 @@ public class Order implements Serializable   {
         this.tenrap = tenrap;
     }
 
-    public Long getPhongchieu() {
+    public int getPhongchieu() {
         return phongchieu;
     }
 
-    public void setPhongchieu(Long phongchieu) {
+    public void setPhongchieu(int phongchieu) {
         this.phongchieu = phongchieu;
     }
 
