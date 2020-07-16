@@ -70,12 +70,6 @@ const routes: Routes = [
       return import('../app/pages/movie/movie.module').then(m => m.MovieModule);
     }
   },
-  //
-  // {
-  //       path: 'notfound',
-  //       component: PageNotFoundComponent
-  // }
-  // ,
   {
     path: 'seat',
     component: AdminLayoutComponent,

@@ -29,6 +29,7 @@ public class Order implements Serializable   {
     @Column(name = "PHONGCHIEU")
     private int phongchieu;
 
+
     @Column(name = "TIME")
     private Date time;
 

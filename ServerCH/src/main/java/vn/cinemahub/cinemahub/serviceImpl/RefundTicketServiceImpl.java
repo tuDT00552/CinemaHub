@@ -46,47 +46,6 @@ public class RefundTicketServiceImpl implements DAO<RefundTicket> {
     public void delete(Long id) {
         this.refundTicketRepository.deleteById(id);
     }
-
-    public RefundTicket reTicket(ReTicketDto reTicket) {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-
-
-        Date currentDate = new Date();
-        Date d1 = reTicket.getGiotra();
-
-        Date d2 = reTicket.getNgaychieu();
-
-        long diff = d2.getTime() - d1.getTime();
-
-        long diffHours = diff / (3600000);
-
-        RefundTicket refundTicket=new RefundTicket();
-
-        refundTicket.setId(reTicket.getId());
-        refundTicket.setMave(reTicket.getMave());
-        refundTicket.setMarap(reTicket.getMarap());
-        refundTicket.setMaphong(reTicket.getMaphong());
-        refundTicket.setMaghe(reTicket.getMaghe());
-        refundTicket.setGiave(reTicket.getGiave());
-        refundTicket.setNgaychieu(reTicket.getNgaychieu());
-        refundTicket.setKhunggio(reTicket.getKhunggio());
-        refundTicket.setGiotra(reTicket.getGiotra());
-        if (diffHours>48){
-            refundTicket.setTienphat((long) 0);
-
-        }if (diffHours>24&&diffHours<=48){
-            refundTicket.setTienphat(reTicket.getGiave()*20/100);
-
-        }if(diffHours>12&&diffHours<=24){
-            refundTicket.setTienphat(reTicket.getGiave()*40/100);
-
-        }if(diffHours>6 && diffHours<=12) {
-            refundTicket.setTienphat(reTicket.getGiave()*60/100);
-
-        }
-
-        return refundTicketRepository.save(refundTicket);
-    }
 }
 
 
