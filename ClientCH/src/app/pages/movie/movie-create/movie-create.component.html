@@ -65,9 +65,8 @@
                 <ul class="list-group list-group-flush">
                   <li class="list-group-item" *ngFor="let c of cinemas">
                     <!-- Default checked -->
-                    <div class="custom-control custom-checkbox">
-                      <input type="radio" formControlName="idrap" class="custom-control-input" id="idrap" value="{{c.id}}">
-                      <label class="custom-control-label" for="idrap">{{c.tenrap}}</label>
+                    <div class="">
+                      <label><input type="radio" formControlName="idrap" name="idrap" class="" id="idrap" value="{{c.id}}">{{c.tenrap}}</label>
                     </div>
                   </li>
                 </ul>

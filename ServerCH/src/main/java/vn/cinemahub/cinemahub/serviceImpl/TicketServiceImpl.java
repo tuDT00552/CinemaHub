@@ -2,18 +2,10 @@ package vn.cinemahub.cinemahub.serviceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import vn.cinemahub.cinemahub.dto.ReTicketDto;
-import vn.cinemahub.cinemahub.dto.ThKeDto;
 import vn.cinemahub.cinemahub.entities.Ticket;
 import vn.cinemahub.cinemahub.repository.TicketRepository;
 import vn.cinemahub.cinemahub.service.DAO;
 
-
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -55,6 +47,7 @@ public class TicketServiceImpl implements DAO<Ticket> {
     }
 
     public List<Ticket> findByTicket(Long id){return ticketRepository.findByTicket(id);}
+
 
     public void reTicket(ReTicketDto reTicket) {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
@@ -146,4 +139,5 @@ public class TicketServiceImpl implements DAO<Ticket> {
 
 
     }
+
 }

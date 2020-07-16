@@ -16,7 +16,11 @@
       <div class="card shadow">
         <div class="card-header border-0">
           <h3 class="mb-0">Ticket #{{id}}</h3>
-          <!--          <h3 class="mb-0 right"><a class="btn btn-sm btn-primary" href="movie/create"><i class="ni ni-fat-add"></i>Movie</a></h3>-->
+        Tên Rạp: {{order.tenrap}}<br>
+          Phòng Chiếu: Phòng {{order.phongchieu}}<br>
+          Tổng số vé: {{order.sove}} vé<br>
+          Tổng tiền: {{order.tongtien|currency:"VND":""}}	 vnđ<br>
+          Ngày tạo: {{ order.createdAt | date }}<br>
         </div>
         <table class="table" style="width:100%">
           <tr>

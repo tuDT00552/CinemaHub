@@ -1,27 +1,14 @@
 package vn.cinemahub.cinemahub.entities;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-import vn.cinemahub.cinemahub.dto.ThKeDto;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Objects;
 
-@SqlResultSetMapping(
-        name = "ThongkeDto",
-        classes = {
-                @ConstructorResult(targetClass = ThKeDto.class,
-                        columns = {
-                                @ColumnResult(name = "tenphim", type = String.class),
-                                @ColumnResult(name = "doanhthu",type = Long.class),
-                                @ColumnResult(name = "sove",type = Long.class)
-                        }
-                ),
-
-        }
-)
 @Entity
 @Table(name = "TICKET")
 @EntityListeners(AuditingEntityListener.class)

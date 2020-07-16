@@ -100,11 +100,10 @@
               <i class="ni ni-box-2 text-pink"></i>
               Manage
             </a>
-            <a  routerLinkActive="active" routerLink="/cinema" class="nav-link"  *ngIf="showAdmin">
+            <a  routerLinkActive="active" routerLink="/cinema" class="nav-link"  *ngIf="showUser">
               <i class="ni ni-tv-2 text-pink"></i>
               Cinema
             </a>
-
             <a  routerLinkActive="active" routerLink="/order" class="nav-link"  *ngIf="showAdmin">
               <i class="ni ni-box-2 text-pink"></i>
               Order
@@ -112,23 +111,22 @@
 
 
             <a  routerLinkActive="active" routerLink="/ticket" class="nav-link"    *ngIf="showAdmin">
-
               <i class="ni ni-box-2 text-pink"></i>
               Ticket
             </a>
-            <a  routerLinkActive="active" routerLink="/seat" class="nav-link"    *ngIf="showUser || showAdmin">
+            <a  routerLinkActive="active" routerLink="/seat" class="nav-link"    *ngIf="showUser">
               <i class="ni ni-box-2 text-pink"></i>
               Seat
             </a>
 
-<!--            <a  routerLinkActive="active" routerLink="/icons" class="nav-link"    *ngIf="showAdmin">-->
-<!--              <i class="ni ni-box-2 text-pink"></i>-->
-<!--              Icons-->
-<!--            </a>-->
-<!--            <a  routerLinkActive="active" routerLink="/maps" class="nav-link"    *ngIf="showAdmin">-->
-<!--              <i class="ni ni-box-2 text-pink"></i>-->
-<!--              Maps-->
-<!--            </a>-->
+            <a  routerLinkActive="active" routerLink="/icons" class="nav-link"    *ngIf="showAdmin">
+              <i class="ni ni-box-2 text-pink"></i>
+              Icons
+            </a>
+            <a  routerLinkActive="active" routerLink="/maps" class="nav-link"    *ngIf="showAdmin">
+              <i class="ni ni-box-2 text-pink"></i>
+              Maps
+            </a>
             <a  routerLinkActive="active" routerLink="/register" class="nav-link"    *ngIf="showAdmin">
               <i class="ni ni-box-2 text-pink"></i>
               Register
@@ -138,10 +136,12 @@
               <i class="ni ni-box-2 text-pink"></i>
               Showtime
             </a>
+
 <!--            <a  routerLinkActive="active" routerLink="/refundTicket" class="nav-link"    *ngIf="showUser">-->
 <!--              <i class="ni ni-box-2 text-pink"></i>-->
 <!--              RefundTicket-->
 <!--            </a>-->
+
           </li>
       </ul>
       <!-- Divider -->
