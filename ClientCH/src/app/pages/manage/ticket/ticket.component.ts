@@ -17,7 +17,7 @@ export class TicketComponent implements OnInit {
   @Input() ticket: TicketModel;
   @Input() ticketsuccess: TicketModel;
   @Input() order: OrderModel;
-  @Input() listSeat: { id: number, tenghe: string, loaighe: number, status: number, createdAt: Date, updateAt: Date }[];
+  @Input() listSeat: { id: number, tenghe: string, loaighe: number, status: number, createdAt: Date, updateAt: Date }[]
   // tslint:disable-next-line:max-line-length
   // @Input() listTicket: { giave: number, tenphim: string, idGhe: number, marap: number, timeStart: Date, timeEnd: Date, lichchieu: number }[];
 
@@ -32,48 +32,35 @@ export class TicketComponent implements OnInit {
 
   compTicket() {
     this.order.sove = this.listSeat.length;
-    // const random = Math.floor(Math.random() * (99999 - 10000)) + 10000;
-    // tslint:disable-next-line:max-line-length
-    this.order.orderid = Number(String(this.ticket.maphong.toString() + this.ticket.lichchieu.toString() + this.listSeat[0].id.toString()).substring(0, 5));
+    const random = Math.floor(Math.random() * (99999 - 10000)) + 10000;
+    this.order.orderid = random;
     this.orderService.create(this.order).subscribe(
       (data) => {
         if (data == null) {
           this.error = 'co loi xay ra';
           this.ticketsuccess = null;
         } else {
-          this.ticket.order = {id: data.id};
+          this.ticket.order = {orderid: data.orderid};
           this.listSeat.forEach( (tck) => {
             this.ticket.idGhe = tck.id;
             if (tck.loaighe === 1) {
+              this.ticket.giave = this.ticket.giave + 100000;
+            } else {
               this.ticket.giave = this.ticket.giave + 50000;
-              this.ticketService.create(this.ticket).subscribe(
-                (data1) => {
-                  if (data1 == null) {
-                    this.error = 'co loi xay ra';
-                  } else {
-                    if (tck.loaighe === 1) {
-                      this.ticket.giave = this.ticket.giave - 50000;
-                    }
-                  }
-                },
-                error => console.log(error));
-              this.ticketsuccess = data;
-              this.success = 'Dat ve thanh cong. Id don hang la: ';
-              this.ticket.giave = this.ticket.giave - 50000;
-            } else if (tck.loaighe === 2) {
-              this.ticketService.create(this.ticket).subscribe(
-                (data1) => {
-                  if (data1 == null) {
-                    this.error = 'co loi xay ra';
-                  } else {
-                    console.log('thanh cong');
-                  }
-                },
-                error => console.log(error));
-              this.ticketsuccess = data;
-              this.success = 'Dat ve thanh cong. Id don hang la: ';
             }
-            this.router.navigate(['order/detail', data.id]);
+            this.ticketService.create(this.ticket).subscribe(
+              (data1) => {
+                if (data1 == null) {
+                  this.error = 'co loi xay ra';
+                } else {
+                  this.success = 'Dat ve thanh cong. Id ve la: ';
+                  // window.location.reload();
+                  this.router.navigate(['order/detail', data.orderid]);
+                }
+              },
+              error => console.log(error));
+            this.ticketsuccess = data;
+            this.success = 'Dat ve thanh cong. Id don hang la: ';
           });
         }
       },

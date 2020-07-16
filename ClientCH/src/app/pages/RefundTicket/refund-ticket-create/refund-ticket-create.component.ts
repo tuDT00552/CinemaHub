@@ -28,20 +28,17 @@ export class RefundTicketCreateComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.fb.group({
       id: ['', Validators.required],
-      mave: ['', Validators.required],
-      createdAt: ['', Validators.required],
-      updateAt: ['', Validators.required],
       tenphim: ['', Validators.required],
-      maghe: ['', Validators.required],
-      maphong: ['', Validators.required],
+      idGhe: ['', Validators.required],
+      marap: ['', Validators.required],
+      lichchieu: ['', Validators.required],
       giave: ['', Validators.required],
-      ngaychieu: ['', Validators.required],
+      timeStart: ['', Validators.required],
+      timeEnd: ['', Validators.required],
       khunggio: ['', Validators.required],
-      tienphat: ['', Validators.required]
+      giotra: ['', Validators.required]
     });
-    this.form.patchValue({
 
-    })
 
 
     this.loadTickets();
@@ -51,15 +48,11 @@ export class RefundTicketCreateComponent implements OnInit {
   doSubmit() {
     const reTicket = this.form.value;
     console.log(reTicket)
-    if (this.isUpdate) {
-      this.refundticketService.update(reTicket).subscribe(
-        () => this.router.navigateByUrl('/refundTicket'),
-        error => console.log(error));
-    } else {
-      this.refundticketService.create(reTicket).subscribe(
-        () => this.router.navigateByUrl('/refundTicket'),
-        error => console.log(error));
-    }
+
+    this.ticketService.reTicket(reTicket).subscribe(
+      () => this.router.navigateByUrl('/ticket'),
+      error => console.log(error));
+
   }
   getTickets() {
     this.ticketService.findByTicket(this.ticketId).subscribe(ticket => {

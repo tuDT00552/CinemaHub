@@ -42,7 +42,7 @@ export class ShowtimeCreateComponent implements OnInit {
       dateStart: ['', Validators.required],
       moviez: ['', Validators.required],
       marap: ['', Validators.required],
-      price: ['', Validators.required],
+      // price: ['', Validators.required],
       timeStart: ['', Validators.required],
     });
 
@@ -51,7 +51,7 @@ export class ShowtimeCreateComponent implements OnInit {
       if (this.isUpdate) {
         this.form.patchValue({
           id: showtime.id,
-          price: showtime.price,
+          // price: showtime.price,
           dateStart: showtime.dateStart,
           roomEntity: showtime.roomEntity,
           movie: showtime.movie,
