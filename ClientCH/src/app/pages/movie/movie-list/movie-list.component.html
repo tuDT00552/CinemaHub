@@ -109,7 +109,7 @@
               <th scope="col">Mã Phim</th>
               <th scope="col">Tên Phim</th>
               <th scope="col">Loại Phim</th>
-              <th scope="col">Map Rạp</th>
+              <th scope="col">IMAGE</th>
               <th scope="col">Action</th>
             </tr>
             </thead>
@@ -140,10 +140,8 @@
                 <span>{{movie.loaiphim}}</span>
               </td>
               <td class="ell">
-                  <span sty class="badge badge-dot mr-4">
-<!--                    <i class="bg-warning"></i>-->
-                    {{movie.cinema.marap}}
-                  </span>
+                  <img class="w3-card-1" alt="Norway" src="http://localhost:8888/api/files/{{movie.image}}" />
+<!--                    <i class="bg-warning"> badge badge-dot mr-4 </i>-->
               </td>
               <td class="ell">
                 <a class="" href=""><i class="ni ni-collection"></i></a>
