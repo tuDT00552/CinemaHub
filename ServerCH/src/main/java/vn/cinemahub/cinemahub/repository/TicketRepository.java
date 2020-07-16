@@ -6,10 +6,15 @@ import org.springframework.stereotype.Repository;
 import vn.cinemahub.cinemahub.entities.Ticket;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public interface TicketRepository extends JpaRepository<Ticket,Long> {
+    @Query("SELECT t FROM Ticket t where t.lichchieu = :showid")
+    List<Ticket> findbyShow(Long showid);
+
+    @Query("SELECT t FROM Ticket t where t.order.orderid = :ordid")
+    List<Ticket> findbyOrdID(Long ordid);
+
     @Query("SELECT t FROM Ticket t where t.id = :maVe")
     List<Ticket> findByTicket(Long maVe);
 

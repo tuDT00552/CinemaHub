@@ -29,6 +29,9 @@ public class Showtime {
     @Column(name = "TIMESTART")
     private String timeStart;
 
+    @Column(name = "PRICE")
+    private int price;
+
     @Column(name = "STATUS")
     private int status;
 
@@ -43,11 +46,12 @@ public class Showtime {
     public Showtime() {
     }
 
-    public Showtime(Long id, Date dateStart, Date dateEnd, String timeStart, int status, Date createdAt, Date updateAt) {
+    public Showtime(Long id, Date dateStart, Date dateEnd, String timeStart,int price, int status, Date createdAt, Date updateAt) {
         this.id = id;
         this.dateStart = dateStart;
         this.dateEnd = dateEnd;
         this.timeStart = timeStart;
+        this.price = price;
         this.status = status;
         this.createdAt = createdAt;
         this.updateAt = updateAt;
@@ -61,6 +65,10 @@ public class Showtime {
     @JoinColumn(name = "movie_id", referencedColumnName = "id")
     private Movie movie;
 
+    public void setRoomEntity(RoomEntity roomEntity) {
+        this.roomEntity = roomEntity;
+    }
+
     public Movie getMovie() {
         return movie;
     }
@@ -69,12 +77,20 @@ public class Showtime {
         this.movie = movie;
     }
 
-    public RoomEntity getRoomEntity() {
-        return roomEntity;
+    public int getPrice() {
+        return price;
     }
 
-    public void setRoomEntity(RoomEntity roomEntity) {
-        this.roomEntity = roomEntity;
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public void setTimeStart(String timeStart) {
+        this.timeStart = timeStart;
+    }
+
+    public RoomEntity getRoomEntity() {
+        return roomEntity;
     }
 
     public Long getId() {
@@ -103,10 +119,6 @@ public class Showtime {
 
     public String getTimeStart() {
         return timeStart;
-    }
-
-    public void setTimeStart(String timeStart) {
-        this.timeStart = timeStart;
     }
 
     public int getStatus() {

@@ -1,14 +1,29 @@
 package vn.cinemahub.cinemahub.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import vn.cinemahub.cinemahub.dto.ThongkeDto;
 
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Objects;
 
+@SqlResultSetMapping(
+        name = "ThongkeDto",
+        classes = {
+                @ConstructorResult(targetClass = ThongkeDto.class,
+                        columns = {
+                                @ColumnResult(name = "film_name", type = String.class),
+                                @ColumnResult(name = "tong_doanh_thu",type = long.class),
+                                @ColumnResult(name = "tong_so_ve",type = long.class)
+                        }
+                ),
+
+        }
+)
 @Entity
 @Table(name = "TICKET")
 @EntityListeners(AuditingEntityListener.class)
@@ -22,14 +37,15 @@ public class Ticket {
     @Column(name = "TENPHIM")
     private String tenphim;
 
+
     @Column(name = "IDGHE")
     private long idGhe;
 
     @Column(name = "MARAP")
     private long marap;
 
-    @Column(name = "MAPHONG")
-    private long maphong;
+    @Column(name = "LICHCHIEU")
+    private long lichchieu;
 
     @Column(name = "GIAVE")
     private long giave;
@@ -37,27 +53,52 @@ public class Ticket {
     @Column(name = "STATUS")
     private int status;
 
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm",timezone = "Asia/Ho_Chi_Minh")
     @Column(name = "TIMESTART")
-    private String timeStart;
+    private Date timeStart;
 
-    public long getMaphong() {
-        return maphong;
-    }
-
-    public void setMaphong(long maphong) {
-        this.maphong = maphong;
-    }
-
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm",timezone = "Asia/Ho_Chi_Minh")
     @Column(name = "TIMEEND")
-    private String timeEnd;
+    private Date timeEnd;
+
+    public long getTienphat() {
+        return tienphat;
+    }
+
+    public void setTienphat(long tienphat) {
+        this.tienphat = tienphat;
+    }
+
+    @Column(name = "TIENPHAT")
+    private long tienphat;
 
     @CreatedDate
-    @Column(name = "created_at", nullable = false, updatable = false)
+    @Column(name = "created_at", nullable = true, updatable = true)
     private Date createdAt;
 
     @LastModifiedDate
     @Column(name = "update_at")
     private Date updateAt;
+
+    @ManyToOne
+    @JoinColumn(name = "order_id", referencedColumnName = "ORDERID")
+    private Order order;
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
+    public long getLichchieu() {
+        return lichchieu;
+    }
+
+    public void setLichchieu(long lichchieu) {
+        this.lichchieu = lichchieu;
+    }
 
     public Long getId() {
         return id;
@@ -66,6 +107,8 @@ public class Ticket {
     public void setId(Long id) {
         this.id = id;
     }
+
+
 
     public String getTenphim() {
         return tenphim;
@@ -107,19 +150,19 @@ public class Ticket {
         this.status = status;
     }
 
-    public String getTimeStart() {
+    public Date getTimeStart() {
         return timeStart;
     }
 
-    public void setTimeStart(String timeStart) {
+    public void setTimeStart(Date timeStart) {
         this.timeStart = timeStart;
     }
 
-    public String getTimeEnd() {
+    public Date getTimeEnd() {
         return timeEnd;
     }
 
-    public void setTimeEnd(String timeEnd) {
+    public void setTimeEnd(Date timeEnd) {
         this.timeEnd = timeEnd;
     }
 

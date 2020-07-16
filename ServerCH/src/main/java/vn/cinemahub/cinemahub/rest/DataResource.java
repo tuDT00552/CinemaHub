@@ -5,6 +5,10 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import vn.cinemahub.cinemahub.entities.Cinema;
+import vn.cinemahub.cinemahub.entities.GheEntity;
+import vn.cinemahub.cinemahub.entities.Movie;
+import vn.cinemahub.cinemahub.entities.RoomEntity;
 import vn.cinemahub.cinemahub.entities.*;
 import vn.cinemahub.cinemahub.serviceImpl.MovieService;
 import vn.cinemahub.cinemahub.serviceImpl.RoleService;
@@ -35,9 +39,6 @@ public class DataResource {
 
     @Autowired
     private RoleService roleService;
-
-
-
 
 
     @GetMapping
@@ -123,7 +124,7 @@ public class DataResource {
                     g.setLoaighe(2);
                 }
                 else if(g.getTenghe().equals("G"+j) || g.getTenghe().equals("H"+j)) {
-                    g.setLoaighe(3);
+                    g.setLoaighe(1);
                 }
                 g.setCreatedAt(date);
                 g.setUpdateAt(date);

@@ -5,51 +5,48 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import vn.cinemahub.cinemahub.entities.Movie;
+import vn.cinemahub.cinemahub.entities.Order;
 import vn.cinemahub.cinemahub.serviceImpl.CinemaService;
 import vn.cinemahub.cinemahub.serviceImpl.MovieService;
+import vn.cinemahub.cinemahub.serviceImpl.OrderService;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/api/movie")
-public class MovieResource {
+@RequestMapping("/api/order")
+public class OrderResource {
     Date date = new Date();
     @Autowired
-    private MovieService movieService;
-
-    @Autowired
-    private CinemaService cinemaService;
+    private OrderService orderService;
 
     @GetMapping
-    public List<Movie> findAll() {
-        return movieService.findAll();
-    }
-
-    @GetMapping("/c/{id}")
-    public List<Movie> findbyRap(@PathVariable Long id) {
-        return movieService.findbyRap(id);
+    public List<Order> findAll() {
+        return orderService.findAll();
     }
 
     @PostMapping
-    public Movie save(@RequestBody Movie movie) {
-        movie.setCreatedAt(date);
-        movie.setUpdateAt(date);
-        movie.setStatus(1);
-        movie.setCinema(cinemaService.get(movie.getCinema().getId()).get());
-        return movieService.save(movie);
+    public Order save(@RequestBody Order order) {
+        Random ran = new Random();
+//        order.setOrderid(order.getOrderid() + x);
+        order.setCreatedAt(date);
+        order.setUpdateAt(date);
+        order.setStatus(1);
+        return orderService.save(order);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Movie> findOne(@PathVariable Long id) {
-        return movieService.get(id).map(movie -> new ResponseEntity<>(movie, HttpStatus.OK))
+    public ResponseEntity<Order> findOne(@PathVariable Long id) {
+        return orderService.get(id).map(movie -> new ResponseEntity<>(movie, HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
-        movieService.delete(id);
+        orderService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }
