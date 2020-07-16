@@ -23,6 +23,7 @@ export class ManageComponent implements OnInit {
   seats: SeatModel[];
   options: string;
   cinema: CinemaModel;
+  theloai: String[];
 
   constructor(private cinemaService: CinemaService,
               private movieService: MovieService,
@@ -42,8 +43,12 @@ export class ManageComponent implements OnInit {
       this.movieService.findbyRap(cinemas[0].id).subscribe((movie) => {
         this.movies = movie;
       });
+      this.movieService.findbyTheloai(cinemas[0].id).subscribe((movie) => {
+        this.theloai = movie;
+      });
     }, error => console.log(error));
   }
+
 
   onSelect(cinema: any) {
     this.options = cinema.tenrap;
@@ -51,5 +56,10 @@ export class ManageComponent implements OnInit {
     this.movieService.findbyRap(cinema.id).subscribe((movie) => {
       this.movies = movie;
     });
+    this.movieService.findbyTheloai(cinema.id).subscribe((movie) => {
+      this.theloai = movie;
+    });
   }
+
+
 }

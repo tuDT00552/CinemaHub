@@ -36,6 +36,7 @@ export class MovieListComponent implements OnInit {
   isUpdate: any = false;
   @Input() movies: MovieModel[];
   @Input() cinema: CinemaModel;
+  @Input() theloai: String[];
   showtimes: ShowtimeModel[];
   seats: SeatModel[];
   sx: SeatModel;
@@ -58,6 +59,7 @@ export class MovieListComponent implements OnInit {
   ngOnInit(): void {
       this.seats = null;
       this.sSelect = null;
+      this.select = null;
       this.tongiaghe = 0;
   }
 
@@ -66,18 +68,33 @@ export class MovieListComponent implements OnInit {
     if (this.status) {
       this.select = movie.id;
       this.movies = [movie];
-      this.seats = [];
+      this.seats = null;
+      this.listSeat = [];
       this.showtimeService.findbyMovieID(movie.id).subscribe((showtime) => {
         this.showtimes = showtime;
       });
     } else {
-      this.select = null;
+      this.showtimes = null;
       this.sSelect = null;
+      this.seats = null;
       this.movieService.findbyRap(this.cinema.id).subscribe((mov) => {
         this.movies = mov;
       });
     }
   }
+
+  clickTheloai(t: String) {
+    this.status = false;
+    this.movies = [];
+    this.movieService.findbyRap(this.cinema.id).subscribe((movie) => {
+      movie.forEach( (mv) => {
+        if (mv.theloai === t) {
+          this.movies.push(mv);
+        }
+      });
+    });
+  }
+
 
   showtimeClick(s: ShowtimeModel) {
     this.showtime = s;
@@ -122,7 +139,6 @@ export class MovieListComponent implements OnInit {
     this.sSelect = s;
   }
 
-
   clickSelect() {
     this.ticket = {
       maphong: this.showtimes[0].roomEntity.id,
@@ -144,5 +160,12 @@ export class MovieListComponent implements OnInit {
       sove: this.listSeat.length,
       tongtien: this.giaveshow
     };
+  }
+
+  clickTheloaiAll() {
+    this.status = false;
+    this.movieService.findbyRap(this.cinema.id).subscribe((mov) => {
+      this.movies = mov;
+    });
   }
 }
