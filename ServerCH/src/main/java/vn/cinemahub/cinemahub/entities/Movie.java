@@ -19,7 +19,7 @@ import java.util.*;
 @Entity
 @Table(name = "MOVIE")
 @EntityListeners(AuditingEntityListener.class)
-public class Movie {
+public class Movie implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "MV_SEQ")
     @SequenceGenerator(sequenceName = "MOVIE_SEQ", allocationSize = 1, name = "MV_SEQ")
@@ -47,8 +47,8 @@ public class Movie {
     @Column(name = "IMAGE")
     private String image;
 
-    @Column(name = "TRAILER")
-    private String trailer;
+//    @Column(name = "TRAILER")
+//    private String trailer;
 
     @Column(name = "DES", length = 500)
     private String mota;
@@ -87,7 +87,7 @@ public class Movie {
         this.minutes = minutes;
         this.namsx = namsx;
         this.image = image;
-        this.trailer = trailer;
+//        this.trailer = trailer;
         this.mota = mota;
         this.status = status;
         this.cinema = cinema;
@@ -157,13 +157,13 @@ public class Movie {
         this.image = image;
     }
 
-    public String getTrailer() {
-        return trailer;
-    }
-
-    public void setTrailer(String trailer) {
-        this.trailer = trailer;
-    }
+//    public String getTrailer() {
+//        return trailer;
+//    }
+//
+//    public void setTrailer(String trailer) {
+//        this.trailer = trailer;
+//    }
 
     public String getMota() {
         return mota;

@@ -22,55 +22,70 @@
                 <span style="color: red">{{error}}</span>
                 <div class="form-group" *ngIf="!isUpdate">
                   <label class="form-control-label" for="maphim">Mã Phim</label>
-                  <input id="maphim" formControlName="maphim" class="form-control form-control-alternative" placeholder="Mã Phim" type="text">
+                  <input id="maphim" formControlName="maphim" class="form-control form-control-alternative"
+                         placeholder="Mã Phim" type="text">
                 </div>
                 <div class="form-group">
                   <label class="form-control-label" for="tenphim">Tên Phim</label>
-                  <input id="tenphim" formControlName="tenphim" class="form-control form-control-alternative" placeholder="Tên Phim" type="text">
+                  <input id="tenphim" formControlName="tenphim" class="form-control form-control-alternative"
+                         placeholder="Tên Phim" type="text">
                 </div>
                 <div class="form-group">
                   <label class="form-control-label" for="loaiphim">Loại PHim</label>
-                  <input id="loaiphim" formControlName="loaiphim" class="form-control form-control-alternative" placeholder="Loại PHim" type="text">
+                  <input id="loaiphim" formControlName="loaiphim" class="form-control form-control-alternative"
+                         placeholder="Loại PHim" type="text">
                 </div>
                 <div class="form-group">
                   <label class="form-control-label" for="theloai">Thể Loại</label>
-                  <input id="theloai" formControlName="theloai" class="form-control form-control-alternative" placeholder="Thể Loại Phim" type="text">
+                  <input id="theloai" formControlName="theloai" class="form-control form-control-alternative"
+                         placeholder="Thể Loại Phim" type="text">
                 </div>
                 <div class="form-group">
                   <label class="form-control-label" for="namsx">Năm Sản Xuất</label>
-                  <input id="namsx" formControlName="namsx" class="form-control form-control-alternative" placeholder="Năm Sản Xuất"type="number">
+                  <input id="namsx" formControlName="namsx" class="form-control form-control-alternative"
+                         placeholder="Năm Sản Xuất" type="number">
                 </div>
+
+
                 <div class="form-group">
-                  <label class="form-control-label" for="image">Ảnh Bìa</label>
-                  <input id="image" formControlName="image" class="form-control form-control-alternative" placeholder="Ảnh Bìa" type="text">
+                  <label class="col-1 form-control-label" for="image">Ảnh Bìa</label>
+                  <input id="image" formControlName="image" type="file"
+                         (change)="onFileChanged($event)">
+          <button class="btn btn-success"
+                  [disabled]="!selectedFiles"
+                  (click)="uploadFiles()">Upload</button>
                 </div>
-                <div class="form-group">
-                  <label class="form-control-label" for="trailer">Trailer</label>
-                  <input id="trailer" formControlName="trailer" class="form-control form-control-alternative" placeholder="Trailer" type="text">
-                </div>
+
+<!--                <div class="form-group">-->
+<!--                  <label class="col-1 form-control-label" for="trailer">Trailer</label>-->
+<!--                  <input id="trailer" formControlName="trailer" placeholder="Trailer" type="file"-->
+<!--                         (change)="onFileChanged($event)">-->
+<!--                  &lt;!&ndash;                  <input id="trailer" formControlName="trailer" class="form-control form-control-alternative" placeholder="Trailer" type="text">&ndash;&gt;-->
+<!--                </div>-->
+
                 <div class="form-group">
                   <label class="form-control-label" for="minutes">Thời Lượng Phim</label>
-                  <input id="minutes" formControlName="minutes" class="form-control form-control-alternative" placeholder="Thời Lượng Phim" type="number">
+                  <input id="minutes" formControlName="minutes" class="form-control form-control-alternative"
+                         placeholder="Thời Lượng Phim" type="number">
                 </div>
 
                 <div class="form-group">
                   <label class="form-control-label" for="mota">Mô Tả</label>
-                  <textarea id="mota" formControlName="mota" rows="4" class="form-control form-control-alternative" placeholder="Mô Tả"></textarea>
+                  <textarea id="mota" formControlName="mota" rows="4" class="form-control form-control-alternative"
+                            placeholder="Mô Tả"></textarea>
                 </div>
+<!--                <p class="font-weight-bold">Rạp</p>-->
 
-
-
-                <p class="font-weight-bold">Rạp</p>
-
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item" *ngFor="let c of cinemas">
-                    <!-- Default checked -->
-                    <div class="custom-control custom-checkbox">
-                      <input type="radio" formControlName="idrap" class="custom-control-input" id="idrap" value="{{c.id}}">
-                      <label class="custom-control-label" for="idrap">{{c.tenrap}}</label>
-                    </div>
-                  </li>
-                </ul>
+<!--                <ul class="list-group list-group-flush">-->
+<!--                  <li class="list-group-item" *ngFor="let c of cinemas">-->
+<!--                    &lt;!&ndash; Default checked &ndash;&gt;-->
+<!--                    <div class="custom-control custom-checkbox">-->
+<!--                      <input type="radio" formControlName="idrap" class="custom-control-input" id="idrap"-->
+<!--                             value="{{c.id}}">-->
+<!--                      <label class="custom-control-label" for="idrap">{{c.tenrap}}</label>-->
+<!--                    </div>-->
+<!--                  </li>-->
+<!--                </ul>-->
 
                 <button type="submit" class="btn btn-success" *ngIf="!isUpdate">Submit</button>
                 <button type="submit" class="btn btn-success" *ngIf="isUpdate">Update</button>
@@ -82,3 +97,62 @@
       </div>
     </div>
   </div>
+
+
+<!--<div class="col-md-12">-->
+<!--  <h3 *ngIf="!isUpdate">Thêm mới phim</h3>-->
+<!--  <h3 *ngIf="isUpdate">Cập nhật phim</h3>-->
+<!--  <form  class="col-md-12" [noValidate]="true" [formGroup]="form" (ngSubmit)="doSubmit()">-->
+
+<!--    <div class="form-group">-->
+<!--      <label for="name">Tên Phim:</label>-->
+<!--      <input type="text" class="form-control" id="name" formControlName="name" placeholder="Name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" >-->
+<!--      <div *ngIf="submitted && f.name.errors" class="invalid-feedback">-->
+<!--        <div *ngIf="f.name.errors.required"> Tên phim không được để trống</div>-->
+<!--        <div *ngIf="f.name.errors.maxLength"> Tên phim phải nhỏ hơn 100 kí tự</div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="form-group">-->
+<!--      <label>Hình ảnh</label>-->
+<!--      <div class="input-group col-xs-12">-->
+<!--        <label for="image" class="btn btn-default">-->
+<!--          <input type="file" id="image" (change)="selectFiles($event)">-->
+<!--          <input type="hidden" name="fileHidden"  formControlName="image" />-->
+<!--        </label>-->
+<!--        <span class="input-group-append">-->
+<!--          <button class="btn btn-success"-->
+<!--                  [disabled]="!selectedFiles"-->
+<!--                  (click)="uploadFiles()">Upload</button>-->
+<!--        </span>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="form-group">-->
+<!--      <label for="yearProduce">Năm sản xuất</label>-->
+<!--      <input type="number" min=0 class="form-control" id="yearProduce" formControlName="yearProduce" placeholder="Năm sản xuất"  [ngClass]="{ 'is-invalid': submitted && f.yearProduce.errors }">-->
+<!--      <div *ngIf="submitted && f.yearProduce.errors" class="invalid-feedback">-->
+<!--        <div *ngIf="f.yearProduce.errors.required"> Năm sản xuất không được để trống</div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="form-group">-->
+<!--      <label >Chọn danh mục: &nbsp;</label><br>-->
+<!--      <select class="chonrap" formControlName="categories" >-->
+<!--        <option *ngFor="let category of categories" [ngValue]="category.id" >{{category.name}}</option>-->
+<!--      </select>-->
+<!--    </div>-->
+
+<!--    <div class="form-group">-->
+<!--      <label for="time">Thời lượng</label>-->
+<!--      <input type="number" min=0 class="form-control" id="time" formControlName="time" placeholder="Time" required>-->
+<!--    </div>-->
+
+<!--    <div>-->
+<!--      <div class="form-group">-->
+<!--        <label for="description">Mô tả</label>-->
+<!--        <ckeditor [editor]="Editor" formControlName="description" id="description"  required></ckeditor>-->
+<!--      </div>-->
+<!--      <button class="btn btn-outline-primary btn-sm" type="submit"  *ngIf="!isUpdate">Lưu</button>-->
+<!--      <button class="btn btn-outline-primary btn-sm" type="submit" *ngIf="isUpdate">Cập nhật</button>-->
+<!--      <button class="btn btn-sm" [routerLink]="['/basic-ui/ql-film']">Hủy</button>-->
+<!--    </div>-->
+<!--  </form>-->
+<!--</div>-->
